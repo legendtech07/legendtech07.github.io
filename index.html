@@ -14,6 +14,7 @@
             background-color: #f4f4f9;
             color: #333;
             line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
         }
         header {
             background-color: black;
@@ -54,9 +55,14 @@
             background: #4077ff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s, transform 0.5s;
         }
         .active {
             display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
         textarea {
             width: 100%;
@@ -79,24 +85,26 @@
         button:hover {
             background-color: #0056b3;
         }
-        a button {
-            background-color: #25D366;
-            color: blue;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            text-decoration: none;
+        .dark-mode {
+            background-color: #222;
+            color: white;
         }
-        a button:hover {
-            background-color: #1da851;
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #ffcc00;
+            color: black;
+        }
+        video {
+            max-width: 100%;
+            margin-top: 10px;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
     <header>
-        <!-- Logo -->
         <img src="logo.png" alt="Legend Tech Logo">
         <nav>
             <h1>Legend Tech</h1>
@@ -105,35 +113,31 @@
                 <li><a onclick="showSection('about')">About</a></li>
                 <li><a onclick="showSection('upload')">Upload</a></li>
                 <li><a onclick="showSection('contact')">Contact</a></li>
-                <li><a           onclick="showSection('learn')">Learn</a></li>
-                                                
+                <li><a onclick="showSection('learn')">Learn</a></li>
             </ul>
         </nav>
     </header>
+
+    <button class="toggle-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
 
     <!-- Home Section -->
     <section id="home" class="section active">
         <h2>Welcome to Legend Tech</h2>
         <p>Your destination for learning tech skills through videos!</p>
-        <div id="video-gallery">
-            <!-- Uploaded videos will appear here -->
-        </div>
 
-        <!-- Text-to-Speech Section -->
-        <div id="container">
-            <h2>Text to Speech</h2>
-            <textarea id="text" placeholder="Type your text here..."></textarea>
-            <br>
-            <button onclick="speakText()">Speak</button>
-        </div>
+        <h2>Download Section</h2>
+        <button onclick="downloadFile()">Download Sample File</button>
+
+        <h2>Text to Speech</h2>
+        <textarea id="text" placeholder="Type your text here..."></textarea>
+        <br>
+        <button onclick="speakText()">Speak</button>
     </section>
 
     <!-- About Section -->
     <section id="about" class="section">
         <h2>About Legend Tech</h2>
-        <p>At Legend Tech, we help you master tech skills with engaging videos. Our mission is to make learning easy and accessible for everyone.</p>
-        <h2>Satisfying Desires On Tech Skills</h2>
-        <p>Legend Tech: Your ultimate hub for mastering tech skills! Dive into engaging tutorials, learn the art of coding, and explore freelancing tips tailored for success. Whether you're a tech newbie or a pro, Legend Tech is here to inspire, educate, and transform your digital journey. Unleash your potential with us!</p>
+        <p>We help you master tech skills with engaging videos and practical lessons.</p>
     </section>
 
     <!-- Upload Section -->
@@ -145,67 +149,22 @@
             <button type="submit">Upload</button>
         </form>
         <p id="upload-status"></p>
-        <p>uploading of videos is currently unavailable</p>
-    </section>
-    <!-- learn section -->
-    <section id="learn" class="section">
-        <h2>Here is the site of learning</h2>
-        <p>Under this page,notes and links on videos will be uploaded,stay in tune</p>
-        <!-- new container in learn section -->
-        <h2>Get Ready</h2>
-          <video width="500"height="500"
-        controls>
-        <source src="your_video.webm" type="video/webm"> <!-- Optional: Add a WebM source for better browser compatibility -->
-  Your browser does not support the video tag.  <!-- fallback message -->
-          </video>
+        <video id="video-preview" controls style="display:none;"></video>
     </section>
 
     <!-- Contact Section -->
     <section id="contact" class="section">
         <h2>Contact Me</h2>
-        <p>Feel free to reach out to me directly on WhatsApp!</p>
         <a href="https://wa.me/2347048929112?text=Hi%20Legend%20Tech%2C%20I%20would%20like%20to%20contact%20you!" target="_blank">
             <button>Message Me on WhatsApp</button>
-        </a>
-        <p>https://whatsapp.com/channel/0029VaYkGZhGk1Fu9CkxdU1a</p>
-        <p>That's our WhatsApp channel,please join for more updates 👆👆👆</p>
-        <h2>Contact me</h2>
-        <p>You can also contact our youtube channel for videos you will always need</p>
-        <a href="https://www.youtube.com/@LegendTechlord">
-            <button>visit YouTube channel</button>
         </a>
     </section>
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <h2>Contact Me</h2>
-        <p>Feel free to reach out to me directly on WhatsApp!</p>
-        <a href="https://wa.me/2347048929112?text=Hi%20Legend%20Tech%2C%20I%20would%20like%20to%20contact%20you!" target="_blank">
-            <button>Message Me on WhatsApp</button>
-        </a>
-        <a href="https://whatsapp.com/channel/0029VaYkGZhGk1Fu9CkxdU1a">
-        <p>That's our WhatsApp channel,please join for more updates 👆👆👆</p>
-        <button>Join our WhatsApp channel</button>
-        <h2>Contact me</h2>
-        <p>You can also contact our youtube channel for videos you will always need</p>
-        <a href="https://www.youtube.com/@LegendTechlord">
-            <button>visit YouTube channel</button>
-        </a>
-        </a>
-        <h2>Contact us with email@<a href="mailto:legendtechlord@gmail.com">legendtechlord@gmail.com</a></h2>
-        
-        
-   </section>
-    
+
     <!-- JavaScript -->
     <script>
         function showSection(sectionId) {
-            // Hide all sections
             const sections = document.querySelectorAll('.section');
-            sections.forEach((section) => {
-                section.classList.remove('active');
-            });
-
-            // Show the selected section
+            sections.forEach(section => section.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
         }
 
@@ -215,19 +174,40 @@
                 alert('Please enter some text!');
                 return;
             }
-
-            // Create a new SpeechSynthesisUtterance object
             const utterance = new SpeechSynthesisUtterance(text);
-
-            // Set voice properties (optional)
             utterance.lang = 'en-US';
-            utterance.rate = 1;
-            utterance.pitch = 1;
-
-            // Speak the text
             window.speechSynthesis.speak(utterance);
         }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+
+        function downloadFile() {
+            const element = document.createElement('a');
+            const file = new Blob(["Welcome to Legend Tech!"], { type: "text/plain" });
+            element.href = URL.createObjectURL(file);
+            element.download = "LegendTech.txt";
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        document.getElementById("video").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const videoPreview = document.getElementById("video-preview");
+                videoPreview.src = URL.createObjectURL(file);
+                videoPreview.style.display = "block";
+            }
+        });
+
+        document.getElementById("upload-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Uploading is currently unavailable.");
+        });
     </script>
+
     <footer>® reserved legend tech 2025</footer>
 </body>
 </html>
