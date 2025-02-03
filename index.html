@@ -114,6 +114,7 @@
                 <li><a onclick="showSection('upload')">Upload</a></li>
                 <li><a onclick="showSection('contact')">Contact</a></li>
                 <li><a onclick="showSection('learn')">Learn</a></li>
+                <li><a onclick="showSection('download')">Downloads</a></li>
             </ul>
         </nav>
     </header>
@@ -151,6 +152,22 @@
         <p id="upload-status"></p>
         <video id="video-preview" controls style="display:none;"></video>
     </section>
+    
+    <!-- Download Section -->
+<section id="download" class="section">
+    <h2>Download Apps & Videos</h2>
+    
+    <!-- Download Video -->
+    <h3>Download Videos</h3>
+    <button onclick="downloadFile('videos/tutorial.mp4', 'LegendTech_Tutorial.mp4')">Download Video 1</button>
+    <button onclick="downloadFile('videos/lesson2.mp4', 'Coding_Lesson.mp4')">Download Video 2</button>
+
+    <!-- Download Apps -->
+    <h3>Download Apps</h3>
+    <button onclick="downloadFile('apps/legendtech.apk', 'LegendTech_App.apk')">Download Android App</button>
+    <button onclick="downloadFile('apps/legendtech.exe', 'LegendTech_App.exe')">Download Windows App</button>
+</section>
+    
 
     <!-- Contact Section -->
     <section id="contact" class="section">
