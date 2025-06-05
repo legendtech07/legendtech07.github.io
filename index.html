@@ -239,6 +239,1784 @@ Give reactions fast and share post to motivate us 👍
 </p>
     </article>
 </box>
+    <div>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Reference - Learn Web Development, by Legendtech lord</title>
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        
+        h1 {
+            margin-bottom: 10px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        section {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .reference-item {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .reference-item:last-child {
+            border-bottom: none;
+        }
+        
+        h3 {
+            color: #3498db;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .syntax {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-x: auto;
+        }
+        
+        .description {
+            margin-bottom: 15px;
+        }
+        
+        .example {
+            background-color: #e8f4fc;
+            border-left: 4px solid #2980b9;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .example-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2980b9;
+        }
+        
+        nav {
+            background-color: #34495e;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav li {
+            margin: 0 15px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: #3498db;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2c3e50;
+            color: white;
+            border-radius: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Web Development Reference Guide</h1>
+            <p>Learn HTML, CSS, and JavaScript with detailed explanations and examples</p>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#html">HTML Tags</a></li>
+            <li><a href="#css">CSS Properties</a></li>
+            <li><a href="#javascript">JavaScript</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <section id="html">
+            <h2>HTML Tags Reference</h2>
+            
+            <div class="reference-item">
+                <h3>&lt;!DOCTYPE html&gt;</h3>
+                <div class="description">
+                    <p>Defines the document type and HTML version being used. This declaration must be the very first thing in your HTML document.</p>
+                </div>
+                <div class="syntax">&lt;!DOCTYPE html&gt;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;My Heading&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>&lt;html&gt;</h3>
+                <div class="description">
+                    <p>The root element of an HTML page that contains all other HTML elements.</p>
+                </div>
+                <div class="syntax">&lt;html&gt;...&lt;/html&gt;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>&lt;html lang="en"&gt;
+&lt;!-- All content goes here --&gt;
+&lt;/html&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>&lt;head&gt;</h3>
+                <div class="description">
+                    <p>Contains meta-information about the document, including its title, links to scripts and style sheets.</p>
+                </div>
+                <div class="syntax">&lt;head&gt;...&lt;/head&gt;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>&lt;head&gt;
+    &lt;title&gt;My Page&lt;/title&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>&lt;title&gt;</h3>
+                <div class="description">
+                    <p>Defines the title of the document, shown in the browser's title bar or tab.</p>
+                </div>
+                <div class="syntax">&lt;title&gt;Page Title&lt;/title&gt;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>&lt;title&gt;My Awesome Website&lt;/title&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>&lt;body&gt;</h3>
+                <div class="description">
+                    <p>Contains the visible page content that users see in their browser.</p>
+                </div>
+                <div class="syntax">&lt;body&gt;...&lt;/body&gt;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>&lt;body&gt;
+    &lt;h1&gt;Welcome to my site&lt;/h1&gt;
+    &lt;p&gt;This is my content.&lt;/p&gt;
+&lt;/body&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>&lt;h1&gt; to &lt;h6&gt;</h3>
+                <div class="description">
+                    <p>HTML headings from most important (h1) to least important (h6).</p>
+                </div>
+                <div class="syntax">
+                    &lt;h1&gt;Heading 1&lt;/h1&gt;<br>
+                    &lt;h2&gt;Heading 2&lt;/h2&gt;<br>
+                    ...<br>
+                    &lt;h6&gt;Heading 6&lt;/h6&gt;
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>&lt;h1&gt;Main Title&lt;/h1&gt;
+&lt;h2&gt;Section Heading&lt;/h2&gt;
+&lt;h3&gt;Subsection&lt;/h3&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>&lt;p&gt;</h3>
+                <div class="description">
+                    <p>Defines a paragraph of text.</p>
+                </div>
+                <div class="syntax">&lt;p&gt;Paragraph text&lt;/p&gt;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>&lt;p&gt;This is a paragraph of text that will appear on my webpage.&lt;/p&gt;
+&lt;p&gt;Here is another paragraph.&lt;/p&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>&lt;a&gt;</h3>
+                <div class="description">
+                    <p>Defines a hyperlink to link from one page to another.</p>
+                </div>
+                <div class="syntax">&lt;a href="url"&gt;link text&lt;/a&gt;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>&lt;a href="https://www.example.com"&gt;Visit Example.com&lt;/a&gt;
+&lt;a href="about.html"&gt;About Us&lt;/a&gt;
+&lt;a href="#section2"&gt;Jump to Section 2&lt;/a&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>&lt;img&gt;</h3>
+                <div class="description">
+                    <p>Embeds an image in the document. This is a self-closing tag.</p>
+                </div>
+                <div class="syntax">&lt;img src="image.jpg" alt="description"&gt;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>&lt;img src="logo.png" alt="Company Logo" width="200" height="100"&gt;
+&lt;img src="photos/sunset.jpg" alt="Sunset over mountains"&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>&lt;div&gt;</h3>
+                <div class="description">
+                    <p>Defines a division or section in an HTML document, used as a container for other elements.</p>
+                </div>
+                <div class="syntax">&lt;div&gt;...&lt;/div&gt;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>&lt;div class="header"&gt;
+    &lt;h1&gt;Welcome&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;div id="content"&gt;
+    &lt;p&gt;Main content goes here.&lt;/p&gt;
+&lt;/div&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>&lt;span&gt;</h3>
+                <div class="description">
+                    <p>An inline container used to mark up a part of text or document.</p>
+                </div>
+                <div class="syntax">&lt;span&gt;...&lt;/span&gt;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>&lt;p&gt;This is &lt;span class="highlight"&gt;important&lt;/span&gt; text.&lt;/p&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</h3>
+                <div class="description">
+                    <p>Defines lists: unordered (bulleted) with &lt;ul&gt;, ordered (numbered) with &lt;ol&gt;, and list items with &lt;li&gt;.</p>
+                </div>
+                <div class="syntax">
+                    &lt;ul&gt;<br>
+                    &nbsp;&nbsp;&lt;li&gt;Item&lt;/li&gt;<br>
+                    &lt;/ul&gt;<br><br>
+                    &lt;ol&gt;<br>
+                    &nbsp;&nbsp;&lt;li&gt;First item&lt;/li&gt;<br>
+                    &lt;/ol&gt;
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>&lt;ul&gt;
+    &lt;li&gt;Coffee&lt;/li&gt;
+    &lt;li&gt;Tea&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+    &lt;li&gt;First step&lt;/li&gt;
+    &lt;li&gt;Second step&lt;/li&gt;
+&lt;/ol&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>&lt;table&gt;, &lt;tr&gt;, &lt;th&gt;, &lt;td&gt;</h3>
+                <div class="description">
+                    <p>Defines a table with rows and cells.</p>
+                    <ul>
+                        <li>&lt;table&gt;: Defines the table</li>
+                        <li>&lt;tr&gt;: Defines a table row</li>
+                        <li>&lt;th&gt;: Defines a header cell</li>
+                        <li>&lt;td&gt;: Defines a standard data cell</li>
+                    </ul>
+                </div>
+                <div class="syntax">
+                    &lt;table&gt;<br>
+                    &nbsp;&nbsp;&lt;tr&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;th&gt;Header&lt;/th&gt;<br>
+                    &nbsp;&nbsp;&lt;/tr&gt;<br>
+                    &nbsp;&nbsp;&lt;tr&gt;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;Data&lt;/td&gt;<br>
+                    &nbsp;&nbsp;&lt;/tr&gt;<br>
+                    &lt;/table&gt;
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Name&lt;/th&gt;
+        &lt;th&gt;Age&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;John&lt;/td&gt;
+        &lt;td&gt;25&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>&lt;form&gt;</h3>
+                <div class="description">
+                    <p>Defines an HTML form for user input.</p>
+                    </div>
+                <div class="syntax">&lt;form action="url" method="post/get"&gt;...&lt;/form&gt;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>&lt;form action="/submit" method="post"&gt;
+    &lt;label for="name"&gt;Name:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name"&gt;
+    &lt;input type="submit" value="Submit"&gt;
+&lt;/form&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>&lt;input&gt;</h3>
+                <div class="description">
+                    <p>Defines an input control for forms. The type attribute specifies the kind of input.</p>
+                </div>
+                <div class="syntax">&lt;input type="text|password|checkbox|radio|submit|etc." name="field-name"&gt;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>&lt;input type="text" name="username" placeholder="Enter username"&gt;
+&lt;input type="password" name="pwd"&gt;
+&lt;input type="checkbox" name="subscribe" checked&gt;
+&lt;input type="radio" name="gender" value="male"&gt;
+&lt;input type="submit" value="Send"&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>&lt;button&gt;</h3>
+                <div class="description">
+                    <p>Defines a clickable button.</p>
+                </div>
+                <div class="syntax">&lt;button type="button|submit|reset"&gt;Label&lt;/button&gt;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>&lt;button type="button" onclick="alert('Clicked!')"&gt;Click Me&lt;/button&gt;
+&lt;button type="submit"&gt;Submit Form&lt;/button&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>&lt;textarea&gt;</h3>
+                <div class="description">
+                    <p>Defines a multi-line text input control.</p>
+                </div>
+                <div class="syntax">&lt;textarea rows="4" cols="50"&gt;Default text&lt;/textarea&gt;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>&lt;textarea name="message" rows="10" cols="30"&gt;
+The cat was playing in the garden.
+&lt;/textarea&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>&lt;select&gt;, &lt;option&gt;</h3>
+                <div class="description">
+                    <p>Defines a drop-down list of options.</p>
+                </div>
+                <div class="syntax">
+                    &lt;select name="name"&gt;<br>
+                    &nbsp;&nbsp;&lt;option value="value1"&gt;Option 1&lt;/option&gt;<br>
+                    &nbsp;&nbsp;&lt;option value="value2"&gt;Option 2&lt;/option&gt;<br>
+                    &lt;/select&gt;
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>&lt;select name="cars"&gt;
+    &lt;option value="volvo"&gt;Volvo&lt;/option&gt;
+    &lt;option value="saab"&gt;Saab&lt;/option&gt;
+    &lt;option value="mercedes"&gt;Mercedes&lt;/option&gt;
+&lt;/select&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>&lt;label&gt;</h3>
+                <div class="description">
+                    <p>Defines a label for an &lt;input&gt; element.</p>
+                </div>
+                <div class="syntax">&lt;label for="input-id"&gt;Label text&lt;/label&gt;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>&lt;label for="username"&gt;Username:&lt;/label&gt;
+&lt;input type="text" id="username" name="username"&gt;</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>&lt;header&gt;, &lt;footer&gt;, &lt;nav&gt;, &lt;section&gt;, &lt;article&gt;, &lt;aside&gt;</h3>
+                <div class="description">
+                    <p>HTML5 semantic elements that define parts of a document:</p>
+                    <ul>
+                        <li>&lt;header&gt;: Introductory content</li>
+                        <li>&lt;footer&gt;: Footer for a document or section</li>
+                        <li>&lt;nav&gt;: Navigation links</li>
+                        <li>&lt;section&gt;: Thematic grouping of content</li>
+                        <li>&lt;article&gt;: Self-contained composition</li>
+                        <li>&lt;aside&gt;: Content aside from the main content</li>
+                    </ul>
+                </div>
+                <div class="syntax">
+                    &lt;header&gt;...&lt;/header&gt;<br>
+                    &lt;footer&gt;...&lt;/footer&gt;<br>
+                    &lt;nav&gt;...&lt;/nav&gt;<br>
+                    &lt;section&gt;...&lt;/section&gt;<br>
+                    &lt;article&gt;...&lt;/article&gt;<br>
+                    &lt;aside&gt;...&lt;/aside&gt;
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>&lt;header&gt;
+    &lt;h1&gt;Website Title&lt;/h1&gt;
+    &lt;nav&gt;
+        &lt;a href="/"&gt;Home&lt;/a&gt;
+        &lt;a href="/about"&gt;About&lt;/a&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;section&gt;
+    &lt;article&gt;
+        &lt;h2&gt;Blog Post Title&lt;/h2&gt;
+        &lt;p&gt;Content...&lt;/p&gt;
+    &lt;/article&gt;
+&lt;/section&gt;
+
+&lt;footer&gt;
+    &lt;p&gt;Copyright 2023&lt;/p&gt;
+&lt;/footer&gt;</pre>
+                </div>
+            </div>
+        </section>
+        
+        <section id="css">
+            <h2>CSS Properties Reference</h2>
+            
+            <div class="reference-item">
+                <h3>color</h3>
+                <div class="description">
+                    <p>Sets the color of text.</p>
+   </div>
+                <div class="syntax">color: value;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>body {
+    color: #333333; /* Dark gray */
+}
+
+h1 {
+    color: red;
+}
+
+.special {
+    color: rgb(0, 150, 200);
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>background-color</h3>
+                <div class="description">
+                    <p>Sets the background color of an element.</p>
+                </div>
+                <div class="syntax">background-color: value;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>body {
+    background-color: #f5f5f5;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.button {
+    background-color: hsl(120, 100%, 50%);
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>font-family</h3>
+                <div class="description">
+                    <p>Specifies the font for an element.</p>
+                </div>
+                <div class="syntax">font-family: font1, font2, generic-family;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-family: "Times New Roman", Times, serif;
+}
+
+.code {
+    font-family: "Courier New", Courier, monospace;
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>font-size</h3>
+                <div class="description">
+                    <p>Sets the size of the font.</p>
+                </div>
+                <div class="syntax">font-size: value;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>body {
+    font-size: 16px;
+}
+
+h1 {
+    font-size: 2em; /* 2 times parent element's font size */
+}
+
+.small {
+    font-size: 0.8rem; /* Relative to root element */
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>font-weight</h3>
+                <div class="description">
+                    <p>Sets how thick or thin characters in text should be displayed.</p>
+                </div>
+                <div class="syntax">font-weight: normal|bold|bolder|lighter|number;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>p {
+    font-weight: normal;
+}
+
+strong {
+    font-weight: bold;
+}
+
+.heading {
+    font-weight: 700; /* Same as bold */
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>text-align</h3>
+                <div class="description">
+                    <p>Specifies the horizontal alignment of text.</p>
+                </div>
+                <div class="syntax">text-align: left|right|center|justify;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>h1 {
+    text-align: center;
+}
+
+article {
+    text-align: justify;
+}
+
+.right {
+    text-align: right;
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>margin</h3>
+                <div class="description">
+                    <p>Sets the margin area on all four sides of an element.</p>
+                </div>
+                <div class="syntax">
+                    margin: all;<br>
+                    margin: top-bottom left-right;<br>
+                    margin: top right bottom left;
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>body {
+    margin: 0; /* No margin */
+}
+
+div {
+    margin: 20px; /* All sides */
+}
+
+p {
+    margin: 10px 20px; /* Top/bottom, left/right */
+}
+
+.special {
+    margin: 5px 10px 15px 20px; /* Top, right, bottom, left */
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>margin</h3>
+                <div class="description">
+                    <p>Sets the margin area on all four sides of an element.</p>
+                </div>
+                <div class="syntax">
+                    margin: all;<br>
+                    margin: top-bottom left-right;<br>
+                    margin: top right bottom left;
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>body {
+    margin: 0; /* No margin */
+}
+
+div {
+    margin: 20px; /* All sides */
+}
+
+p {
+    margin: 10px 20px; /* Top/bottom, left/right */
+}
+
+.special {
+    margin: 5px 10px 15px 20px; /* Top, right, bottom, left */
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>padding</h3>
+                <div class="description">
+                    <p>Sets the padding area on all four sides of an element.</p>
+                </div>
+                <div class="syntax">
+                    padding: all;<br>
+                    padding: top-bottom left-right;<br>
+                    padding: top right bottom left;
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>.box {
+    padding: 10px;
+}
+
+.card {
+    padding: 20px 15px;
+}
+
+.button {
+    padding: 5px 10px 15px 20px;
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>border</h3>
+                <div class="description">
+                    <p>Sets the border of an element (width, style, and color).</p>
+                </div>
+                <div class="syntax">border: width style color;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>div {
+    border: 1px solid black;
+}
+
+img {
+    border: 2px dotted #ff0000;
+}
+
+.special {
+    border: 5px double rgba(0, 0, 255, 0.5);
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>width & height</h3>
+                <div class="description">
+                    <p>Sets the width and height of an element.</p>
+                </div>
+                <div class="syntax">
+                    width: value;<br>
+                    height: value;
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>.container {
+    width: 80%;
+    height: 500px;
+}
+
+img {
+    width: 300px;
+    height: auto; /* Maintain aspect ratio */
+}
+
+.box {
+    width: min(80%, 1000px);
+    height: max(50vh, 300px);
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>display</h3>
+                <div class="description">
+                    <p>Specifies the display behavior of an element.</p>
+                    <p>Common values:</p>
+                    <ul>
+                        <li><strong>block</strong>: Takes full width, starts on new line</li>
+                        <li><strong>inline</strong>: Flows with text, no width/height</li>
+                        <li><strong>inline-block</strong>: Flows with text but accepts width/height</li>
+                        <li><strong>flex</strong>: Flexbox layout</li>
+                        <li><strong>grid</strong>: CSS Grid layout</li>
+                        <li><strong>none</strong>: Completely removed</li>
+                    </ul>
+                </div>
+                <div class="syntax">display: value;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>div {
+    display: block;
+}
+
+span {
+    display: inline;
+}
+
+.menu {
+    display: flex;
+}
+
+.hidden {
+    display: none;
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>position</h3>
+                <div class="description">
+                    <p>Specifies the type of positioning method used for an element.</p>
+                    <p>Values:</p>
+                    <ul>
+                        <li><strong>static</strong>: Default, follows normal flow</li>
+                        <li><strong>relative</strong>: Positioned relative to normal position</li>
+                        <li><strong>absolute</strong>: Positioned relative to nearest positioned ancestor</li>
+                        <li><strong>fixed</strong>: Positioned relative to viewport</li>
+                        <li><strong>sticky</strong>: Hybrid of relative and fixed</li>
+                    </ul>
+                </div>
+                <div class="syntax">position: value;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>.box {
+    position: relative;
+    top: 20px;
+    left: 30px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>float</h3>
+                <div class="description">
+                    <p>Specifies whether an element should float to the left, right, or not at all.</p>
+                </div>
+                <div class="syntax">float: left|right|none;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>img {
+    float: left;
+    margin-right: 15px;
+}
+
+.sidebar {
+    float: right;
+    width: 30%;
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>flexbox properties</h3>
+                <div class="description">
+                    <p>Flexbox layout properties for creating flexible layouts.</p>
+                    <p>Key properties:</p>
+                    <ul>
+                        <li><strong>display: flex</strong>: Enables flexbox</li>
+                        <li><strong>flex-direction</strong>: Row or column</li>
+                        <li><strong>justify-content</strong>: Main axis alignment</li>
+                        <li><strong>align-items</strong>: Cross axis alignment</li>
+                        <li><strong>flex-wrap</strong>: Single or multiple lines</li>
+                        <li><strong>flex</strong>: Shorthand for flex-grow, flex-shrink, flex-basis</li>
+                    </ul>
+                </div>
+                <div class="syntax">
+                    display: flex;<br>
+                    flex-direction: row|column;<br>
+                    justify-content: flex-start|flex-end|center|space-between|space-around;<br>
+                    align-items: stretch|flex-start|flex-end|center|baseline;<br>
+                    flex: grow shrink basis;
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item {
+    flex: 1 0 200px;
+}
+
+.column {
+    flex-direction: column;
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>grid properties</h3>
+                <div class="description">
+                    <p>CSS Grid properties for two-dimensional layouts.</p>
+                    <p>Key properties:</p>
+                    <ul>
+                        <li><strong>display: grid</strong>: Enables grid</li>
+                        <li><strong>grid-template-columns</strong>: Defines columns</li>
+                        <li><strong>grid-template-rows</strong>: Defines rows</li>
+                        <li><strong>gap</strong>: Space between items</li>
+                        <li><strong>grid-column/grid-row</strong>: Item placement</li>
+                        <li><strong>grid-area</strong>: Named grid areas</li>
+                    </ul>
+                </div>
+                <div class="syntax">
+                    display: grid;<br>
+                    grid-template-columns: sizes;<br>
+                    grid-template-rows: sizes;<br>
+                    gap: size;<br>
+                    grid-column: start/end;<br>
+                    grid-row: start/end;
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 100px auto;
+    gap: 20px;
+}
+
+.header {
+    grid-column: 1 / 4;
+}
+
+.sidebar {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>transition</h3>
+                <div class="description">
+                    <p>Creates smooth transitions between property changes.</p>
+                </div>
+                <div class="syntax">transition: property duration timing-function delay;</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>.button {
+    background-color: blue;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkblue;
+}
+
+.box {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>transform</h3>
+                <div class="description">
+                    <p>Applies 2D or 3D transformations to an element.</p>
+                    <p>Common functions:</p>
+                    <ul>
+                        <li><strong>translate()</strong>: Move element</li>
+                        <li><strong>rotate()</strong>: Rotate element</li>
+                        <li><strong>scale()</strong>: Change size</li>
+                        <li><strong>skew()</strong>: Skew element</li>
+                    </ul>
+                </div>
+                <div class="syntax">transform: function(value);</div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>.element {
+    transform: translateX(50px);
+}
+
+.rotate {
+    transform: rotate(45deg);
+}
+
+.grow {
+    transform: scale(1.2);
+}
+
+.combined {
+    transform: translate(10px, 20px) rotate(10deg);
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>animation</h3>
+                <div class="description">
+                    <p>Creates animations by gradually changing styles.</p>
+                    <p>Requires @keyframes rule to define the animation sequence.</p>
+                </div>
+                <div class="syntax">
+                    @keyframes name {<br>
+                    &nbsp;&nbsp;from { properties }<br>
+                    &nbsp;&nbsp;to { properties }<br>
+                    }<br><br>
+                    animation: name duration timing-function delay iteration-count direction fill-mode;
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>@keyframes slidein {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+.box {
+    animation: slidein 1s ease-in-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.button {
+    animation: pulse 2s infinite;
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>media queries</h3>
+                <div class="description">
+                    <p>Applies styles based on device characteristics (like screen size).</p>
+                </div>
+                <div class="syntax">
+                    @media media-type and (condition) {<br>
+                    &nbsp;&nbsp;/* CSS rules */<br>
+                    }
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>/* Default styles */
+.container {
+    width: 100%;
+}
+
+/* For screens wider than 768px */
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+
+/* For screens wider than 992px */
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none;
+    }
+}</pre>
+                </div>
+            </div>
+        </section>
+        
+        <section id="javascript">
+            <h2>JavaScript Reference</h2>
+            
+            <div class="reference-item">
+                <h3>Variables</h3>
+                <div class="description">
+                    <p>Variables are containers for storing data values.</p>
+                    <p>JavaScript has three ways to declare variables:</p>
+                    <ul>
+                        <li><strong>var</strong>: Old way, function-scoped</li>
+                        <li><strong>let</strong>: Block-scoped, can be reassigned</li>
+                        <li><strong>const</strong>: Block-scoped, cannot be reassigned</li>
+                    </ul>
+                </div>
+                <div class="syntax">
+                    var name = value;<br>
+                    let name = value;<br>
+                    const name = value;
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>var oldVariable = "I'm old school";
+let changeable = "I can change";
+const constantValue = "I stay the same";
+
+// Reassignment
+changeable = "New value"; // OK
+// constantValue = "New value"; // Error!
+
+// Scope example
+if (true) {
+    let insideBlock = "I'm here";
+    var insideToo = "Me too";
+}
+// console.log(insideBlock); // Error
+console.log(insideToo); // Works</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>Data Types</h3>
+                <div class="description">
+                    <p>JavaScript has dynamic types. The same variable can hold different data types.</p>
+                    <p>Primitive types:</p>
+                    <ul>
+                        <li><strong>Number</strong>: Integer or floating point</li>
+                        <li><strong>String</strong>: Text</li>
+                        <li><strong>Boolean</strong>: true/false</li>
+                        <li><strong>null</strong>: Intentional empty value</li>
+                        <li><strong>undefined</strong>: Variable not assigned</li>
+                        <li><strong>Symbol</strong>: Unique identifier</li>
+                        <li><strong>BigInt</strong>: Large integers</li>
+                    </ul>
+                    <p>Object types: Object, Array, Date, etc.</p>
+                </div>
+                <div class="syntax">
+                    // Primitives<br>
+                    let num = 42;<br>
+                    let str = "Hello";<br>
+                    let bool = true;<br><br>
+                    // Objects<br>
+                    let obj = { key: "value" };<br>
+                    let arr = [1, 2, 3];
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>// Number
+let age = 25;
+let price = 9.99;
+
+// String
+let name = "Alice";
+let greeting = 'Hello';
+
+// Boolean
+let isActive = true;
+let isComplete = false;
+
+// Null
+let emptyValue = null;
+
+// Undefined
+let notAssigned;
+
+// Object
+let person = {
+    firstName: "John",
+    lastName: "Doe"
+};
+                        
+// Array
+let colors = ["red", "green", "blue"];</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>Operators</h3>
+                <div class="description">
+                    <p>Operators perform operations on variables and values.</p>
+                    <p>Types of operators:</p>
+                    <ul>
+                        <li><strong>Arithmetic</strong>: +, -, *, /, %, **, ++, --</li>
+                        <li><strong>Assignment</strong>: =, +=, -=, *=, /=</li>
+                        <li><strong>Comparison</strong>: ==, ===, !=, !==, >, <, >=, <=</li>
+                        <li><strong>Logical</strong>: &&, ||, !</li>
+                        <li><strong>Ternary</strong>: condition ? expr1 : expr2</li>
+                    </ul>
+                </div>
+                <div class="syntax">
+                    // Arithmetic<br>
+                    let sum = a + b;<br><br>
+                    // Assignment<br>
+                    x += 5; // x = x + 5<br><br>
+                    // Comparison<br>
+                    if (a === b) { ... }<br><br>
+                    // Logical<br>
+                    if (a && b) { ... }<br><br>
+                    // Ternary<br>
+                    let result = condition ? "yes" : "no";
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>// Arithmetic
+let x = 10 + 5; // 15
+let y = 10 % 3; // 1 (remainder)
+let z = 2 ** 3; // 8 (exponentiation)
+
+// Assignment
+let a = 10;
+a += 5; // a is now 15
+
+// Comparison
+console.log(5 == "5"); // true (loose equality)
+console.log(5 === "5"); // false (strict equality)
+
+// Logical
+let isAdult = true;
+let hasLicense = false;
+console.log(isAdult && hasLicense); // false
+console.log(isAdult || hasLicense); // true
+
+// Ternary
+let age = 20;
+let canVote = age >= 18 ? "Yes" : "No"; // "Yes"</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>Conditional Statements</h3>
+                <div class="description">
+                    <p>Conditional statements control behavior based on different conditions.</p>
+                    <p>Types:</p>
+                    <ul>
+                        <li><strong>if</strong>: Executes code if condition is true</li>
+                        <li><strong>else</strong>: Executes code if if condition is false</li>
+                        <li><strong>else if</strong>: Specifies new condition if first is false</li>
+                        <li><strong>switch</strong>: Selects one of many code blocks to execute</li>
+                    </ul>
+                </div>
+                <div class="syntax">
+                    // if-else<br>
+                    if (condition) {<br>
+                    &nbsp;&nbsp;// code<br>
+                    } else if (condition2) {<br>
+                    &nbsp;&nbsp;// code<br>
+                    } else {<br>
+                    &nbsp;&nbsp;// code<br>
+                    }<br><br>
+                    // switch<br>
+                    switch(expression) {<br>
+                    &nbsp;&nbsp;case x:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;// code<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+                    &nbsp;&nbsp;case y:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;// code<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+                    &nbsp;&nbsp;default:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;// code<br>
+                    }
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>// if-else
+let hour = new Date().getHours();
+let greeting;
+
+if (hour < 12) {
+    greeting = "Good morning";
+} else if (hour < 18) {
+    greeting = "Good afternoon";
+} else {
+    greeting = "Good evening";
+}
+
+// switch
+let day;
+switch (new Date().getDay()) {
+    case 0:
+        day = "Sunday";
+        break;
+    case 1:
+        day = "Monday";
+        break;
+    // ... other cases
+    default:
+        day = "Unknown";
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>Loops</h3>
+                <div class="description">
+                    <p>Loops execute a block of code repeatedly while a condition is true.</p>
+                    <p>Types:</p>
+                    <ul>
+                        <li><strong>for</strong>: Loops through code a number of times</li>
+                        <li><strong>while</strong>: Loops while condition is true</li>
+                        <li><strong>do...while</strong>: Loops once, then repeats while condition is true</li>
+                        <li><strong>for...in</strong>: Loops through object properties</li>
+                        <li><strong>for...of</strong>: Loops through iterable values (arrays, strings)</li>
+                    </ul>
+                </div>
+                <div class="syntax">
+                    // for loop<br>
+                    for (init; condition; increment) {<br>
+                    &nbsp;&nbsp;// code<br>
+                    }<br><br>
+                    // while loop<br>
+                    while (condition) {<br>
+                    &nbsp;&nbsp;// code<br>
+                    }<br><br>
+                    // for...of<br>
+                    for (item of iterable) {<br>
+                    &nbsp;&nbsp;// code<br>
+                    }
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    
+                    <pre>// for loop
+for (let i = 0; i < 5; i++) {
+    console.log(i); // 0, 1, 2, 3, 4
+}
+
+// while loop
+let i = 0;
+while (i < 5) {
+    console.log(i);
+    i++;
+}
+
+// for...of with array
+let colors = ["red", "green", "blue"];
+for (let color of colors) {
+    console.log(color);
+}
+
+// for...in with object
+let person = {name: "John", age: 30};
+for (let key in person) {
+    console.log(key + ": " + person[key]);
+}</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>Functions</h3>
+                <div class="description">
+                    <p>Functions are blocks of code designed to perform particular tasks.</p>
+                    <p>Types:</p>
+                    <ul>
+                        <li><strong>Function declarations</strong>: Defined with function keyword</li>
+                        <li><strong>Function expressions</strong>: Assigned to variables</li>
+                        <li><strong>Arrow functions</strong>: Shorter syntax, no own this</li>
+                    </ul>
+                </div>
+                <div class="syntax">
+                    // Function declaration<br>
+                    function name(parameters) {<br>
+                    &nbsp;&nbsp;// code<br>
+                    &nbsp;&nbsp;return value;<br>
+                    }<br><br>
+                    // Function expression<br>
+                    const name = function(parameters) {<br>
+                    &nbsp;&nbsp;// code<br>
+                    };<br><br>
+                    // Arrow function<br>
+                    const name = (parameters) => {<br>
+                    &nbsp;&nbsp;// code<br>
+                    };
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>// Function declaration
+function greet(name) {
+    return "Hello, " + name;
+}
+console.log(greet("Alice")); // "Hello, Alice"
+
+// Function expression
+const square = function(x) {
+    return x * x;
+};
+console.log(square(5)); // 25
+
+// Arrow function
+const add = (a, b) => a + b;
+console.log(add(2, 3)); // 5
+
+// Arrow function with multiple statements
+const greetUser = (name) => {
+    const message = "Hello, " + name;
+    return message;
+};
+
+// Default parameters
+function multiply(a, b = 1) {
+    return a * b;
+}
+console.log(multiply(5)); // 5
+console.log(multiply(5, 2)); // 10</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>Arrays</h3>
+                <div class="description">
+                    <p>Arrays are used to store multiple values in a single variable.</p>
+                    <p>Common methods:</p>
+                    <ul>
+                        <li><strong>push()/pop()</strong>: Add/remove from end</li>
+                        <li><strong>shift()/unshift()</strong>: Add/remove from start</li>
+                        <li><strong>slice()</strong>: Extract portion</li>
+                        <li><strong>splice()</strong>: Add/remove at position</li>
+                        <li><strong>map()</strong>: Transform elements</li>
+                        <li><strong>filter()</strong>: Select elements</li>
+                        <li><strong>reduce()</strong>: Reduce to single value</li>
+                    </ul>
+                </div>
+                <div class="syntax">
+                    let arr = [value1, value2, ...];<br>
+                    arr.method();
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>// Creating arrays
+let fruits = ["Apple", "Banana"];
+let numbers = [1, 2, 3, 4, 5];
+
+// Accessing elements
+console.log(fruits[0]); // "Apple"
+
+// Modifying arrays
+fruits.push("Orange"); // Add to end
+fruits.pop(); // Remove from end
+fruits.unshift("Strawberry"); // Add to start
+fruits.shift(); // Remove from start
+
+// Iterating
+fruits.forEach(function(item, index) {
+    console.log(index, item);
+});
+
+// Mapping
+let doubled = numbers.map(num => num * 2);
+
+// Filtering
+let evens = numbers.filter(num => num % 2 === 0);
+
+// Reducing
+let sum = numbers.reduce((total, num) => total + num, 0);
+
+// Spread operator
+let moreFruits = [...fruits, "Mango"];</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>Objects</h3>
+                <div class="description">
+                    <p>Objects are collections of key-value pairs.</p>
+                    <p>Common operations:</p>
+                    <ul>
+                        <li><strong>Property access</strong>: dot notation or brackets</li>
+                        <li><strong>Object methods</strong>: Functions as property values</li>
+                        <li><strong>Object destructuring</strong>: Unpack properties</li>
+                        <li><strong>Spread operator</strong>: Copy/merge objects</li>
+                    </ul>
+                </div>
+                <div class="syntax">
+                    let obj = {<br>
+                    &nbsp;&nbsp;key: value,<br>
+                    &nbsp;&nbsp;method() { ... }<br>
+                    };<br><br>
+                    obj.property;<br>
+                    obj["property"];<br>
+                    obj.method();
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>// Creating objects
+let person = {
+    firstName: "John",
+    lastName: "Doe",
+    age: 30,
+    fullName() {
+        return this.firstName + " " + this.lastName;
+    }
+};
+
+// Accessing properties
+console.log(person.firstName); // "John"
+console.log(person["lastName"]); // "Doe"
+console.log(person.fullName()); // "John Doe"
+
+// Adding properties
+person.email = "john@example.com";
+
+// Object destructuring
+let { firstName, age } = person;
+console.log(firstName, age); // "John" 30
+
+// Spread operator
+let updatedPerson = { ...person, age: 31 };
+
+// Object.keys(), Object.values()
+let keys = Object.keys(person);
+let values = Object.values(person);</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>DOM Manipulation</h3>
+                <div class="description">
+                    <p>The Document Object Model (DOM) represents the page as objects that JavaScript can manipulate.</p>
+                    <p>Common methods:</p>
+                    <ul>
+                        <li><strong>Selecting elements</strong>: querySelector, getElementById</li>
+                        <li><strong>Modifying content</strong>: innerHTML, textContent</li>
+                        <li><strong>Modifying attributes</strong>: getAttribute, setAttribute</li>
+                        <li><strong>Modifying styles</strong>: style.property</li>
+                        <li><strong>Event listeners</strong>: addEventListener</li>
+                        <li><strong>Creating elements</strong>: createElement, appendChild</li>
+                    </ul>
+                </div>
+                <div class="syntax">
+                    // Selecting<br>
+                    document.querySelector('css-selector');<br>
+                    document.getElementById('id');<br><br>
+                    // Modifying<br>
+                    element.textContent = 'text';<br>
+                    element.style.color = 'red';<br><br>
+                    // Events<br>
+                    element.addEventListener('click', function);
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>// Selecting elements
+let header = document.querySelector('h1');
+let button = document.getElementById('myButton');
+
+// Modifying content
+header.textContent = "New Title";
+
+// Modifying styles
+header.style.color = "blue";
+header.style.fontSize = "24px";
+
+// Adding event listener
+button.addEventListener('click', function() {
+    alert('Button clicked!');
+});
+
+// Creating and adding elements
+let newDiv = document.createElement('div');
+newDiv.textContent = "I'm new here!";
+document.body.appendChild(newDiv);
+
+// Form handling
+let form = document.querySelector('form');
+form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    let input = document.getElementById('nameInput');
+    console.log(input.value);
+});</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>Events</h3>
+                <div class="description">
+                    <p>Events are actions that happen in the browser that JavaScript can respond to.</p>
+                    <p>Common events:</p>
+                    <ul>
+                        <li><strong>Mouse events</strong>: click, dblclick, mouseover, mouseout</li>
+                        <li><strong>Keyboard events</strong>: keydown, keyup, keypress</li>
+                        <li><strong>Form events</strong>: submit, change, focus, blur</li>
+                        <li><strong>Window events</strong>: load, resize, scroll</li>
+                    </ul>
+                </div>
+                <div class="syntax">
+                    element.addEventListener(event, function);<br>
+                    element.onclick = function;
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>// Click event
+document.getElementById('myButton').addEventListener('click', function() {
+    console.log('Button clicked');
+});
+
+// Mouse events
+let box = document.querySelector('.box');
+box.addEventListener('mouseover', function() {
+    this.style.backgroundColor = 'yellow';
+});
+box.addEventListener('mouseout', function() {
+    this.style.backgroundColor = '';
+});
+
+// Keyboard event
+document.addEventListener('keydown', function(event) {
+    console.log('Key pressed:', event.key);
+});
+
+// Form submission
+document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    console.log('Form submitted');
+});
+
+// Window events
+window.addEventListener('resize', function() {
+    console.log('Window resized to:', window.innerWidth, 'x', window.innerHeight);
+});</pre>
+                </div>
+            </div>
+            
+            <div class="reference-item">
+                <h3>Error Handling</h3>
+                <div class="description">
+                    <p>Try...catch statements handle errors gracefully without stopping script execution.</p>
+                </div>
+                <div class="syntax">
+                    try {<br>
+                    &nbsp;&nbsp;// Code that might throw an error<br>
+                    } catch (error) {<br>
+                    &nbsp;&nbsp;// Handle the error<br>
+                    } finally {<br>
+                    &nbsp;&nbsp;// Execute always<br>
+                    }
+                </div>
+                <div class="example">
+                    <div class="example-title">Example:</div>
+                    <pre>// Basic error handling
+try {
+    // Code that might fail
+    let result = riskyOperation();
+    console.log(result);
+} catch (error) {
+    console.error("Something went wrong:", error.message);
+} finally {
+    console.log("This always runs");
+}
+
+// Throwing custom errors
+function divide(a, b) {
+    if (b === 0) {
+        throw new Error("Division by zero");
+    }
+    return a / b;
+}
+
+try {
+    console.log(divide(10, 0));
+} catch (error) {
+    console.error(error.message); // "Division by zero"
+}</pre>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Web Development Reference Guide</p>
+            <p>Created as a learning resource for HTML, CSS, and JavaScript</p>
+            <p>Endorsed by Legendtech team</p>
+        </div>
+    </footer>
+    
+    <script>
+        // JavaScript for interactive examples
+        
+        // Highlight current section in navigation
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+        
+        window.addEventListener('scroll', function() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Simple code execution for examples
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add run buttons to code examples
+            const examples = document.querySelectorAll('.example pre');
+            
+            examples.forEach(example => {
+                const button = document.createElement('button');
+                button.textContent = 'Run Code';
+                button.className = 'btn-run';
+                button.addEventListener('click', function() {
+                    try {
+                        const code = example.textContent;
+                        if (code.includes('console.log')) {
+                            // Capture console.log output
+                            const originalLog = console.log;
+                            let output = '';
+                            
+                            console.log = function() {
+                                output += Array.from(arguments).join(' ') + '\n';
+                                originalLog.apply(console, arguments);
+                            };
+                            
+                            // Execute the code
+                            new Function(code)();
+                            
+                            console.log = originalLog;
+                            
+                            // Show output
+                            if (output) {
+                                alert('Output:\n' + output);
+                            } else {
+                                alert('Code executed (no output)');
+                            }
+                        } else {
+                            new Function(code)();
+                            alert('Code executed');
+                        }
+                    } catch (error) {
+                        alert('Error: ' + error.message);
+                    }
+                });
+                
+                example.parentNode.insertBefore(button, example.nextSibling);
+            });
+        });
+    </script>
+</body>
+</html>
 </section>
 
     <!-- Download Section -->
