@@ -2558,6 +2558,92 @@ try {
         <a href="https://www.youtube.com/@LegendTechlord"
             <button> <img src="your-youtube-logo.png" alt="Youtube Logo" width="50"></button>
         </a>
+        
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Opinion Box</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .opinion-box {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      background: #f9f9f9;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+    }
+    button {
+      width: 48%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      color: white;
+    }
+    .email-btn {
+      background-color: #4CAF50;
+    }
+    .whatsapp-btn {
+      background-color: #25D366;
+    }
+  </style>
+</head>
+<body>
+
+<div class="opinion-box">
+  <h2>Send Your Opinion</h2>
+
+  <!-- Email Form -->
+  <form action="https://formsubmit.co/legendtechlord@gmail.com" method="POST" target="_blank">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+
+    <label for="name">Your Name:</label>
+    <input type="text" name="name" id="name" required>
+
+    <label for="message">Your Opinion:</label>
+    <textarea name="message" id="message" rows="4" required></textarea>
+
+    <div style="display: flex; justify-content: space-between;">
+      <button type="submit" class="email-btn">Send to Email</button>
+      <button type="button" onclick="sendToWhatsApp()" class="whatsapp-btn">Send to WhatsApp</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  function sendToWhatsApp() {
+    const name = document.getElementById('name').value;
+    const message = document.getElementById('message').value;
+
+    if (!name || !message) {
+      alert("Please fill in your name and opinion.");
+      return;
+    }
+
+    const url = `https://wa.me/2347048929112?text=${encodeURIComponent(
+      `Name: ${name}\nOpinion: ${message}`
+    )}`;
+    window.open(url, '_blank');
+  }
+</script>
+
+</body>
+</html>
+        
     </section>
 
     <!-- JavaScript -->
