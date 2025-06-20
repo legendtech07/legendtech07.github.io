@@ -2927,16 +2927,23 @@ try {
       showUser(user);
     }
 
-    // Show user and unlock site
+      // Show user and unlock site
     function showUser(user) {
-      document.querySelector('.g_id_signin').style.display = "none";
-      document.getElementById('user-name').textContent = user.name;
-      document.getElementById('user-email').textContent = user.email;
-      document.getElementById('user-pic').src = user.picture;
+  document.querySelector('.g_id_signin').style.display = "none";
 
-      document.getElementById('user-info').style.display = "block";
-      document.getElementById('logout-btn').style.display = "inline-block";
-      document.getElementById('main-site').style.display = "block";
+  document.getElementById('user-name').textContent = user.name;
+  document.getElementById('user-email').textContent = user.email;
+  document.getElementById('user-pic').src = user.picture;
+
+  document.getElementById('user-info').style.display = "block";
+  document.getElementById('logout-btn').style.display = "inline-block";
+  document.getElementById('main-site').style.display = "block";
+
+  rewardDailyLP(); // ✅ Add this here to trigger LP reward system
+
+  updatePointsUI();     // optional, but useful
+  updateDailyStreakUI(); // also useful for display
+}
     }
 
     // Logout
@@ -2954,6 +2961,72 @@ try {
         document.getElementById('main-site').style.display = "none";
         alert("Please sign in with Google to access the site.");
       }
+      
+      // ======== LEGEND POINT SYSTEM ========= //
+
+// Get stored LP
+function getLegendPoints() {
+  const points = localStorage.getItem("legendPoints");
+  return points ? parseInt(points) : 0;
+}
+
+// Add LP
+function addLegendPoints(amount) {
+  const current = getLegendPoints();
+  const updated = current + amount;
+  localStorage.setItem("legendPoints", updated);
+  updatePointsUI();
+}
+
+// Update LP display
+function updatePointsUI() {
+  const lpEl = document.getElementById("legend-points");
+  if (lpEl) lpEl.textContent = getLegendPoints() + " LP";
+}
+
+// Update streak display
+function updateDailyStreakUI() {
+  const streak = localStorage.getItem("dailyStreak") || 0;
+  const streakEl = document.getElementById("daily-streak");
+  if (streakEl) streakEl.textContent = streak;
+}
+
+// DAILY LP SYSTEM (run once after login)
+function rewardDailyLP() {
+  const lastClaim = localStorage.getItem("lastClaimDate");
+  const today = new Date().toDateString();
+  const yesterday = new Date(Date.now() - 86400000).toDateString(); // 1 day before
+
+  let streak = parseInt(localStorage.getItem("dailyStreak") || 0);
+
+  // If not claimed today
+  if (lastClaim !== today) {
+    if (lastClaim === yesterday) {
+      // Continued streak
+      streak++;
+    } else {
+      // Missed a day, reset streak
+      streak = 1;
+    }
+
+    localStorage.setItem("dailyStreak", streak);
+    localStorage.setItem("lastClaimDate", today);
+
+    let reward = 10;
+    if (streak === 4) {
+      reward += 40;
+      localStorage.setItem("dailyStreak", 0); // Reset streak after bonus
+    }
+
+    addLegendPoints(reward);
+    alert(`✅ You earned ${reward} LP today!`);
+  } else {
+    console.log("Already claimed LP today.");
+  }
+
+  updatePointsUI();
+  updateDailyStreakUI();
+}
     };
   </script>
 </body>
