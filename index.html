@@ -264,6 +264,101 @@ THEN COME BACK AND LOGIN
           𝑼𝒏𝒂𝒃𝒍𝒆 𝒕𝒐 𝒂𝒄𝒄𝒆𝒔𝒔 𝒘𝒆𝒃𝒔𝒊𝒕𝒆 𝒄𝒐𝒏𝒕𝒆𝒏𝒕 𝒘𝒊𝒕𝒉𝒐𝒖𝒕 𝒍𝒐𝒈𝒈𝒊𝒏𝒈 𝒊𝒏
        </p>
       </article>
+        <!-- Title -->
+<h2>🗺️ LEGEND TECH ROADMAP (Powered by XP & LP)</h2>
+
+<!-- Button to reveal content -->
+<button onclick="revealBioContent()" style="padding: 10px 20px; margin-bottom: 10px;">👁️ View Topic</button>
+
+<!-- Hidden content -->
+<div id="bio-topic" style="display: none; background-color: #f0f0f0; padding: 15px; border-radius: 8px;">
+  <h2 class="roadmap-title">🗺️ LEGEND TECH ROADMAP (Powered by XP & LP)</h2>
+
+  <table class="roadmap-table">
+    <thead>
+      <tr>
+        <th>Phase</th>
+        <th>Feature</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>✅ Phase 1</td><td>Google OAuth Login</td><td class="status-done">✅ Done</td></tr>
+      <tr><td>⚙️ Phase 2</td><td>Daily LP + Weekly Bonus</td><td class="status-progress">🔄 In Progress</td></tr>
+      <tr><td>⚙️ Phase 3</td><td>Channel LP (Follow, Click)</td><td class="status-planned">🔄 Planned</td></tr>
+      <tr><td>⚙️ Phase 4</td><td>Invite System (10 LP per invite)</td><td class="status-planned">🔄 Planned</td></tr>
+      <tr><td>⚙️ Phase 5</td><td>Top-Up LP w/ Naira</td><td class="status-planned">🔄 Planned</td></tr>
+      <tr><td>⚙️ Phase 6</td><td>Promo Codes (100 XP)</td><td class="status-planned">🔄 Planned</td></tr>
+      <tr><td>⚙️ Phase 7</td><td>Course Unlock (50 LP each)</td><td class="status-planned">🔄 Planned</td></tr>
+      <tr><td>⚙️ Phase 8</td><td>Badges + Achievements</td><td class="status-planned">🔄 Planned</td></tr>
+      <tr><td>⚙️ Phase 9</td><td>Leaderboard</td><td class="status-planned">🔄 Planned</td></tr>
+      <tr><td>⚙️ Phase 10</td><td>Cross-device LP Storage</td><td class="status-planned">🔄 Firebase Integration</td></tr>
+      <tr><td>⚙️ Phase 11</td><td>Personal Dashboard</td><td class="status-planned">🔄 UI Design + Firebase</td></tr>
+      <tr><td>⚙️ Phase 12</td><td>AI Assistant in Dashboard</td><td class="status-planned">🔄 Custom ChatGPT Embed</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- JavaScript -->
+<script>
+  function revealBioContent() {
+    const content = document.getElementById('bio-topic');
+    content.style.display = content.style.display === 'none' ? 'block' : 'none';
+  }
+</script>
+
+<!-- CSS -->
+<style>
+  .roadmap-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', sans-serif;
+    margin-top: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .roadmap-table th {
+    background-color: #222831;
+    color: #ffffff;
+    padding: 12px 15px;
+    text-align: left;
+  }
+
+  .roadmap-table td {
+    padding: 12px 15px;
+    background-color: #f9f9f9;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .roadmap-table tr:nth-child(even) td {
+    background-color: #f1f1f1;
+  }
+
+  .roadmap-table td.status-done {
+    color: green;
+    font-weight: bold;
+  }
+
+  .roadmap-table td.status-progress {
+    color: orange;
+    font-weight: bold;
+  }
+
+  .roadmap-table td.status-planned {
+    color: #555;
+    font-style: italic;
+  }
+
+  .roadmap-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #222831;
+  }
+</style>
     </section>
     <!-- Learn Section -->
 <section id="learn"  class="section">
