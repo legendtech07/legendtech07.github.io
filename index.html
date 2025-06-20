@@ -124,6 +124,44 @@
 
     <!-- Home Section -->
     <section id="home" class="section active">
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Legend Tech - Login with Google</title>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+  <h2>Login to Legend Tech</h2>
+
+  <!-- Google Sign-in button -->
+  <div id="g_id_onload"
+       data-client_id="787289457038-4li6c8arcp31mtcp3oh0j22rduq4n648.apps.googleusercontent.com"
+       data-callback="handleCredentialResponse"
+       data-auto_prompt="false">
+  </div>
+
+  <div class="g_id_signin"
+       data-type="standard"
+       data-theme="outline"
+       data-size="large">
+  </div>
+
+  <!-- Handle the response -->
+  <script>
+    function handleCredentialResponse(response) {
+      console.log("ID Token:", response.credential);
+
+      // Optional: Send token to your server for verification
+      // fetch('/verify', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ token: response.credential })
+      // });
+    }
+  </script>
+</body>
+</html>
         <h2>Welcome to Legend Tech</h2>
         <p>Welcome to Legend Tech – Where Innovation Meets Excellence!
 
