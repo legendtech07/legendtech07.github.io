@@ -1238,7 +1238,7 @@ const add = (a, b) => a + b;</pre>
 </section>
 
 <!-- JavaScript -->
-<script>
+  <script>
   function showSection(sectionId) {
     const sections = document.querySelectorAll('.section');
     sections.forEach(section => section.classList.remove('active'));
@@ -1269,7 +1269,7 @@ const add = (a, b) => a + b;</pre>
     document.body.removeChild(link);
   }
 
- document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("DOMContentLoaded", () => {
     const videoInput = document.getElementById("video");
     const uploadForm = document.getElementById("upload-form");
 
@@ -1299,6 +1299,15 @@ const add = (a, b) => a + b;</pre>
       const mainSite = document.getElementById('main-site');
       if (mainSite) mainSite.style.display = "none";
       alert("Please sign in with Google to access the site.");
+    }
+
+    // Logout Event
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', () => {
+        localStorage.removeItem("user");
+        location.reload();
+      });
     }
   });
 
@@ -1341,12 +1350,6 @@ const add = (a, b) => a + b;</pre>
     updateDailyStreakUI();
   }
 
-  // Logout
-  document.getElementById('logout-btn').addEventListener('click', () => {
-    localStorage.removeItem("user");
-    location.reload();
-  });
-
   // Legend Point System
   function getLegendPoints() {
     const points = localStorage.getItem("legendPoints");
@@ -1370,8 +1373,7 @@ const add = (a, b) => a + b;</pre>
     const streakEl = document.getElementById("daily-streak");
     if (streakEl) streakEl.textContent = streak;
   }
-  
-  
+
   function rewardDailyLP() {
     const lastClaim = localStorage.getItem("lastClaimDate");
     const today = new Date().toDateString();
@@ -1403,9 +1405,8 @@ const add = (a, b) => a + b;</pre>
 
     updatePointsUI();
     updateDailyStreakUI();
-  }  );
-</script>
-
+  }
+  </script>
 <footer>© Reserved Legend Tech 2025</footer>
 </body>
 
