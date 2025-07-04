@@ -301,8 +301,8 @@
 <!-- Dashboard Section -->
 <section id="dashboard" class="section">
   <h2>𝑾𝒆𝒍𝒄𝒐𝒎𝒆 𝑻𝒐 𝒀𝒐𝒖𝒓 𝑫𝒂𝒔𝒉𝒃𝒐𝒂𝒓𝒅</h2>
-  <p><strong>Legend Points:</strong> <span id="legend-points">0</span></p>
-  <p><strong>Daily Streak:</strong> <span id="daily-streak">0</span> days</p>
+  <p>Legend Points: <span id="legend-points" style="font-weight:bold; color:gold;">0</span></p>
+<p>Daily Streak: <span id="daily-streak" style="font-weight:bold; color:#00ffaa;">0</span> days</p>
 </section>
 
 <!-- Notification Section -->
@@ -1384,118 +1384,71 @@ const add = (a, b) => a + b;</pre>
 
 <!-- JavaScript -->
   <script>
-  function showSection(sectionId) {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => section.classList.remove('active'));
-    document.getElementById(sectionId).classList.add('active');
-  }
-
-  function speakText() {
-    const text = document.getElementById('text').value;
-    if (!text) {
-      alert('Please enter some text!');
-      return;
-    }
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US';
-    window.speechSynthesis.speak(utterance);
-  }
-
-  function toggleDarkMode() {
-    document.body.classList.toggle("dark-mode");
-  }
-
-  function downloadFile(filePath, fileName) {
-    const link = document.createElement('a');
-    link.href = filePath;
-    link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const videoInput = document.getElementById("video");
-    const uploadForm = document.getElementById("upload-form");
-
-    if (videoInput) {
-      videoInput.addEventListener("change", function (event) {
-        const file = event.target.files[0];
-        if (file) {
-          const videoPreview = document.getElementById("video-preview");
-          videoPreview.src = URL.createObjectURL(file);
-          videoPreview.style.display = "block";
-        }
-      });
+  // ✅ Preloader
+  window.addEventListener("load", function () {
+    const preloader = document.getElementById("preloader");
+    if (preloader) {
+      preloader.classList.add("hide-preloader");
+      document.body.classList.add("site-loaded");
+      setTimeout(() => {
+        preloader.remove();
+      }, 600);
     }
 
-    if (uploadForm) {
-      uploadForm.addEventListener("submit", function (event) {
-        event.preventDefault();
-        alert("Uploading is currently unavailable.");
-      });
-    }
-
-    // Auto-login
+    // Auto-login check
     const userData = localStorage.getItem("user");
     if (userData) {
       showUser(JSON.parse(userData));
     } else {
-      const mainSite = document.getElementById('main-site');
+      const mainSite = document.getElementById("main-site");
       if (mainSite) mainSite.style.display = "none";
       alert("Please sign in with Google to access the site.");
     }
-
-    // Logout Event
-    const logoutBtn = document.getElementById('logout-btn');
-    if (logoutBtn) {
-      logoutBtn.addEventListener('click', () => {
-        localStorage.removeItem("user");
-        location.reload();
-      });
-    }
   });
 
-  // Decode JWT Token
+  // ✅ Decode Google token
   function decodeJwt(token) {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     const jsonPayload = decodeURIComponent(
-      atob(base64)
-        .split('')
-        .map(c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
-        .join('')
+      atob(base64).split('').map(c =>
+        '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+      ).join('')
     );
     return JSON.parse(jsonPayload);
   }
 
-  // Handle Google Sign-In
+  // ✅ Google Sign-In Response Handler
   function handleCredentialResponse(response) {
     const user = decodeJwt(response.credential);
     localStorage.setItem("user", JSON.stringify(user));
     showUser(user);
   }
 
-  // Show User Info
+  // ✅ Show User Info + LP
   function showUser(user) {
-    const signIn = document.querySelector('.g_id_signin');
-    const mainSite = document.getElementById('main-site');
+    document.querySelector('.g_id_signin').style.display = "none";
 
-    if (signIn) signIn.style.display = "none";
     document.getElementById('user-name').textContent = user.name;
     document.getElementById('user-email').textContent = user.email;
     document.getElementById('user-pic').src = user.picture;
 
     document.getElementById('user-info').style.display = "block";
     document.getElementById('logout-btn').style.display = "inline-block";
-    if (mainSite) mainSite.style.display = "block";
+    document.getElementById('main-site').style.display = "block";
 
-    rewardDailyLP(); // ✅ LP daily reward
+    rewardDailyLP(); // Give LP if eligible
     updatePointsUI();
     updateDailyStreakUI();
   }
 
-  // Legend Point System
+  // ✅ Logout
+  document.getElementById('logout-btn').addEventListener('click', () => {
+    localStorage.removeItem("user");
+    location.reload();
+  });
+
+  // ✅ LP Functions
   function getLegendPoints() {
     const points = localStorage.getItem("legendPoints");
     return points ? parseInt(points) : 0;
@@ -1519,6 +1472,7 @@ const add = (a, b) => a + b;</pre>
     if (streakEl) streakEl.textContent = streak;
   }
 
+  // ✅ Reward LP Once Per Day
   function rewardDailyLP() {
     const lastClaim = localStorage.getItem("lastClaimDate");
     const today = new Date().toDateString();
@@ -1539,13 +1493,13 @@ const add = (a, b) => a + b;</pre>
       let reward = 10;
       if (streak === 4) {
         reward += 40;
-        localStorage.setItem("dailyStreak", 0); // reset after bonus
+        localStorage.setItem("dailyStreak", 0); // Reset after 4th day bonus
       }
 
       addLegendPoints(reward);
       alert(`✅ You earned ${reward} LP today!`);
     } else {
-      console.log("Already claimed LP today.");
+      console.log("LP already claimed today");
     }
 
     updatePointsUI();
