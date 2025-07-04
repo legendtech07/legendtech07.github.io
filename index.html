@@ -211,6 +211,40 @@
 .lp-display i {
   font-size: 30px;
 }
+    /* ✅ Streak Progress Bar */
+.streak-progress {
+  width: 100%;
+  height: 20px;
+  background: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px 0 20px;
+}
+.streak-fill {
+  height: 100%;
+  background: linear-gradient(to right, gold, orange);
+  width: 0%;
+  transition: width 0.4s ease-in-out;
+}
+
+/* ✅ Animated Claim Button */
+.claim-btn {
+  background-color: #00c851;
+  color: white;
+  font-size: 16px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.claim-btn:hover {
+  background-color: #007e33;
+  transform: scale(1.05);
+}
+.claim-btn:active {
+  transform: scale(0.95);
+      }
   </style>
 </head>
 
@@ -332,9 +366,20 @@
 
 <!-- Dashboard Section -->
 <section id="dashboard" class="section">
-  <h2>𝑾𝒆𝒍𝒄𝒐𝒎𝒆 𝑻𝒐 𝒀𝒐𝒖𝒓 𝑫𝒂𝒔𝒉𝒃𝒐𝒂𝒓𝒅</h2>
-  <p>Legend Points: <span id="legend-points" style="font-weight:bold; color:gold;">0</span></p>
-<p>Daily Streak: <span id="daily-streak" style="font-weight:bold; color:#00ffaa;">0</span> days</p>
+  <h2>Welcome to Your Dashboard</h2>
+
+  <!-- 🔢 LP and Streak Stats -->
+  <p><strong>Legend Points:</strong> <span id="legend-points">0 LP</span></p>
+  <p><strong>Daily Streak:</strong> <span id="daily-streak">0</span> days</p>
+  <p><strong>Last Claimed:</strong> <span id="last-claim-date">Not claimed yet</span></p>
+
+  <!-- 🧃 Progress Bar for Streak -->
+  <div class="streak-progress">
+    <div class="streak-fill" id="streak-fill"></div>
+  </div>
+
+  <!-- 🪄 Claim Button with Animation -->
+  <button id="claim-btn" onclick="claimDailyLP()" class="claim-btn">🎁 Claim Daily LP</button>
 </section>
 
 <!-- Notification Section -->
@@ -1424,8 +1469,8 @@ const add = (a, b) => a + b;</pre>
 </section>
 
 <!-- JavaScript -->
-  <script>
-  // ✅ Menu Section Switcher
+<script>
+  // ✅ Section Switching Logic
   function showSection(sectionId) {
     const sections = document.querySelectorAll('.section');
     sections.forEach(section => section.classList.remove('active'));
@@ -1438,7 +1483,7 @@ const add = (a, b) => a + b;</pre>
     }
   }
 
-  // ✅ Decode JWT from Google
+  // ✅ Decode Google JWT Token
   function decodeJwt(token) {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -1455,11 +1500,9 @@ const add = (a, b) => a + b;</pre>
     showUser(user);
   }
 
-  // ✅ Show User Info & Reveal Content
+  // ✅ Show User Info & LP Dashboard
   function showUser(user) {
     const signIn = document.querySelector('.g_id_signin');
-    const main = document.getElementById("main-site");
-
     if (signIn) signIn.style.display = "none";
 
     document.getElementById('user-name').textContent = user.name;
@@ -1468,40 +1511,50 @@ const add = (a, b) => a + b;</pre>
 
     document.getElementById('user-info').style.display = "block";
     document.getElementById('logout-btn').style.display = "inline-block";
-    if (main) main.style.display = "block";
+    document.getElementById('main-site').style.display = "block";
 
-    rewardDailyLP();
     updatePointsUI();
     updateDailyStreakUI();
   }
 
-  // ✅ Logout Button
-  document.getElementById('logout-btn').addEventListener('click', () => {
-    localStorage.removeItem("user");
-    location.reload();
-  });
+  // ✅ Manual LP Claim Button
+  function claimDailyLP() {
+    const lastClaim = localStorage.getItem("lastClaimDate");
+    const today = new Date().toDateString();
+    const yesterday = new Date(Date.now() - 86400000).toDateString();
 
-  // ✅ Preloader & Auto-login
-  window.addEventListener("load", function () {
-    const preloader = document.getElementById("preloader");
-    if (preloader) {
-      preloader.classList.add("hide-preloader");
-      document.body.classList.add("site-loaded");
-      setTimeout(() => preloader.remove(), 600);
+    let streak = parseInt(localStorage.getItem("dailyStreak") || "0");
+
+    if (lastClaim === today) {
+      alert("⚠️ You’ve already claimed LP today.");
+      return;
     }
 
-    const userData = localStorage.getItem("user");
-    if (userData) {
-      showUser(JSON.parse(userData));
+    if (lastClaim === yesterday) {
+      streak++;
     } else {
-      document.getElementById('main-site').style.display = "none";
-      alert("Please sign in with Google to access the site.");
+      streak = 1;
     }
-  });
 
-  // ✅ LP Logic
+    localStorage.setItem("dailyStreak", streak);
+    localStorage.setItem("lastClaimDate", today);
+
+    let reward = 10;
+    if (streak === 4) {
+      reward += 40;
+      localStorage.setItem("dailyStreak", 0); // reset streak after bonus
+    }
+
+    addLegendPoints(reward);
+    updatePointsUI();
+    updateDailyStreakUI();
+
+    alert(`🎉 You earned ${reward} LP today!`);
+  }
+
+  // ✅ Points and Streak Logic
   function getLegendPoints() {
-    return parseInt(localStorage.getItem("legendPoints") || "10");
+    return parseInt(localStorage.getItem("legendPoints") || "0");
   }
 
   function addLegendPoints(amount) {
@@ -1511,54 +1564,46 @@ const add = (a, b) => a + b;</pre>
   }
 
   function updatePointsUI() {
+    const lpElements = document.querySelectorAll("#legend-points, .legend-points");
     const points = getLegendPoints();
-    const targets = document.querySelectorAll("#legend-points, .legend-points"); // works for multiple locations
-    targets.forEach(el => el.textContent = `${points} LP`);
+    lpElements.forEach(el => el.textContent = `${points} LP`);
   }
 
   function updateDailyStreakUI() {
     const streak = localStorage.getItem("dailyStreak") || "0";
-    const streakTargets = document.querySelectorAll("#daily-streak, .daily-streak");
-    streakTargets.forEach(el => el.textContent = streak);
+    const streakElements = document.querySelectorAll("#daily-streak, .daily-streak");
+    streakElements.forEach(el => el.textContent = streak);
   }
 
-  function rewardDailyLP() {
-    const lastClaim = localStorage.getItem("lastClaimDate");
-    const today = new Date().toDateString();
-    const yesterday = new Date(Date.now() - 86400000).toDateString();
+  // ✅ Logout Handler
+  document.getElementById('logout-btn').addEventListener('click', () => {
+    localStorage.removeItem("user");
+    location.reload();
+  });
 
-    let streak = parseInt(localStorage.getItem("dailyStreak") || 0);
+  // ✅ Auto Login on Load
+  window.addEventListener("load", () => {
+    const userData = localStorage.getItem("user");
 
-    if (lastClaim !== today) {
-      if (lastClaim === yesterday) {
-        streak++;
-      } else {
-        streak = 1;
-      }
-
-      localStorage.setItem("dailyStreak", streak);
-      localStorage.setItem("lastClaimDate", today);
-
-      let reward = 10;
-      if (streak === 4) {
-        reward += 40;
-        localStorage.setItem("dailyStreak", 0); // reset streak after 4th day
-      }
-
-      addLegendPoints(reward);
-      alert(`✅ You earned ${reward} LP today!`);
-    } else {
-      console.log("Already claimed LP today.");
+    // Optional Preloader Removal
+    const preloader = document.getElementById("preloader");
+    if (preloader) {
+      preloader.classList.add("hide-preloader");
+      document.body.classList.add("site-loaded");
+      setTimeout(() => preloader.remove(), 600);
     }
 
-    updatePointsUI();
-    updateDailyStreakUI();
-  }
-  </script>
+    if (userData) {
+      showUser(JSON.parse(userData));
+    } else {
+      document.getElementById("main-site").style.display = "none";
+      alert("Please sign in with Google to access the site.");
+    }
+  });
+</script>
+  
 <footer>© Reserved Legend Tech 2025</footer>
 </body>
-
-  
 
   <!-- ✅ Scripts -->
   <script>
