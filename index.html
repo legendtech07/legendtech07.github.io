@@ -1344,14 +1344,12 @@ const add = (a, b) => a + b;</pre>
   window.db = db; // make it globally accessible
 </script>
 
-  <script>
+<script>
   let currentUser = null;
 
   function showSection(sectionId) {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => section.classList.remove('active'));
-    const target = document.getElementById(sectionId);
-    if (target) target.classList.add('active');
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(sectionId)?.classList.add('active');
   }
 
   function decodeJwt(token) {
@@ -1385,6 +1383,7 @@ const add = (a, b) => a + b;</pre>
   }
 
   async function claimDailyLP() {
+    if (!currentUser) return;
     const userId = currentUser.sub;
     const userRef = doc(window.db, "users", userId);
     const docSnap = await getDoc(userRef);
@@ -1433,7 +1432,8 @@ const add = (a, b) => a + b;</pre>
     const data = docSnap.data();
     const lp = points !== null ? points : data.legendPoints;
 
-    document.querySelectorAll("#legend-points, .legend-points").forEach(el => el.textContent = `${lp} LP`);
+    document.querySelectorAll("#legend-points, .legend-points")
+      .forEach(el => el.textContent = `${lp} LP`);
   }
 
   async function updateDailyStreakUI(streakValue = null, lastClaim = null) {
@@ -1447,9 +1447,10 @@ const add = (a, b) => a + b;</pre>
     const claimDate = lastClaim || data.lastClaimDate || "Not claimed yet";
 
     document.querySelectorAll("#daily-streak, .daily-streak").forEach(el => el.textContent = streak);
+    document.getElementById("last-claim-date").textContent = claimDate;
+
     const fill = document.getElementById("streak-fill");
     if (fill) fill.style.width = `${(streak / 4) * 100}%`;
-    document.getElementById("last-claim-date").textContent = claimDate;
   }
 
   function showUser(user) {
@@ -1488,7 +1489,7 @@ const add = (a, b) => a + b;</pre>
       alert("Please sign in with Google to access the site.");
     }
   });
-  </script>
+</script>
 
 <footer>© Reserved Legend Tech 2025</footer>
 </body>
