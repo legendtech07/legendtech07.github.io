@@ -1324,21 +1324,37 @@ const add = (a, b) => a + b;</pre>
 </section>
 
 <!-- JavaScript -->
-<script>
-  // ✅ Section Switching Logic
+
+  <!-- Load Firestore -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+  import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAFJzowxlURY9TBDE5HeBryt21MOZypGPw",
+    authDomain: "legend-tech07.firebaseapp.com",
+    projectId: "legend-tech07",
+    storageBucket: "legend-tech07.appspot.com",
+    messagingSenderId: "871370181965",
+    appId: "1:871370181965:web:99305c0ec8fafacde93b04"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  window.db = db; // make it globally accessible
+</script>
+
+  <script>
+  let currentUser = null;
+
   function showSection(sectionId) {
     const sections = document.querySelectorAll('.section');
     sections.forEach(section => section.classList.remove('active'));
-
     const target = document.getElementById(sectionId);
-    if (target) {
-      target.classList.add('active');
-    } else {
-      console.warn(`Section "${sectionId}" not found`);
-    }
+    if (target) target.classList.add('active');
   }
 
-  // ✅ Decode Google JWT Token
   function decodeJwt(token) {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -1348,22 +1364,100 @@ const add = (a, b) => a + b;</pre>
     return JSON.parse(jsonPayload);
   }
 
-  // ✅ Handle Google Login
-  function handleCredentialResponse(response) {
+  async function handleCredentialResponse(response) {
     const user = decodeJwt(response.credential);
+    currentUser = user;
     localStorage.setItem("user", JSON.stringify(user));
+    await fetchUserData(user.sub);
     showUser(user);
   }
 
-  // ✅ Show User Info & LP Dashboard
-  function showUser(user) {
-    const signIn = document.querySelector('.g_id_signin');
-    if (signIn) signIn.style.display = "none";
+  async function fetchUserData(userId) {
+    const userRef = doc(window.db, "users", userId);
+    const docSnap = await getDoc(userRef);
 
+    if (!docSnap.exists()) {
+      await setDoc(userRef, {
+        legendPoints: 0,
+        dailyStreak: 0,
+        lastClaimDate: ""
+      });
+    }
+  }
+
+  async function claimDailyLP() {
+    const userId = currentUser.sub;
+    const userRef = doc(window.db, "users", userId);
+    const docSnap = await getDoc(userRef);
+
+    const data = docSnap.data();
+    const today = new Date().toDateString();
+    const yesterday = new Date(Date.now() - 86400000).toDateString();
+
+    if (data.lastClaimDate === today) {
+      alert("⚠️ You’ve already claimed LP today.");
+      return;
+    }
+
+    let streak = data.dailyStreak || 0;
+    if (data.lastClaimDate === yesterday) {
+      streak++;
+    } else {
+      streak = 1;
+    }
+
+    let reward = 10;
+    if (streak === 4) {
+      reward += 40;
+      streak = 0;
+    }
+
+    const updatedPoints = (data.legendPoints || 0) + reward;
+
+    await updateDoc(userRef, {
+      legendPoints: updatedPoints,
+      dailyStreak: streak,
+      lastClaimDate: today
+    });
+
+    updatePointsUI(updatedPoints);
+    updateDailyStreakUI(streak, today);
+
+    alert(`🎉 You earned ${reward} LP today!`);
+  }
+
+  async function updatePointsUI(points = null) {
+    if (!currentUser) return;
+    const userId = currentUser.sub;
+    const userRef = doc(window.db, "users", userId);
+    const docSnap = await getDoc(userRef);
+    const data = docSnap.data();
+    const lp = points !== null ? points : data.legendPoints;
+
+    document.querySelectorAll("#legend-points, .legend-points").forEach(el => el.textContent = `${lp} LP`);
+  }
+
+  async function updateDailyStreakUI(streakValue = null, lastClaim = null) {
+    if (!currentUser) return;
+    const userId = currentUser.sub;
+    const userRef = doc(window.db, "users", userId);
+    const docSnap = await getDoc(userRef);
+    const data = docSnap.data();
+
+    const streak = streakValue !== null ? streakValue : data.dailyStreak;
+    const claimDate = lastClaim || data.lastClaimDate || "Not claimed yet";
+
+    document.querySelectorAll("#daily-streak, .daily-streak").forEach(el => el.textContent = streak);
+    const fill = document.getElementById("streak-fill");
+    if (fill) fill.style.width = `${(streak / 4) * 100}%`;
+    document.getElementById("last-claim-date").textContent = claimDate;
+  }
+
+  function showUser(user) {
+    document.querySelector('.g_id_signin')?.classList.add("hide");
     document.getElementById('user-name').textContent = user.name;
     document.getElementById('user-email').textContent = user.email;
     document.getElementById('user-pic').src = user.picture;
-
     document.getElementById('user-info').style.display = "block";
     document.getElementById('logout-btn').style.display = "inline-block";
     document.getElementById('main-site').style.display = "block";
@@ -1372,75 +1466,12 @@ const add = (a, b) => a + b;</pre>
     updateDailyStreakUI();
   }
 
-  // ✅ Manual LP Claim Button
-  function claimDailyLP() {
-    const lastClaim = localStorage.getItem("lastClaimDate");
-    const today = new Date().toDateString();
-    const yesterday = new Date(Date.now() - 86400000).toDateString();
-
-    let streak = parseInt(localStorage.getItem("dailyStreak") || "0");
-
-    if (lastClaim === today) {
-      alert("⚠️ You’ve already claimed LP today.");
-      return;
-    }
-
-    if (lastClaim === yesterday) {
-      streak++;
-    } else {
-      streak = 1;
-    }
-
-    localStorage.setItem("dailyStreak", streak);
-    localStorage.setItem("lastClaimDate", today);
-
-    let reward = 10;
-    if (streak === 4) {
-      reward += 40;
-      localStorage.setItem("dailyStreak", 0); // reset streak after bonus
-    }
-
-    addLegendPoints(reward);
-    updatePointsUI();
-    updateDailyStreakUI();
-
-    alert(`🎉 You earned ${reward} LP today!`);
-  }
-
-  // ✅ Points and Streak Logic
-  function getLegendPoints() {
-    return parseInt(localStorage.getItem("legendPoints") || "0");
-  }
-
-  function addLegendPoints(amount) {
-    const updated = getLegendPoints() + amount;
-    localStorage.setItem("legendPoints", updated);
-    updatePointsUI();
-  }
-
-  function updatePointsUI() {
-    const lpElements = document.querySelectorAll("#legend-points, .legend-points");
-    const points = getLegendPoints();
-    lpElements.forEach(el => el.textContent = `${points} LP`);
-  }
-
-  function updateDailyStreakUI() {
-    const streak = localStorage.getItem("dailyStreak") || "0";
-    const streakElements = document.querySelectorAll("#daily-streak, .daily-streak");
-    streakElements.forEach(el => el.textContent = streak);
-  }
-
-  // ✅ Logout Handler
   document.getElementById('logout-btn').addEventListener('click', () => {
     localStorage.removeItem("user");
     location.reload();
   });
 
-  // ✅ Auto Login on Load
   window.addEventListener("load", () => {
-    const userData = localStorage.getItem("user");
-
-    // Optional Preloader Removal
     const preloader = document.getElementById("preloader");
     if (preloader) {
       preloader.classList.add("hide-preloader");
@@ -1448,29 +1479,18 @@ const add = (a, b) => a + b;</pre>
       setTimeout(() => preloader.remove(), 600);
     }
 
+    const userData = localStorage.getItem("user");
     if (userData) {
-      showUser(JSON.parse(userData));
+      const user = JSON.parse(userData);
+      currentUser = user;
+      fetchUserData(user.sub).then(() => showUser(user));
     } else {
       document.getElementById("main-site").style.display = "none";
       alert("Please sign in with Google to access the site.");
     }
   });
+  </script>
 
-  function updateDailyStreakUI() {
-  const streak = parseInt(localStorage.getItem("dailyStreak") || "0");
-  const lastDate = localStorage.getItem("lastClaimDate") || "Not claimed yet";
-  const maxStreak = 4;
-
-  document.querySelectorAll("#daily-streak, .daily-streak").forEach(el => el.textContent = streak);
-  document.getElementById("last-claim-date").textContent = lastDate;
-
-  // 🟨 Update Progress Bar
-  const progress = Math.min((streak / maxStreak) * 100, 100);
-  const fill = document.getElementById("streak-fill");
-  if (fill) fill.style.width = `${progress}%`;
-  }
-</script>
-  
 <footer>© Reserved Legend Tech 2025</footer>
 </body>
 
