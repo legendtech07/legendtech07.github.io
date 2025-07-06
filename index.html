@@ -1371,6 +1371,18 @@ window.updateDoc = updateDoc;
       document.getElementById(sectionId)?.classList.add('active');
     }
 
+    window.showSection = function(sectionId) {
+    document.querySelectorAll('.section').forEach(section =>
+      section.classList.remove('active')
+    );
+    const target = document.getElementById(sectionId);
+    if (target) {
+      target.classList.add('active');
+    } else {
+      console.warn(`Section "${sectionId}" not found`);
+    }
+  }
+
     function decodeJwt(token) {
       const base64Url = token.split('.')[1];
       const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
