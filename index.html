@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Legend Tech - Secure Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-adsense-account" content="ca-pub-6746078240310160" />
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    /* Preloader Styles */
+    #preloader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      color: white;
+      transition: opacity 0.5s ease;
+    }
+    #preloader.hide-preloader {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .loader-logo {
+      width: 100px;
+      height: 100px;
+      animation: spin 2s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Page Fade-In */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+      line-height: 1.6;
+      opacity: 0;
+      transition: opacity 1s ease, background-color 0.3s, color 0.3s;
+    }
+    body.site-loaded {
+      opacity: 1;
+    }
+    body.dark-mode {
+      background-color: #222;
+      color: white;
+    }
+
+    /* Login and Content */
+    #user-info, #logout-btn, #main-site {
+      display: none;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    header {
+      background-color: black;
+      color: white;
+      padding: 40px 0;
+      text-align: center;
+      position: relative;
+    }
+
+    header img {
+      max-width: 80px;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+      margin: 0 8px;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .section {
+      display: none;
+      padding: 50px;
+      margin: 20px auto;
+      max-width: 800px;
+      text-align: center;
+      background: black;
+      color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+
+    .section.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      margin: 10px 0;
+      padding: 10px;
+      text-align: center;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .toggle-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #ffcc00;
+      color: black;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 8px;
+      z-index: 1000;
+    }
+
+    video {
+      max-width: 100%;
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+
+    .lp-box {
+      background: #111;
+      color: #fff;
+      border: 1px solid #444;
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 400px;
+      margin: 20px auto;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .lp-box:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    }
+
+    .lp-display {
+      font-size: 28px;
+      font-weight: bold;
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: #ffcc00;
+    }
+
+    .lp-display i {
+      font-size: 30px;
+    }
+
+    /* Streak Progress Bar */
+    .streak-progress {
+      width: 100%;
+      height: 20px;
+      background: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 10px 0 20px;
+    }
+    .streak-fill {
+      height: 100%;
+      background: linear-gradient(to right, gold, orange);
+      width: 0%;
+      transition: width 0.4s ease-in-out;
+    }
+
+    /* Claim Button */
+    .claim-btn {
+      background-color: #00c851;
+      color: white;
+      font-size: 16px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .claim-btn:hover {
+      background-color: #007e33;
+      transform: scale(1.05);
+    }
+    .claim-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Roadmap Table */
+    .roadmap-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Segoe UI', sans-serif;
+      margin-top: 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .roadmap-table th {
+      background-color: #222831;
+      color: #ffffff;
+      padding: 12px 15px;
+      text-align: left;
+    }
+
+    .roadmap-table td {
+      padding: 12px 15px;
+      background-color: #f9f9f9;
+      color: #333;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .roadmap-table tr:nth-child(even) td {
+      background-color: #f1f1f1;
+    }
+
+    .roadmap-table td.status-done {
+      color: green;
+      font-weight: bold;
+    }
+
+    .roadmap-table td.status-progress {
+      color: orange;
+      font-weight: bold;
+    }
+
+    .roadmap-table td.status-planned {
+      color: #555;
+      font-style: italic;
+    }
+
+    .roadmap-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #222831;
+    }
+
+    /* APK Downloader */
+    .apk-downloader {
+      background: rgba(30, 30, 30, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      margin-top: 20px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 15px 20px;
+      background: #1E1E1E;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .search-btn {
+      background: linear-gradient(to right, #25D366, #128C7E);
+      border: none;
+      color: white;
+      padding: 15px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255, 255, 255, 0.1);
+      border-top: 5px solid #25D366;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      display: none;
+      margin: 20px auto;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .error-message {
+      color: #ff5c5c;
+      text-align: center;
+      margin-top: 10px;
+      display: none;
+    }
+
+    .app-card {
+      background: #1E1E1E;
+      border-radius: 16px;
+      overflow: hidden;
+      padding: 20px;
+      text-align: center;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .app-thumbnail {
+      max-width: 100%;
+      height: 200px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .download-btn {
+      margin-top: 10px;
+      display: inline-block;
+      background: #25D366;
+      padding: 10px 20px;
+      color: white;
+      border-radius: 10px;
+      text-decoration: none;
+    }
+
+    /* Locked Content */
+    .locked-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 15, 15, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 9999;
+    }
+
+    .unlock-btn {
+      background: linear-gradient(45deg, #25d366, #128c7e);
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+
+    .unlock-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .locked-note {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    /* Opinion Box */
+    .opinion-box {
+      max-width: 400px;
+      margin: 30px auto;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      background: #f9f9f9;
+    }
+
+    .opinion-box input,
+    .opinion-box textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .email-btn {
+      background-color: #4CAF50;
+    }
+
+    .whatsapp-btn {
+      background-color: #25D366;
+    }
+
+    /* Web Dev Reference */
+    .reference-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .card-header {
+      padding: 1.5rem;
+      background-color: #166088;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-header:hover {
+      background-color: #4a6fa5;
+    }
+
+    .card-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+
+    .reference-card.active .card-content {
+      max-height: 5000px;
+      padding: 1.5rem;
+    }
+
+    .command {
+      background: #343a40;
+      border-left: 4px solid #4fc3f7;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: 0 4px 4px 0;
+      color: white;
+    }
+
+    .command-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .command-name {
+      font-weight: bold;
+      color: #4fc3f7;
+      font-size: 1.1rem;
+    }
+
+    .command-type {
+      background: #4a6fa5;
+      color: white;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+
+    .command-syntax {
+      background: #FF662B;
+      padding: 0.8rem;
+      margin: 0.8rem 0;
+      font-family: 'Courier New', Courier, monospace;
+      border-radius: 4px;
+      overflow-x: auto;
+      color: white;
+    }
+    
+    .command-example {
+      background: #0018ff;
+      padding: 0.8rem;
+      margin: 0.8rem 0;
+      border-left: 3px solid #4fc3f7;
+      border-radius: 0 4px 4px 0;
+      color: white;
+    }
+
+    .example-title {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #4fc3f7;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      margin: 0;
+    }
+
+    /* Dark mode adjustments */
+    body.dark-mode .section {
+      background: #333;
+    }
+
+    body.dark-mode .roadmap-table td {
+      background-color: #444;
+      color: white;
+    }
+
+    body.dark-mode .roadmap-table tr:nth-child(even) td {
+      background-color: #555;
+    }
+
+    body.dark-mode .opinion-box {
+      background: #444;
+      color: white;
+    }
+
+    body.dark-mode .reference-card {
+      background: #444;
+    }
+
+    body.dark-mode .card-header {
+      background-color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🔄 Preloader -->
+  <div id="preloader">
+    <img src="logo.png" alt="Loading..." class="loader-logo">
+    <p>𝑳𝒆𝒈𝒆𝒏𝒅𝒕𝒆𝒄𝒉 𝒘𝒆𝒃 𝒍𝒐𝒂𝒅𝒊𝒏𝒈</p>
+  </div>
+
+  <!-- Google Sign-In -->
+  <div id="g_id_onload"
+       data-client_id="787289457038-4li6c8arcp31mtcp3oh0j22rduq4n648.apps.googleusercontent.com"
+       data-callback="handleCredentialResponse"
+       data-auto_prompt="true">
+  </div>
+
+  <div class="g_id_signin"
+       data-type="standard"
+       data-theme="outline"
+       data-size="large">
+  </div>
+
+  <!-- User Info -->
+  <div id="user-info">
+    <h2>Welcome, <span id="user-name"></span>!</h2>
+    <p>Email: <span id="user-email"></span></p>
+    <img id="user-pic" width="100" />
+  </div>
+
+  <button id="logout-btn">Logout</button>
+
+  <!-- ✅ Main Protected Website -->
+  <div id="main-site">
+    <header>
+      <img src="logo.png" alt="Legend Tech Logo" />
+      <h1>Legend Tech</h1>
+      <nav>
+        <a onclick="showSection('home')" title="Home"><i class="fas fa-house"></i></a>
+        <a onclick="showSection('dashboard')" title="Dashboard"><i class="fas fa-dashboard"></i></a>
+        <a onclick="showSection('notification')" title="Notification"><i class="fas fa-bell"></i></a>
+        <a onclick="showSection('contact')" title="Contact"><i class="fas fa-address-book"></i></a>
+        <a onclick="showSection('learn')" title="Learn"><i class="fas fa-laptop-code"></i></a>
+        <a onclick="showSection('download')" title="Downloads"><i class="fas fa-download"></i></a>
+      </nav>
+    </header>
+
+    <button class="toggle-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    
+    <!-- Home Section -->
+    <section id="home" class="section active">
+      <h2>Login to Legend Tech</h2>
+
+      <div id="g_id_onload"
+           data-client_id="787289457038-4li6c8arcp31mtcp3oh0j22rduq4n648.apps.googleusercontent.com"
+           data-callback="handleCredentialResponse"
+           data-auto_prompt="false">
+      </div>
+
+      <div class="g_id_signin"
+           data-type="standard"
+           data-theme="outline"
+           data-size="large">
+      </div>
+
+      <h2>Welcome to Legend Tech</h2>
+      <h3>We recommend to use the website in desktop view.</h3>
+      <p>
+        Welcome to Legend Tech – Where Innovation Meets Excellence!<br><br>
+        At Legend Tech, we bring you the best insights into coding, freelancing, and tech trends to help you stay ahead in the digital world. Whether you're a developer, freelancer, or tech enthusiast, our platform is designed to educate, inspire, and empower you.<br><br>
+        Stay connected, explore cutting-edge content, and turn your tech dreams into reality with Legend Tech!
+      </p>
+
+      <h2>Download Section</h2>
+      <button onclick="downloadFile('sample.txt', 'Sample_File.txt')">Download Sample File</button>
+
+      <h2>Text to Speech</h2>
+      <textarea id="text" placeholder="Type your text here..."></textarea><br>
+      <button onclick="speakText()">Speak</button>
+
+      <article style="margin-top: 20px;">
+        <h3>EXCLUSIVE SOCIAL MEDIA CONTENT BOOST</h3>
+        <a href="https://whatsapp.com/channel/0029VaYkGZhGk1Fu9CkxdU1a/630" target="_blank">
+          <button>Learn more</button>
+        </a>
+      </article>
+
+      <article style="margin-top: 20px;">
+        <h3>VIDEO EDITING LIKE A PRO COURSE</h3>
+        <a href="https://whatsapp.com/channel/0029VaYkGZhGk1Fu9CkxdU1a/619" target="_blank">
+          <button>Learn more</button>
+        </a>
+      </article>
+
+      <div style="margin-top: 30px;">
+        <h3>
+          SIGN UP FIRST 🥇<br>
+          THEN VERIFY YOUR EMAIL<br>
+          THEN COME BACK AND LOGIN <br>
+          > 〔LEGEND TECH LORD〕√
+        </h3>
+        <a href="https://og-champ-courses.onrender.com/courses" target="_blank">
+          <button>Click here</button>
+        </a>
+      </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="section">
+      <h2>Welcome to Your Dashboard</h2>
+
+      <div class="lp-box">
+        <h3>Your Current Legend Points</h3>
+        <div class="lp-display">
+          <i class="fas fa-coins"></i>
+          <span id="legend-points">0 LP</span>
+        </div>
+        <p>Earn LP daily by logging in, completing tasks, or exploring our platform!</p>
+      </div>
+
+      <p><strong>Daily Streak:</strong> <span id="daily-streak">0</span> days</p>
+      <p><strong>Last Claimed:</strong> <span id="last-claim-date">Not claimed yet</span></p>
+
+      <div class="streak-progress">
+        <div class="streak-fill" id="streak-fill"></div>
+      </div>
+
+      <button class="claim-btn" onclick="claimDailyLP()">Claim Daily LP🎁</button>
+    </section>
+
+    <!-- Notification Section -->
+    <section id="notification" class="section">
+      <h1>🅽︎🅾︎🆃︎🅸︎🅵︎🅸︎🅲︎🅰︎🆃︎🅸︎🅾︎🅽︎🆂︎</h1>
+
+      <h2>𝕀𝕟𝕥𝕣𝕠𝕕𝕦𝕔𝕥𝕚𝕠𝕟 𝕠𝕗 𝕊𝕚𝕘𝕟 𝕦𝕡 𝕗𝕖𝕒𝕥𝕦𝕣𝕖</h2>
+      <article>
+        <p>
+          The recent updates the Legend Tech team is planning have finally arrived.
+          The login or sign-up feature is already available. The features of this new update are:
+        </p>
+        <ul>
+          <li>✅ Google signup feature (No need for passwords)</li>
+          <li>✅ Auto login on same device</li>
+          <li>✅ Unable to access content without logging in</li>
+        </ul>
+      </article>
+
+      <h2>🗺️ LEGEND TECH ROADMAP (Powered by XP & LP)</h2>
+      <button onclick="revealBioContent()" style="padding: 10px 20px; margin-bottom: 10px;">👁️ View Topic</button>
+
+      <div id="bio-topic" style="display: none; background-color: #f0f0f0; padding: 15px; border-radius: 8px;">
+        <h2 class="roadmap-title">🗺️ LEGEND TECH ROADMAP (Powered by XP & LP)</h2>
+
+        <table class="roadmap-table">
+          <thead>
+            <tr>
+              <th>Phase</th>
+              <th>Feature</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>✅ Phase 1</td><td>Google OAuth Login</td><td class="status-done">✅ Done</td></tr>
+            <tr><td>⚙️ Phase 2</td><td>Daily LP + Weekly Bonus</td><td class="status-progress">🔄 In Progress</td></tr>
+            <tr><td>⚙️ Phase 3</td><td>Channel LP (Follow, Click)</td><td class="status-planned">🔄 Planned</td></tr>
+            <tr><td>⚙️ Phase 4</td><td>Invite System (10 LP per invite)</td><td class="status-planned">🔄 Planned</td></tr>
+            <tr><td>⚙️ Phase 5</td><td>Top-Up LP w/ Naira</td><td class="status-planned">🔄 Planned</td></tr>
+            <tr><td>⚙️ Phase 6</td><td>Promo Codes (100 XP)</td><td class="status-planned">🔄 Planned</td></tr>
+            <tr><td>⚙️ Phase 7</td><td>Course Unlock (50 LP each)</td><td class="status-planned">🔄 Planned</td></tr>
+            <tr><td>⚙️ Phase 8</td><td>Badges + Achievements</td><td class="status-planned">🔄 Planned</td></tr>
+            <tr><td>⚙️ Phase 9</td><td>Leaderboard</td><td class="status-planned">🔄 Planned</td></tr>
+            <tr><td>⚙️ Phase 10</td><td>Cross-device LP Storage</td><td class="status-planned">🔄 Firebase Integration</td></tr>
+            <tr><td>⚙️ Phase 11</td><td>Personal Dashboard</td><td class="status-planned">🔄 UI Design + Firebase</td></tr>
+            <tr><td>⚙️ Phase 12</td><td>AI Assistant in Dashboard</td><td class="status-planned">🔄 Custom ChatGPT Embed</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Learn Section -->
+    <section id="learn" class="section">
+      <div class="lp-box">
+        <h3>Your Current Legend Points</h3>
+        <div class="lp-display">
+          <i class="fas fa-coins"></i>
+          <span class="legend-points">0 LP</span>
+        </div>
+        <p>Earn LP daily by logging in, completing tasks, or exploring our platform!</p>
+      </div>
+      
+      <h2>Welcome to the Learn Section</h2>
+      <h3>By Legend Tech Lord</h3>
+      <p>Get exclusive access to tutorials, video guides, and learning perks by following our platforms!</p>
+
+      <article>
+        <h3>🧠 Cybersecurity Awareness 101</h3>
+        <p>Understand how hackers target users and how to protect yourself.</p>
+        <a href="https://t.me/weareunlimitedtech/765" target="_blank">
+          <button>Watch Video</button>
+        </a>
+      </article>
+
+      <article>
+        <h3>🎯 SEO Mastery Course</h3>
+        <p>Boost your website's ranking on Google. Learn the secrets of Search Engine Optimization!</p>
+        <a href="https://mega.nz/folder/vWw1WAID#pIjeDB3TrZNm45CTViT4YA" target="_blank">
+          <button>Click here to download</button>
+        </a>
+      </article>
+
+      <article>
+        <h3>🛡️ Ethical Hacking (Beginner's Legal Guide)</h3>
+        <p>Learn how penetration testing works in a legal environment using Kali Linux and Termux.</p>
+        <a href="https://whatsapp.com/channel/0029VaYkGZhGk1Fu9CkxdU1a" target="_blank">
+          <button>Join Premium Channel</button>
+        </a>
+      </article>
+
+      <div class="container">
+        <header>
+          <h1>Web Development Reference Guide</h1>
+          <p>All HTML, CSS, and JavaScript commands in one place</p>
+        </header>
+         <!-- HTML Reference Card -->
+        <div class="reference-card" id="html-card">
+          <div class="card-header">
+            <h2>HTML Reference</h2>
+            <span>▼</span>
+          </div>
+          <div class="card-content">
+            <!-- Document Structure -->
+            <div class="command">
+              <div class="command-header">
+                <span class="command-name">&lt;!DOCTYPE html&gt;</span>
+                <span class="command-type">HTML</span>
+              </div>
+              <p class="command-description">Defines the document type and HTML version being used.</p>
+              <div class="command-syntax">&lt;!DOCTYPE html&gt;</div>
+              <div class="command-example">
+                <div class="example-title">Example:</div>
+                <pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;My First Heading&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+              </div>
+            </div>
+
+            <div class="command">
+              <div class="command-header">
+                <span class="command-name">&lt;a&gt;</span>
+                <span class="command-type">HTML</span>
+              </div>
+              <p class="command-description">Defines a hyperlink to link from one page to another.</p>
+              <div class="command-syntax">&lt;a href="url"&gt;link text&lt;/a&gt;</div>
+              <div class="command-example">
+                <div class="example-title">Example:</div>
+                <pre>&lt;a href="https://example.com"&gt;Visit Example&lt;/a&gt;
+&lt;a href="#section2"&gt;Jump to Section 2&lt;/a&gt;</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CSS Reference Card -->
+        <div class="reference-card" id="css-card">
+          <div class="card-header">
+            <h2>CSS Reference</h2>
+            <span>▼</span>
+          </div>
+          <div class="card-content">
+            <div class="command">
+              <div class="command-header">
+                <span class="command-name">display</span>
+                <span class="command-type">CSS</span>
+              </div>
+              <p class="command-description">Specifies the display behavior of an element.</p>
+              <div class="command-syntax">display: block | inline | inline-block | flex | grid | none;</div>
+              <div class="command-example">
+                <div class="example-title">Example:</div>
+                <pre>.block-element {
+    display: block;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+}</pre>
+              </div>
+            </div>
+
+            <div class="command">
+              <div class="command-header">
+                <span class="command-name">padding</span>
+                <span class="command-type">CSS</span>
+              </div>
+              <p class="command-description">Sets the padding area on all four sides of an element.</p>
+              <div class="command-syntax">
+                padding: all;<br>
+                padding: top-bottom left-right;<br>
+                padding: top right bottom left;
+              </div>
+              <div class="command-example">
+                <div class="example-title">Example:</div>
+                <pre>.box {
+    padding: 20px; /* All sides */
+}
+
+.card {
+    padding: 10px 20px; /* Top/bottom, left/right */
+}
+
+.special {
+    padding: 5px 10px 15px 20px; /* Top, right, bottom, left */
+}</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- JavaScript Reference Card -->
+        <div class="reference-card" id="js-card">
+          <div class="card-header">
+            <h2>JavaScript Reference</h2>
+            <span>▼</span>
+          </div>
+          <div class="card-content">
+            <div class="command">
+              <div class="command-header">
+                <span class="command-name">Variables</span>
+                <span class="command-type">JavaScript</span>
+              </div>
+              <p class="command-description">Containers for storing data values.</p>
+              <div class="command-syntax">
+                let variableName = value;<br>
+                const constantName = value;<br>
+                var oldVariable = value;
+              </div>
+              <div class="command-example">
+                <div class="example-title">Example:</div>
+                <pre>let age = 25;
+const PI = 3.14159;
+var name = "John";
+
+age = 26; // Valid
+// PI = 3.14; // Error (const can't be reassigned)</pre>
+              </div>
+            </div>
+
+            <div class="command">
+              <div class="command-header">
+                <span class="command-name">Functions</span>
+                <span class="command-type">JavaScript</span>
+              </div>
+              <p class="command-description">Blocks of code designed to perform particular tasks.</p>
+              <div class="command-syntax">
+                function name(parameters) {<br>
+                &nbsp;&nbsp;// code<br>
+                }<br><br>
+                const name = function(parameters) {<br>
+                &nbsp;&nbsp;// code<br>
+                };<br><br>
+                const name = (parameters) => {<br>
+                &nbsp;&nbsp;// code<br>
+                };
+              </div>
+              <div class="command-example">
+                <div class="example-title">Example:</div>
+                <pre>function greet(name) {
+    return "Hello, " + name;
+}
+
+const square = function(x) {
+    return x * x;
+};
+
+const add = (a, b) => a + b;</pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="locked-overlay" id="lockScreen">
+        <h1>🔒 Locked Content</h1>
+        <button class="unlock-btn" onclick="unlockContent()">Click to Unlock</button>
+        <p class="locked-note">Sign in to view full content</p>
+      </div>
+    </section>
+    
+       <!-- Download Section -->
+    <section id="download" class="section">
+      <h2>Download Apps & Videos</h2>
+
+      <div class="apk-downloader">
+        <div class="apk-header">
+          <h3>APK Downloader</h3>
+          <p>Download APK files safely and securely</p>
+        </div>
+
+        <form class="search-form" id="searchForm">
+          <div class="input-group">
+            <input type="text" class="search-input" id="appQuery" 
+                   placeholder="Search for apps (e.g. WhatsApp, Instagram)" required>
+          </div>
+          <button type="submit" class="search-btn">
+            <i class="fas fa-search"></i> Search APK
+          </button>
+        </form>
+
+        <div class="spinner" id="loadingSpinner"></div>
+        <div class="error-message" id="errorMessage"></div>
+
+        <div class="app-card" id="results">
+          <img src="" class="app-thumbnail" id="appThumbnail">
+          <div class="app-info">
+            <h3 class="app-title" id="appTitle"></h3>
+            <a href="#" class="download-btn" id="downloadLink">
+              <i class="fas fa-download"></i> Download APK
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="margin-top: 40px;">Download Videos</h3>
+      <button onclick="downloadFile('videos/tutorial.mp4', 'LegendTech_Tutorial.mp4')">Download Video 1</button>
+      <button onclick="downloadFile('videos/lesson2.mp4', 'Coding_Lesson.mp4')">Download Video 2</button>
+
+      <h3 style="margin-top: 30px;">Download Apps</h3>
+      <button onclick="downloadFile('apps/legendtech.apk', 'LegendTech_App.apk')">Download Android App</button>
+      <button onclick="downloadFile('apps/legendtech.exe', 'LegendTech_App.exe')">Download Windows App</button>
+
+      <article style="margin-top: 30px;">
+        <h3>Get unlimited open source UI elements:</h3>
+        <a href="https://uiverse.io" target="_blank">
+          <button>Get it</button>
+        </a>
+      </article>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <h2>Contact Us on WhatsApp</h2>
+      <a href="https://wa.me/2347048929112?text=Hi%20Legend%20Tech%2C%20I%20would%20like%20to%20contact%20you!" target="_blank">
+        <button><i class="fab fa-whatsapp"></i> WhatsApp</button>
+      </a>
+
+      <h2>Follow Our Channel for More Updates</h2>
+      <a href="https://whatsapp.com/channel/0029VaYkGZhGk1Fu9CkxdU1a" target="_blank">
+        <button><i class="fab fa-whatsapp"></i> Legend Tech Channel</button>
+      </a>
+
+      <h2>Subscribe to Our YouTube</h2>
+      <a href="https://www.youtube.com/@LegendTechlord" target="_blank">
+        <button><i class="fab fa-youtube"></i> YouTube</button>
+      </a>
+
+      <div class="opinion-box">
+        <h2 style="text-align: center;">Send Your Opinion</h2>
+        <form action="https://formsubmit.co/legendtechlord@gmail.com" method="POST" target="_blank">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+
+          <label for="name">Your Name:</label>
+          <input type="text" name="name" id="name" required>
+
+          <label for="message">Your Opinion:</label>
+          <textarea name="message" id="message" rows="4" required></textarea>
+
+          <div style="display: flex; justify-content: space-between; margin-top: 15px;">
+            <button type="submit" class="email-btn" style="width: 48%;">
+              <i class="fas fa-envelope"></i> Send to Email
+            </button>
+            <button type="button" onclick="sendToWhatsApp()" class="whatsapp-btn" style="width: 48%;">
+              <i class="fab fa-whatsapp"></i> Send to WhatsApp
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <!-- Firebase Initialization -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+    import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAFJzowxlURY9TBDE5HeBryt21MOZypGPw",
+      authDomain: "legend-tech07.firebaseapp.com",
+      projectId: "legend-tech07",
+      storageBucket: "legend-tech07.appspot.com",
+      messagingSenderId: "871370181965",
+      appId: "1:871370181965:web:99305c0ec8fafacde93b04"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    window.db = db;
+    window.firestoreReady = true;
+    window.firestoreFunctions = { doc, getDoc, setDoc, updateDoc };
+  </script>
+
+  <!-- Main Application Script -->
+  <script>
+    // Wait for Firebase to be ready
+    const waitForFirebase = setInterval(() => {
+      if (window.firestoreReady && window.db && window.firestoreFunctions) {
+        clearInterval(waitForFirebase);
+        console.log("✅ Firebase is ready, launching app...");
+        initializeApp();
+      }
+    }, 50);
+
+    // Initialize the application
+    function initializeApp() {
+      let currentUser = null;
+      const { doc, getDoc, setDoc, updateDoc } = window.firestoreFunctions;
+
+      // Section navigation
+      window.showSection = function(sectionId) {
+        document.querySelectorAll('.section').forEach(section => {
+          section.classList.remove('active');
+        });
+        const target = document.getElementById(sectionId);
+        if (target) {
+          target.classList.add('active');
+        }
+      };
+
+      // JWT Decoding
+      function decodeJwt(token) {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(atob(base64).split('').map(c =>
+          '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+        ).join(''));
+        return JSON.parse(jsonPayload);
+      }
+
+      // Handle Google Sign-In
+      window.handleCredentialResponse = async function(response) {
+        const user = decodeJwt(response.credential);
+        currentUser = user;
+        localStorage.setItem("user", JSON.stringify(user));
+        await fetchUserData(user.sub);
+        showUser(user);
+      };
+
+      // Fetch user data from Firestore
+      async function fetchUserData(userId) {
+        const userRef = doc(db, "users", userId);
+        const docSnap = await getDoc(userRef);
+
+        if (!docSnap.exists()) {
+          await setDoc(userRef, {
+            legendPoints: 0,
+            dailyStreak: 0,
+            lastClaimDate: ""
+          });
+        }
+      }
+
+      // Claim Daily LP
+      window.claimDailyLP = async function() {
+        if (!currentUser) {
+          alert("Please sign in first");
+          return;
+        }
+        
+        const userId = currentUser.sub;
+        const userRef = doc(db, "users", userId);
+        const docSnap = await getDoc(userRef);
+
+        const data = docSnap.data();
+        const today = new Date().toDateString();
+        const yesterday = new Date(Date.now() - 86400000).toDateString();
+
+        if (data.lastClaimDate === today) {
+          alert("⚠️ You've already claimed LP today.");
+          return;
+        }
+
+        let streak = data.dailyStreak || 0;
+        if (data.lastClaimDate === yesterday) {
+          streak++;
+        } else {
+          streak = 1;
+        }
+
+        let reward = 10;
+        if (streak === 4) {
+          reward += 40;
+          streak = 0;
+        }
+
+        const updatedPoints = (data.legendPoints || 0) + reward;
+
+        await updateDoc(userRef, {
+          legendPoints: updatedPoints,
+          dailyStreak: streak,
+          lastClaimDate: today
+        });
+
+        updatePointsUI(updatedPoints);
+        updateDailyStreakUI(streak, today);
+
+        alert(`🎉 You earned ${reward} LP today!`);
+      };
+
+      // Update points UI
+      async function updatePointsUI(points = null) {
+        if (!currentUser) return;
+        const userId = currentUser.sub;
+        const userRef = doc(db, "users", userId);
+        const docSnap = await getDoc(userRef);
+        const data = docSnap.data();
+        const lp = points !== null ? points : data.legendPoints;
+
+        document.querySelectorAll("#legend-points, .legend-points")
+          .forEach(el => el.textContent = `${lp} LP`);
+      }
+
+      // Update streak UI
+      async function updateDailyStreakUI(streakValue = null, lastClaim = null) {
+        if (!currentUser) return;
+        const userId = currentUser.sub;
+        const userRef = doc(db, "users", userId);
+        const docSnap = await getDoc(userRef);
+        const data = docSnap.data();
+
+        const streak = streakValue !== null ? streakValue : data.dailyStreak;
+        const claimDate = lastClaim || data.lastClaimDate || "Not claimed yet";
+
+        document.querySelectorAll("#daily-streak, .daily-streak").forEach(el => el.textContent = streak);
+        const fill = document.getElementById("streak-fill");
+        if (fill) fill.style.width = `${(streak / 4) * 100}%`;
+        const claimDisplay = document.getElementById("last-claim-date");
+        if (claimDisplay) claimDisplay.textContent = claimDate;
+      }
+
+      // Show user info
+      function showUser(user) {
+        document.querySelector('.g_id_signin')?.classList.add("hide");
+        document.getElementById('user-name').textContent = user.name;
+        document.getElementById('user-email').textContent = user.email;
+        document.getElementById('user-pic').src = user.picture;
+        document.getElementById('user-info').style.display = "block";
+        document.getElementById('logout-btn').style.display = "inline-block";
+        document.getElementById('main-site').style.display = "block";
+
+        updatePointsUI();
+        updateDailyStreakUI();
+      }
+
+      // Logout
+      document.getElementById('logout-btn').addEventListener('click', () => {
+        localStorage.removeItem("user");
+        location.reload();
+      });
+
+      // Dark mode toggle
+      window.toggleDarkMode = function() {
+        document.body.classList.toggle('dark-mode');
+      };
+
+      // Text to speech
+      window.speakText = function() {
+        const text = document.getElementById('text').value;
+        if (text) {
+          const utterance = new SpeechSynthesisUtterance(text);
+          window.speechSynthesis.speak(utterance);
+        }
+      };
+
+      // Download file
+      window.downloadFile = function(filePath, fileName) {
+        const link = document.createElement('a');
+        link.href = filePath;
+        link.download = fileName;
+        link.click();
+      };
+
+      // Reveal bio content
+      window.revealBioContent = function() {
+        const content = document.getElementById('bio-topic');
+        content.style.display = content.style.display === 'none' ? 'block' : 'none';
+      };
+
+      // Unlock content
+      window.unlockContent = function() {
+        const userData = localStorage.getItem("user");
+        if (userData) {
+          document.getElementById("lockScreen").style.display = "none";
+        } else {
+          alert("Please sign in to view this content");
+        }
+      };
+      
+// Send to WhatsApp
+      window.sendToWhatsApp = function() {
+        const name = document.getElementById('name').value;
+        const message = document.getElementById('message').value;
+
+        if (!name || !message) {
+          alert("Please fill in your name and opinion.");
+          return;
+        }
+
+        const url = `https://wa.me/2347048929112?text=${encodeURIComponent(`Name: ${name}\nOpinion: ${message}`)}`;
+        window.open(url, '_blank');
+      };
+
+      // APK search functionality
+      const searchForm = document.getElementById('searchForm');
+      if (searchForm) {
+        searchForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const query = document.getElementById('appQuery').value.trim();
+          if (query) {
+            document.getElementById('loadingSpinner').style.display = 'block';
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('results').style.display = 'none';
+
+            // Simulate API call (replace with actual API call)
+            setTimeout(() => {
+              document.getElementById('loadingSpinner').style.display = 'none';
+              
+              // This is a simulation - replace with actual API response handling
+              if (query.toLowerCase().includes('whatsapp')) {
+                document.getElementById('appThumbnail').src = 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg';
+                document.getElementById('appTitle').textContent = 'WhatsApp Messenger';
+                document.getElementById('downloadLink').href = '#';
+                document.getElementById('results').style.display = 'block';
+              } else {
+                document.getElementById('errorMessage').textContent = 'APK not found. Please try another app.';
+                document.getElementById('errorMessage').style.display = 'block';
+              }
+            }, 1500);
+          }
+        });
+      }
+
+      // Initialize reference cards
+      document.querySelectorAll('.reference-card .card-header').forEach(header => {
+        header.addEventListener('click', () => {
+          const card = header.parentElement;
+          card.classList.toggle('active');
+          
+          const arrow = header.querySelector('span');
+          arrow.textContent = card.classList.contains('active') ? '▲' : '▼';
+          
+          if (card.classList.contains('active')) {
+            setTimeout(() => {
+              card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 350);
+          }
+        });
+      });
+
+      // Initialize on load
+      window.addEventListener("load", () => {
+        const preloader = document.getElementById("preloader");
+        if (preloader) {
+          preloader.classList.add("hide-preloader");
+          document.body.classList.add("site-loaded");
+          setTimeout(() => preloader.remove(), 600);
+        }
+
+        const userData = localStorage.getItem("user");
+        if (userData) {
+          const user = JSON.parse(userData);
+          currentUser = user;
+          fetchUserData(user.sub).then(() => showUser(user));
+          document.getElementById("lockScreen").style.display = "none";
+        } else {
+          document.getElementById("main-site").style.display = "none";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
