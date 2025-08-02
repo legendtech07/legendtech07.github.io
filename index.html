@@ -501,12 +501,21 @@
         }
         
         /* Update the locked course style in your CSS */
-.course-card.locked {
+
+        .course-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .course-card p {
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: .course-card.locked {
     opacity: 0.9;
     position: relative;
 }
 
-.course-card.locked::after {
+.course-card.locked::after ;
     position: absolute;
     top: 0;
     left: 0;
@@ -521,16 +530,8 @@
     font-weight: bold;
     font-size: 1.2rem;
     backdrop-filter: blur(2px);
-}
-        .course-card h3 {
-            margin-bottom: 0.5rem;
-            color: var(--accent);
-        }
-        
-        .course-card p {
-            margin-bottom: 1rem;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
+    pointer-events: none; /* Add this to allow clicking the button underneath */
+}0.9rem;
         }
         
         .course-meta {
@@ -1115,17 +1116,50 @@
         ];
         
         // Courses data
-        const courses = [
-            { id: 1, title: "Web Development Fundamentals", description: "Learn HTML, CSS and JavaScript basics"         
-       },
-            { id: 2, title: "Advanced JavaScript", description: "Master modern JavaScript techniques" },
-            { id: 3, title: "React.js Crash Course", description: "Build modern web apps with React" },
-            { id: 4, title: "Node.js Backend Development", description: "Create server-side applications" },
-            { id: 5, title: "Python for Beginners", description: "Learn Python programming basics" },
-            { id: 6, title: "Data Science Fundamentals", description: "Introduction to data analysis" },
-            { id: 7, title: "SEO mastery course", description: "Boost your website's ranking on Google. Learn the secrets of Search Engine Optimization!" }
-        ];
-        
+const courses = [
+    { 
+        id: 1, 
+        title: "Web Development Fundamentals", 
+        description: "Learn HTML, CSS and JavaScript basics",
+        url: "https://privatecourses.netlify.app/learn.html?id=crs1&token=tk_3tghhvcpn_mdulbd5i" // Add this
+    },
+    { 
+        id: 2, 
+        title: "Advanced JavaScript", 
+        description: "Master modern JavaScript techniques",
+        url: "https://example.com/advanced-js"
+    },
+    { 
+        id: 3, 
+        title: "React.js Crash Course", 
+        description: "Build modern web apps with React",
+        url: "https://example.com/react-course"
+    },
+    { 
+        id: 4, 
+        title: "Node.js Backend Development", 
+        description: "Create server-side applications",
+        url: "https://example.com/nodejs-course"
+    },
+    { 
+        id: 5, 
+        title: "Python for Beginners", 
+        description: "Learn Python programming basics",
+        url: "https://example.com/python-beginners"
+    },
+    { 
+        id: 6, 
+        title: "Data Science Fundamentals", 
+        description: "Introduction to data analysis",
+        url: "https://example.com/data-science"
+    },
+    { 
+        id: 7, 
+        title: "SEO mastery course", 
+        description: "Boost your website's ranking on Google. Learn the secrets of Search Engine Optimization!",
+        url: "https://example.com/seo-course"
+    }
+];
         // Bonus Codes
         const bonusCodes = {
             '12AB61': 100,
@@ -1457,36 +1491,7 @@
             });
         }
         
-        function initializeCourses() {
-            coursesContainer.innerHTML = '';
-            
-            courses.forEach(course => {
-                const isUnlocked = currentUser.unlockedCourses && currentUser.unlockedCourses.includes(course.id);
-                const courseElement = document.createElement('div');
-                courseElement.className = `course-card ${isUnlocked ? '' : 'locked'}`;
-                courseElement.innerHTML = `
-                    <h3>${course.title}</h3>
-                    <p>${course.description}</p>
-                    <div class="course-meta">
-                        <div class="course-price">${isUnlocked ? 'Unlocked' : '50 LP'}</div>
-                        <button class="btn" data-course-id="${course.id}">
-                            ${isUnlocked ? 'Start Learning' : 'Unlock'}
-                        </button>
-                    </div>
-                `;
-                coursesContainer.appendChild(courseElement);
-                
-                const courseBtn = courseElement.querySelector('.btn');
-                courseBtn.addEventListener('click', () => {
-                    if (isUnlocked) {
-                        showSuccess(`Starting course: ${course.title}`);
-                        // Here you would actually redirect to the course content
-                    } else {
-                        openCourseModal(course);
-                    }
-                });
-            });
-        }
+        
         
         function openCourseModal(course) {
             courseCostDisplay.textContent = '50';
@@ -1500,7 +1505,42 @@
                 confirmPurchase.disabled = true;
             }
             
-            confirmPurchase.dataset.courseId = course.id;
+     function initializeCourses() {
+    coursesContainer.innerHTML = '';
+    
+    courses.forEach(course => {
+        const isUnlocked = currentUser.unlockedCourses && currentUser.unlockedCourses.includes(course.id);
+        const courseElement = document.createElement('div');
+        courseElement.className = `course-card ${isUnlocked ? '' : 'locked'}`;
+        
+        if (isUnlocked) {
+            courseElement.innerHTML = `
+                <h3>${course.title}</h3>
+                <p>${course.description}</p>
+                <div class="course-meta">
+                    <div class="course-price">Unlocked</div>
+                    <a href="${course.url}" target="_blank" class="btn">Start Learning</a>
+                </div>
+            `;
+        } else {
+            courseElement.innerHTML = `
+                <h3>${course.title}</h3>
+                <p>${course.description}</p>
+                <div class="course-meta">
+                    <div class="course-price">50 LP</div>
+                    <button class="btn" data-course-id="${course.id}">Unlock</button>
+                </div>
+            `;
+            
+            const courseBtn = courseElement.querySelector('.btn');
+            courseBtn.addEventListener('click', () => {
+                openCourseModal(course);
+            });
+        }
+        
+        coursesContainer.appendChild(courseElement);
+    });
+     }       confirmPurchase.dataset.courseId = course.id;
             courseModal.classList.add('active');
         }
         
