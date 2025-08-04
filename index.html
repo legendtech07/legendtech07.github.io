@@ -548,6 +548,20 @@
             border: 1px solid rgba(0, 210, 255, 0.3);
             color: var(--accent);
         }
+
+         .course-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 8px;
+  max-width: 300px;
+}
+
+.course-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
         
         /* Downloads Page */
         .downloads-container {
@@ -1152,12 +1166,14 @@ const courses = [
         title: "Data Science Fundamentals", 
         description: "Introduction to data analysis",
         url: "https://example.com/data-science"
+        image: "https://i.supaimg.com/3ba81f47-90e1-4a58-a7f6-2f267f8e0633.jpg"
     },
     { 
         id: 7, 
         title: "SEO mastery course", 
         description: "Boost your website's ranking on Google. Learn the secrets of Search Engine Optimization!",
         url: "https://example.com/seo-course"
+        image: "https://i.supaimg.com/a9f3afed-035c-4f8c-aeba-9b64cc1ff4a6.jpg
     }
 ];
         
@@ -1513,6 +1529,12 @@ const courses = [
             courseElement.innerHTML = `
                 <h3>${course.title}</h3>
                 <p>${course.description}</p>
+                <div class="course-card">
+                    <img src="${course.image}" alt="${course.title}" />
+                    <h3>${course.title}</h3>
+        <p>${course.description}</p>
+        <a href="${course.url}" target="_blank">Go to Course</a>
+      </div>
                 <div class="course-meta">
                     <div class="course-price">50 LP</div>
                     <button class="btn" data-course-id="${course.id}">Unlock</button>
