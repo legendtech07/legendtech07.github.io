@@ -1525,6 +1525,8 @@ const courses = [
             courseElement.innerHTML = `
                 <h3>${course.title}</h3>
                 <p>${course.description}</p>
+                <div class="course-card">
+                    <img src="${course.image}" alt="${course.title}" />
                 <div class="course-meta">
                     <div class="course-price">Unlocked</div>
                     <a href="${course.url}" target="_blank" class="btn">Start Learning</a>
