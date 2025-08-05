@@ -63,7 +63,7 @@ const courses = [
         id: 5, 
         title: "Python for Beginners", 
         description: "Learn Python programming basics",
-        url: "https://example.com/python-beginners",
+        url: "https://privatecourses.netlify.app/learn.html?id=crs5&token=tk_hqa4bxuxo_mdz1mopu",
         image: "https://i.supaimg.com/f8b6b81d-1719-453f-ae92-0adc30b2a48d.jpg"
     },
     { 
