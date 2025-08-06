@@ -77,7 +77,7 @@ const courses = [
         id: 7, 
         title: "SEO mastery course", 
         description: "Boost your website's ranking on Google. Learn the secrets of Search Engine Optimization!",
-        url: "https://example.com/seo-course",
+        url: "https://privatecourses.netlify.app/learn.html?id=crs6&token=tk_p1h1bz0in_me0gqix3",
         image: "https://i.supaimg.com/a9f3afed-035c-4f8c-aeba-9b64cc1ff4a6.jpg"
     }
 ]
