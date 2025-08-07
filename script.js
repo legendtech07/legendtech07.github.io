@@ -79,6 +79,13 @@ const courses = [
         description: "Boost your website's ranking on Google. Learn the secrets of Search Engine Optimization!",
         url: "https://privatecourses.netlify.app/learn.html?id=crs6&token=tk_p1h1bz0in_me0gqix3",
         image: "https://i.supaimg.com/a9f3afed-035c-4f8c-aeba-9b64cc1ff4a6.jpg"
+    },
+    {
+        id: 8,
+        title: "Master 3D Animation",
+        description: "Bring your imagination to life, frame by frame. Jump into the world of 3D animation where your ideas turn into moving art! Whether you dream of making epic game characters, cinematic scenes, or animated short films — this course will teach you how to animate like a pro, even if you're starting from scratch.",
+        url: "https://privatecourses.netlify.app/learn.html?id=crs7&token=tk_cukkxpowu_me1g1e9n",
+        image: "https://i.supaimg.com/c421cee3-35c3-4626-9a18-ec8785c1ef10.jpg"
     }
 ]
         
