@@ -86,7 +86,15 @@ const courses = [
         description: "Bring your imagination to life, frame by frame. Jump into the world of 3D animation where your ideas turn into moving art! Whether you dream of making epic game characters, cinematic scenes, or animated short films — this course will teach you how to animate like a pro, even if you're starting from scratch.",
         url: "https://privatecourses.netlify.app/learn.html?id=crs7&token=tk_cukkxpowu_me1g1e9n",
         image: "https://i.supaimg.com/c421cee3-35c3-4626-9a18-ec8785c1ef10.jpg"
+    },
+    {
+        id: 9,
+        title: "Ai Mastery Course",
+        description: "The world is being automated. Don’t get left behind.This isn’t just a course — it’s your shortcut to becoming an AI-powered creator, innovator, and money-maker. You’ll go from zero to savage as you master the tools, tricks, and mindset needed to turn AI into your personal assistant, business partner, and creative engine.From ChatGPT to Midjourney, from building smart bots to automating your hustle — this course gives you the real-world AI skills the schools forgot to teach.If you’ve got a brain and a device, you’re ready.",
+        url: "https://privatecourses.netlify.app/learn.html?id=crs8&token=tk_amrxxvi19_me1xjs5y",
+        image: "https://i.supaimg.com/c0eb774d-fd4f-4057-a802-aabbaa4eda90.jpg"
     }
+    
 ]
         
         // Bonus Codes
@@ -458,7 +466,6 @@ document.querySelectorAll('.purchase-btn').forEach((btn, index) => {
                 <div class="course-card">
                     <img src="${course.image}" alt="${course.title}" />
                     <h3>${course.title}</h3>
-        <p>${course.description}</p>
         <a href="https://youtube.com/@legendtechlord?si=Lh6P6QsjA48T9Jb_" target="_blank">𝑽𝒊𝒔𝒊𝒕 𝑪𝒉𝒂𝒏𝒏𝒆𝒍</a>
       </div>
                 <div class="course-meta">
