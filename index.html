@@ -928,6 +928,142 @@
                 <div class="user-lp" id="user-lp-display">0 LP</div>
                 <div class="user-avatar" id="user-avatar">U</div>
             </div>
+                <!-- Notification Button HTML -->
+<div class="notification-container">
+  <button class="notification-button">
+    🔔
+    <span class="notification-badge">3</span>
+  </button>
+  <div class="notification-dropdown">
+    <div class="notification-header">
+      <h4>Notifications</h4>
+      <span class="notification-count">3 New</span>
+    </div>
+    <div class="notification-list">
+      <div class="notification-item">
+        <div class="notification-icon">🎁</div>
+        <div class="notification-content">
+          <p>Your daily reward is ready to claim!</p>
+          <small>2 minutes ago</small>
+        </div>
+      </div>
+      <div class="notification-item">
+        <div class="notification-icon">💰</div>
+        <div class="notification-content">
+          <p>New promo code: WELCOME10</p>
+          <small>1 hour ago</small>
+        </div>
+      </div>
+      <div class="notification-item">
+        <div class="notification-icon">🔥</div>
+        <div class="notification-content">
+          <p>You're on a 3-day streak!</p>
+          <small>5 hours ago</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Notification Styles */
+.notification-container {
+  position: relative;
+  display: inline-block;
+  margin-left: auto;
+}
+
+.notification-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  position: relative;
+  padding: 5px 10px;
+}
+
+.notification-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #ff4757;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notification-dropdown {
+  position: absolute;
+  right: 10;
+  top: 100%;
+  width: 300px;
+  background: purple;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 15px;
+  z-index: 100;
+  display: none;
+}
+
+.notification-container:hover .notification-dropdown {
+  display: block;
+}
+
+.notification-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.notification-count {
+  color: #ff4757;
+  font-size: 12px;
+}
+
+.notification-item {
+  display: flex;
+  padding: 8px 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.notification-icon {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.notification-content p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.notification-content small {
+  color: #999;
+  font-size: 12px;
+}
+</style>
+
+<script>
+// Toggle dropdown on click (optional)
+document.querySelector('.notification-button').addEventListener('click', function() {
+  const dropdown = document.querySelector('.notification-dropdown');
+  dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+});
+
+// Close when clicking outside (optional)
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.notification-container')) {
+    document.querySelector('.notification-dropdown').style.display = 'none';
+  }
+});
+</script>
+            
         </header>
         
         <div class="main-content">
