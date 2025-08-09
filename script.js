@@ -350,7 +350,7 @@ const courses = [
         redeemBtn.addEventListener('click', () => {
             const code = promoCodeInput.value.trim();
             
-            if (code.toUpperCase() === 'L3G3ND') {
+            if (code.toUpperCase() === 'NEXORA') {
                 currentUser.lp = (currentUser.lp || 0) + 200;
                 updateUserData();
                 updateLpDisplay();
