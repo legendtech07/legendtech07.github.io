@@ -101,6 +101,13 @@ const courses = [
         url: "https://privatecourses.netlify.app/learn.html?id=crs9&token=tk_oizclwt4u_me4hid2v",
         image: "https://i.supaimg.com/5bd10eca-3ae4-4a70-b581-7d1fc820fe16.jpg"
     },
+    {
+        id: 11,
+        title: "Object Oriented Programming in C++",
+        description: "Object Oriented Programming in C++  &  Interview Preparation. 🧑‍🏫 Lectures: 2 📚 Category: Development 📖 Keywords: #Programming #Languages. Classroom like learning, Detailed Explanation of Question, Top Frequently Asked QuestionsConcepts of C++ programming are made very simple and easy.Curriculum:IntroductionWhy Object Oriented ProgrammingExample of OOPMember Function and Member VariableAccess SpecifiersCharacteristics  Of OOP Top Frequently Asked Interview Question - Part 1Top Frequently Asked Interview Question - Part 2Top Frequently Asked Interview Question - Part 3Topics Covered in QuestionsC++ Object Oriented Programming Q... 🆓 ENROLL NOW: LIMITED ENROLLMENTS ONLY!",
+        url: "https://privatecourses.netlify.app/learn.html?id=crs10&token=tk_r0h3ofydu_me4taaed",
+        image: "https://i.supaimg.com/e48bdbf9-a563-43a4-9678-b978dbc2bc45.jpg"
+    }
     
 ]
         
