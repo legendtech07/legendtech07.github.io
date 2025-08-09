@@ -93,7 +93,14 @@ const courses = [
         description: "The world is being automated. Don’t get left behind.This isn’t just a course — it’s your shortcut to becoming an AI-powered creator, innovator, and money-maker. You’ll go from zero to savage as you master the tools, tricks, and mindset needed to turn AI into your personal assistant, business partner, and creative engine.From ChatGPT to Midjourney, from building smart bots to automating your hustle — this course gives you the real-world AI skills the schools forgot to teach.If you’ve got a brain and a device, you’re ready.",
         url: "https://privatecourses.netlify.app/learn.html?id=crs8&token=tk_amrxxvi19_me1xjs5y",
         image: "https://i.supaimg.com/c0eb774d-fd4f-4057-a802-aabbaa4eda90.jpg"
-    }
+    },
+    {
+        id: 10,
+        title: "A to Z Cracking Course",
+        description: "💻 Cracking Course Full A To Z For Beginner's 💻. Access your course materials below. Happy learning! 🚀",
+        url: "https://privatecourses.netlify.app/learn.html?id=crs9&token=tk_oizclwt4u_me4hid2v",
+        image: "https://i.supaimg.com/5bd10eca-3ae4-4a70-b581-7d1fc820fe16.jpg"
+    },
     
 ]
         
