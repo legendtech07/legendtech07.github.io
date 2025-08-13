@@ -402,11 +402,11 @@ const courses = [
         const code = promoCodeInput.value.trim();
         
         if (code.toUpperCase() === 'NEXORA') {
-            currentUser.lp = (currentUser.lp || 0) + 200;
+            currentUser.lp = (currentUser.lp || 0) + 1000;
             await updateUserData();
             updateLpDisplay();
             promoCodeInput.value = '';
-            showSuccess('Promo code redeemed! You received 200 LP.');
+            showSuccess('Promo code redeemed! You received 1000 LP.');
         } else {
             showSuccess('Invalid promo code. Please try again.', false);
         }
