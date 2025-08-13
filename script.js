@@ -107,6 +107,13 @@ const courses = [
         description: "Object Oriented Programming in C++  &  Interview Preparation. 🧑‍🏫 Lectures: 2 📚 Category: Development 📖 Keywords: #Programming #Languages. Classroom like learning, Detailed Explanation of Question, Top Frequently Asked QuestionsConcepts of C++ programming are made very simple and easy.Curriculum:IntroductionWhy Object Oriented ProgrammingExample of OOPMember Function and Member VariableAccess SpecifiersCharacteristics  Of OOP Top Frequently Asked Interview Question - Part 1Top Frequently Asked Interview Question - Part 2Top Frequently Asked Interview Question - Part 3Topics Covered in QuestionsC++ Object Oriented Programming Q... 🆓 ENROLL NOW: LIMITED ENROLLMENTS ONLY!",
         url: "https://privatecourses.netlify.app/learn.html?id=crs10&token=tk_r0h3ofydu_me4taaed",
         image: "https://i.supaimg.com/e48bdbf9-a563-43a4-9678-b978dbc2bc45.jpg"
+    },
+    {
+        id: 12,
+        title: "Kali Linux Mastery",
+        description: "Mastering Kali Linux for Ethical Hackers. Welcome to the exciting journey of Mastering Kali Linux for Ethical Hackers! In this immersive course, participants will unlock the full potential of Kali Linux—a powerhouse in the world of ethical hacking. Discover the art and science of ethical hacking as you progress through our meticulously designed curriculum. Begin by gaining a comprehensive understanding of the course objectives, setting the stage for the skills and knowledge you're about to acquire. Dive into the basics with",
+        url: "https://privatecourses.netlify.app/learn.html?id=crs11&token=tk_c94qwhuwu_me9zxtb6",
+        image: "https://i.supaimg.com/89439f66-7f7d-44ab-a506-a39690a75492.jpg"
     }
     
 ]
