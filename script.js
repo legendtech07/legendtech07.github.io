@@ -129,6 +129,13 @@ const courses = [
         description: "Mastering Kali Linux for Ethical Hackers. Welcome to the exciting journey of Mastering Kali Linux for Ethical Hackers! In this immersive course, participants will unlock the full potential of Kali Linux—a powerhouse in the world of ethical hacking. Discover the art and science of ethical hacking as you progress through our meticulously designed curriculum. Begin by gaining a comprehensive understanding of the course objectives, setting the stage for the skills and knowledge you're about to acquire. Dive into the basics with",
         url: "https://privatecourses.netlify.app/learn.html?id=crs11&token=tk_c94qwhuwu_me9zxtb6",
         image: "https://i.supaimg.com/89439f66-7f7d-44ab-a506-a39690a75492.jpg"
+    },
+    {
+        id: 13,
+        title: "Ethical Hacking",
+        description: "Learning Ethical hacking to hack, defend.",
+        url: "https://privatecourses.netlify.app/learn.html?id=crs12&token=tk_kmvecrfx1_megrhkqv",
+        image: "https://i.supaimg.com/e295b9ac-2535-4cb5-9cec-c04f878f77e1.jpg"
     }
     
 ]
