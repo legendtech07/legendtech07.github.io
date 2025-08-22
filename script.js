@@ -136,6 +136,13 @@ const courses = [
         description: "Learning Ethical hacking to hack, defend.",
         url: "https://privatecourses.netlify.app/learn.html?id=crs12&token=tk_kmvecrfx1_megrhkqv",
         image: "https://i.supaimg.com/e295b9ac-2535-4cb5-9cec-c04f878f77e1.jpg"
+    },
+    {
+        id: 14,
+        title: "Hack Android With TheFatRat",
+        description: "Learn To Hack Android Phones With TheFatRat Virus. ⚠️ Note- For Educational And Ethical Purposes Only",
+        url: "https://privatecourses.netlify.app/learn.html?id=Hack With TheFatRat&token=tk_c04p92f0u_mempy3vt",
+        image: "https://i.supaimg.com/8c2fa12e-ab29-4654-b958-8e55cd9dfa9d.jpg"
     }
     
 ]
