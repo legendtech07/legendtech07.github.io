@@ -141,7 +141,7 @@ const courses = [
         id: 14,
         title: "Hack Android With TheFatRat",
         description: "Learn To Hack Android Phones With TheFatRat Virus. ⚠️ Note- For Educational And Ethical Purposes Only",
-        url: "https://privatecourses.netlify.app/learn.html?id=Hack With TheFatRat&token=tk_c04p92f0u_mempy3vt",
+        url: "https://privatecourses.netlify.app/learn.html?id=crs13&token=tk_u3mx52x5r_memq7z4x",
         image: "https://i.supaimg.com/8c2fa12e-ab29-4654-b958-8e55cd9dfa9d.jpg"
     }
     
