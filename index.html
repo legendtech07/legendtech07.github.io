@@ -1233,5 +1233,103 @@ document.addEventListener('click', function(e) {
         </div>
     </div>
         <script src="script.js"></script>
+
+            <!-- Popup Container -->
+<div id="popup" class="popup">
+  <div class="popup-content">
+    <h2>Ethical Hacking Disclaimer / Policy</h2>
+    <p><strong>Effective Date:</strong> August 18, 2025</p>
+    <ol>
+      <li><strong>Educational and Ethical Use Only</strong><br>
+      All hacking tutorials, tools, articles, and courses provided on Legend Tech are strictly for educational and ethical purposes only. They are intended to help learners understand cybersecurity, penetration testing, and how to protect systems from vulnerabilities — not to exploit or harm individuals, organizations, or systems.</li>
+      <li><strong>No Responsibility for Misuse</strong><br>
+      Legend Tech and its team will not be held responsible for any misuse, illegal activities, or damages caused by the knowledge or tools obtained from this website. You alone are fully responsible for how you use the information.</li>
+      <li><strong>Compliance with Laws</strong><br>
+      Users are required to comply with all local, national, and international laws regarding cybersecurity, privacy, and data protection. Engaging in unauthorized access, hacking, or cybercrimes is illegal and punishable by law.</li>
+      <li><strong>Testing in Safe Environments</strong><br>
+      We strongly recommend that any penetration testing or ethical hacking practice be done only in controlled environments, such as:
+        <ul>
+          <li>Virtual labs</li>
+          <li>Your own devices</li>
+          <li>Authorized testing systems (with explicit permission)</li>
+        </ul>
+      </li>
+      <li><strong>Acknowledgment</strong><br>
+      By accessing and using the courses, tutorials, or tools on this platform, you acknowledge that you have read, understood, and agreed to this policy.</li>
+      <li><strong>Contact Us</strong><br>
+      For questions or reporting abuse of our content, please contact us at:
+      <strong>legendtechlord@gmail.com</strong></li>
+    </ol>
+    <button id="closePopup">I Understand</button>
+  </div>
+</div>
+
+<!-- CSS for Styling -->
+<style>
+  .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+  }
+  .popup-content {
+    background: #fff;
+    padding: 20px;
+    max-width: 600px;
+    width: 90%;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    font-family: Arial, sans-serif;
+    max-height: 80%;
+    overflow-y: auto;
+    color: #000; /* Ensures sharp black text */
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .popup-content h2 {
+    margin-top: 0;
+    color: #d10000;
+    font-size: 20px;
+  }
+  .popup-content ol {
+    padding-left: 20px;
+  }
+  .popup-content ul {
+    padding-left: 20px;
+    margin-top: 5px;
+  }
+  .popup-content button {
+    background: #d10000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  .popup-content button:hover {
+    background: #a50000;
+  }
+</style>
+
+<!-- JavaScript for Functionality -->
+<script>
+  window.onload = function() {
+    const popup = document.getElementById('popup');
+    const closePopup = document.getElementById('closePopup');
+    popup.style.display = 'flex';
+
+    closePopup.addEventListener('click', function() {
+      popup.style.display = 'none';
+    });
+  };
+</script>
 </body>
 </html>
