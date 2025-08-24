@@ -143,6 +143,13 @@ const courses = [
         description: "Learn To Hack Android Phones With TheFatRat Virus. ⚠️ Note- For Educational And Ethical Purposes Only",
         url: "https://privatecourses.netlify.app/learn.html?id=crs13&token=tk_u3mx52x5r_memq7z4x",
         image: "https://i.supaimg.com/8c2fa12e-ab29-4654-b958-8e55cd9dfa9d.jpg"
+    },
+    {
+        id: 25,
+        title: "Mod Games With Lucky Patcher And Mt Manager",
+        description: "In A Simple And Easy Way, Learn How To Mod Games Using Lucky Patcher And Mt Manager.",
+        url: "https://privatecourses.netlify.app/learn.html?id=crs14&token=tk_fw1tfxp01_meph3vri",
+        image: "https://i.supaimg.com/6620895c-c2b0-4a15-8228-115ad3b79660.jpg"
     }
     
 ]
