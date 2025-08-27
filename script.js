@@ -422,7 +422,7 @@ const courses = [
     redeemBtn.addEventListener('click', async () => {
         const code = promoCodeInput.value.trim();
         
-        if (code.toUpperCase() === 'NEXORA') {
+        if (code.toUpperCase() === '') {
             currentUser.lp = (currentUser.lp || 0) + 1000;
             await updateUserData();
             updateLpDisplay();
