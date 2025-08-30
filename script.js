@@ -145,11 +145,18 @@ const courses = [
         image: "https://i.supaimg.com/8c2fa12e-ab29-4654-b958-8e55cd9dfa9d.jpg"
     },
     {
-        id: 25,
+        id: 15,
         title: "Mod Games With Lucky Patcher And Mt Manager",
         description: "In A Simple And Easy Way, Learn How To Mod Games Using Lucky Patcher And Mt Manager.",
         url: "https://privatecourses.netlify.app/learn.html?id=crs14&token=tk_fw1tfxp01_meph3vri",
         image: "https://i.supaimg.com/6620895c-c2b0-4a15-8228-115ad3b79660.jpg"
+    },
+    {
+        id: 16,
+        title: "WhatsApp Ai support",
+        description: "Learn key components in building a WhatsApp bot.",
+        url: "https://privatecourses.netlify.app/learn.html?id=crs15&token=tk_lhp3fhp14_meylxpa0",
+        image: "https://i.supaimg.com/a566f4e6-47c1-46ed-8ecd-043a83a7d280.jpg"
     }
     
 ]
@@ -426,7 +433,7 @@ const courses = [
             currentUser.lp = (currentUser.lp || 0) + 1000;
             await updateUserData();
             updateLpDisplay();
-            promoCodeInput.value = '';
+            promoCodeInput.value = 'none';
             showSuccess('Promo code redeemed! You received 1000 LP.');
         } else {
             showSuccess('Invalid promo code. Please try again.', false);
