@@ -508,10 +508,10 @@ const courses = [
                 
                 const paypalLinks = [
                     'https://www.paypal.com/ncp/payment/ZS9JMERWH637S',
-                    'https://www.paypal.com/ncp/payment/LINK2',
-                    'https://www.paypal.com/ncp/payment/LINK3',
-                    'https://www.paypal.com/ncp/payment/LINK4',
-                    'https://www.paypal.com/ncp/payment/LINK5',
+                    'https://www.paypal.com/ncp/payment/MLZM5P6MSAR6W',
+                    'https://www.paypal.com/ncp/payment/L3M3A7V23YK8J',
+                    'https://www.paypal.com/ncp/payment/AEJXLGMYZKGQ2',
+                    'https://www.paypal.com/ncp/payment/59HBQS5BS89W6',
                     'https://www.paypal.com/ncp/payment/LINK6'
                 ];
                 
