@@ -157,7 +157,13 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Learn key components in building a WhatsApp bot.",
             url: "https://privatecourses.netlify.app/learn.html?id=crs15&token=tk_lhp3fhp14_meylxpa0",
             image: "https://i.supaimg.com/a566f4e6-47c1-46ed-8ecd-043a83a7d280.jpg"
-        }
+        },
+        {
+            id: 17,
+            title: "Copyright Software Method",
+            description: "Learn Copyright software and how to utilise it.",
+            url: "#",
+            image: "https://i.supaimg.com/f6201410-e436-460a-aa87-d24e19e8bce7.jpg"
     ];
     
     // Bonus Codes
