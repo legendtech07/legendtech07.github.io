@@ -164,6 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Learn Copyright software and how to utilise it.",
             url: "https://privatecourses.netlify.app/learn.html?id=crs16&token=tk_23kel9ipm_mfavw0fe",
             image: "https://i.supaimg.com/f6201410-e436-460a-aa87-d24e19e8bce7.jpg"
+        }
     ];
     
     // Bonus Codes
