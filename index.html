@@ -832,6 +832,44 @@
                 grid-template-columns: repeat(3, 1fr);
             }
         }
+                /* Add these styles to your existing CSS */
+
+.search-container {
+    position: relative;
+    margin-bottom: 1.5rem;
+    max-width: 500px;
+}
+
+#course-search {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 2.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+}
+
+#course-search:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.search-container .fa-search {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.no-results {
+    text-align: center;
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+    grid-column: 1 / -1;
+}
     </style>
 </head>
 <body>
@@ -920,7 +958,7 @@
         <header>
             <div class="logo">
                 <img src="logo.png" alt="Legend Tech Logo">
-                <span>Legend</span>
+                <span>Legendtech</span>
             </div>
             
             <div class="user-info">
@@ -936,7 +974,7 @@
   <div class="notification-dropdown">
     <div class="notification-header">
       <h4>Notifications</h4>
-      <span class="notification-count">3 New</span>
+      <span class="notification-count">!</span>
     </div>
     <div class="notification-list">
       <div class="notification-item">
@@ -949,8 +987,8 @@
       <div class="notification-item">
         <div class="notification-icon">💰</div>
         <div class="notification-content">
-          <p>In order to compensate for the loss of accounts created with local storage, everyone will be patronised with a promo code amounting 1000 LP</p>
-          <small>13-08-2025</small>
+          <p>Aye!!! Legend Tech library is alive. Use The link provided to access the website.</p>
+          <small>08-09-2025</small>
         </div>
       </div>
       <div class="notification-item">
