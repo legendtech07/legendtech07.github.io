@@ -164,6 +164,13 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Learn Copyright software and how to utilise it.",
             url: "https://privatecourses.netlify.app/learn.html?id=crs16&token=tk_23kel9ipm_mfavw0fe",
             image: "https://i.supaimg.com/f6201410-e436-460a-aa87-d24e19e8bce7.jpg"
+        },
+        {
+            id:18,
+            title: "Graphics design Resource Pack.",
+            description: "Get different resource packs of graphics designing for free.",
+            url: "https://privatecourses.netlify.app/learn.html?id=crs17&token=tk_4z1nbt7zs_mfc9hmh2",
+            image: "https://i.supaimg.com/87ac6436-157d-4ea9-839c-c56f9c9ab2bf.jpg"
         }
     ];
     
@@ -439,7 +446,7 @@ document.addEventListener('DOMContentLoaded', function() {
             currentUser.lp = (currentUser.lp || 0) + 1000;
             await updateUserData();
             updateLpDisplay();
-            promoCodeInput.value = 'none';
+            promoCodeInput.value = '';
             showSuccess('Promo code redeemed! You received 1000 LP.');
         } else {
             showSuccess('Invalid promo code. Please try again.', false);
