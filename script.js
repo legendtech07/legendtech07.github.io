@@ -171,6 +171,13 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Get different resource packs of graphics designing for free.",
             url: "https://privatecourses.netlify.app/learn.html?id=crs17&token=tk_4z1nbt7zs_mfc9hmh2",
             image: "https://i.supaimg.com/87ac6436-157d-4ea9-839c-c56f9c9ab2bf.jpg"
+        },
+        {
+            id:19,
+            title: "Trading With Exness From A To Z.",
+            description: "Trading, a form of freelancing, had been known to be among the best of the bests when it comes to making money. Learn Forex Trading now from the beginning to the end.",
+            url: "https://whatsapp.com/channel/0029VbBWcNJK0IBk4hlvDb0J",
+            image: "http://betterbox-api-pw3j.onrender.com/i/4f8b722f-7774-48f5-9e2b-62fd8bc4a437.jpg"
         }
     ];
     
@@ -187,7 +194,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatMessages = [
         { username: "Admin", message: "Welcome to Legend Tech community chat!", time: "10:00 AM" },
         { username: "User123", message: "Hello everyone! How's the learning going?", time: "10:05 AM" },
-        { username: "TechGuru", message: "Just completed the React course. It was amazing!", time: "10:15 AM" }
+        { username: "TechGuru", message: "Just completed the React course. It was amazing!", time: "10:15 AM" },
+        { username: "Admin", message: "Hello guys, legend tech library is out. Get ebooks for free!!! https://legendtechlibray.netlify.app/ "}
     ];
     
     // User data
