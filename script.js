@@ -178,6 +178,13 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Trading, a form of freelancing, had been known to be among the best of the bests when it comes to making money. Learn Forex Trading now from the beginning to the end.",
             url: "https://whatsapp.com/channel/0029VbBWcNJK0IBk4hlvDb0J",
             image: "http://betterbox-api-pw3j.onrender.com/i/4f8b722f-7774-48f5-9e2b-62fd8bc4a437.jpg"
+        },
+        {
+            id: 20,
+            title: "How To Find The Bins Of Websites.",
+            description: "*👽Find Bins Of Any Website Or App For Carding 💳 - Full Explained 2025 Latest Method By @DIGITAL MASTERS 🗿*",
+            url: "https://t.me/legendtechhacksarena/158",
+            image: "http://betterbox-api-pw3j.onrender.com/i/69b5f74e-0456-42f2-bd8d-e62e73132e09.jpg"
         }
     ];
     
