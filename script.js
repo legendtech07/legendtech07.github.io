@@ -185,7 +185,15 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "*👽Find Bins Of Any Website Or App For Carding 💳 - Full Explained 2025 Latest Method By @DIGITAL MASTERS 🗿*",
             url: "https://t.me/legendtechhacksarena/158",
             image: "http://betterbox-api-pw3j.onrender.com/i/69b5f74e-0456-42f2-bd8d-e62e73132e09.jpg"
+        },
+        {
+            id: 21,
+            title: "Chatgpt competitive Analysis.",
+            description: "*🔥 CHATGPT COMPETITIVE ANALYSIS*  📊 Analyze ChatGPT & rivals, 🧠 Master AI market intelligence, 📈 Strategic decision-making tools, 🚀 Gain competitive advantage, 🔍 Unlock deep AI insights,💼 Optimize your AI strategy",
+            url: "https://drive.google.com/drive/folders/1qrcKiTy3KBESkxzV_0p4EPbSZDfEcwxl",
+            image: "http://betterbox-api-pw3j.onrender.com/i/9afc3246-8ed4-4042-9dd4-c4fd9a80f2b5.jpg"
         }
+
     ];
     
     // Bonus Codes
