@@ -192,6 +192,13 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "*🔥 CHATGPT COMPETITIVE ANALYSIS*  📊 Analyze ChatGPT & rivals, 🧠 Master AI market intelligence, 📈 Strategic decision-making tools, 🚀 Gain competitive advantage, 🔍 Unlock deep AI insights,💼 Optimize your AI strategy",
             url: "https://drive.google.com/drive/folders/1qrcKiTy3KBESkxzV_0p4EPbSZDfEcwxl",
             image: "http://betterbox-api-pw3j.onrender.com/i/9afc3246-8ed4-4042-9dd4-c4fd9a80f2b5.jpg"
+        },
+        {
+            id: 22,
+            title: "Top Burner Email And SMS Services.",
+            description: "Looking for quick and anonymous sign ins, we've got you covered. Provided in this are reliable burner email services that can be used to bypass verifications and protect your identity.",
+            url: "https://coursesarchive.netlify.app/email-burner.html",
+            image: "https://i.ibb.co/7x7bs5v1/adb018240bdfda5b9cd88fa0161edf85.webp"
         }
 
     ];
