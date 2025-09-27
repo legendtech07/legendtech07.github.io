@@ -199,6 +199,13 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Looking for quick and anonymous sign ins, we've got you covered. Provided in this are reliable burner email services that can be used to bypass verifications and protect your identity.",
             url: "https://coursesarchive.netlify.app/email-burner.html",
             image: "https://i.ibb.co/7x7bs5v1/adb018240bdfda5b9cd88fa0161edf85.webp"
+        },
+        {
+            id: 23,
+            title: "All Pro Source Codes(Resource Pack)",
+            description: "Get different tech source codes for free. Note this is a resource pack.",
+            url: "https://t.me/legendtechhacksarena/174",
+            image: "https://i.ibb.co/5hvZqMNV/9a75c3a2c449553fb1dd706c4a1948cd.webp"
         }
 
     ];
