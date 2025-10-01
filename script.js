@@ -206,6 +206,13 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Get different tech source codes for free. Note this is a resource pack.",
             url: "https://t.me/legendtechhacksarena/174",
             image: "https://i.ibb.co/5hvZqMNV/9a75c3a2c449553fb1dd706c4a1948cd.webp"
+        },
+        {
+            id: 24,
+            title: "Web3 And Blockchain Mastery",
+            description: "Get ultimate knowledge on web3 and how it works, smart contracts, blockchain flow and business opportunities in it. Certificate Of Completion Is Available For This Course.",
+            url: "https://coursesarchive.netlify.app/web3-outline.html",
+            image: "https://images.openai.com/thumbnails/url/Q5lkJnicu1mUUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw62TAkrcC2u9HEsMckyLUsxyXUOrSwtN_E3y_GM9EsyLCoOtwgyCwkLK3YxzskP8CxISnMs9I0INs5WKwYAzJkpRA"
         }
 
     ];
