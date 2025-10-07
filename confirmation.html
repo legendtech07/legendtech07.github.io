@@ -433,7 +433,7 @@
                 <p>You will be redirected to the appropriate confirmation page after completing your PayPal transaction.</p>
             </div>
             
-            <a href="index.html" class="btn">Back to Store</a>
+            <a href="index.html" class="btn">Back to Main Web</a>
         </section>
         
         <h2 style="text-align: center; color: var(--primary-purple); margin: 40px 0 20px;">Available LP Packages</h2>
@@ -469,7 +469,7 @@
     <footer>
         <div class="container">
             <div class="footer-links">
-                <a href="#">Dashboard</a>
+                <a href="index.html">Dashboard</a>
                 <a href="index.html">Learn</a>
                 <a href="#">Downloads</a>
                 <a href="#">Community</a>
@@ -481,9 +481,9 @@
     </footer>
     
     <script>
-        // Function to get URL path and determine which confirmation to show
-        function showConfirmationBasedOnPath() {
-            const path = window.location.pathname;
+        // Function to get URL hash and determine which confirmation to show
+        function showConfirmationBasedOnHash() {
+            const hash = window.location.hash;
             const defaultView = document.getElementById('default-view');
             
             // Hide all confirmation sections first
@@ -491,20 +491,20 @@
                 section.classList.add('hidden');
             });
             
-            // Show the appropriate confirmation based on the URL path
-            if (path.includes('/100LP') || path.includes('/confirmation/100')) {
+            // Show the appropriate confirmation based on the URL hash
+            if (hash === '#100LP') {
                 document.getElementById('confirmation-100').classList.remove('hidden');
                 setTransactionDetails('100');
-            } else if (path.includes('/500LP') || path.includes('/confirmation/500')) {
+            } else if (hash === '#500LP') {
                 document.getElementById('confirmation-500').classList.remove('hidden');
                 setTransactionDetails('500');
-            } else if (path.includes('/1000LP') || path.includes('/confirmation/1000')) {
+            } else if (hash === '#1000LP') {
                 document.getElementById('confirmation-1000').classList.remove('hidden');
                 setTransactionDetails('1000');
-            } else if (path.includes('/5000LP') || path.includes('/confirmation/5000')) {
+            } else if (hash === '#5000LP') {
                 document.getElementById('confirmation-5000').classList.remove('hidden');
                 setTransactionDetails('5000');
-            } else if (path.includes('/15000LP') || path.includes('/confirmation/15000')) {
+            } else if (hash === '#15000LP') {
                 document.getElementById('confirmation-15000').classList.remove('hidden');
                 setTransactionDetails('15000');
             } else {
@@ -531,11 +531,14 @@
                 transactionElement.textContent = transactionId;
             }
         }
-        
+
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
-            showConfirmationBasedOnPath();
+            showConfirmationBasedOnHash();
         });
+        
+        // Update when hash changes
+        window.addEventListener('hashchange', showConfirmationBasedOnHash);
     </script>
 </body>
 </html>
