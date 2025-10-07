@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Confirmation - Legendtech</title>
+    <style>
+        :root {
+            --primary-purple: #6a0dad;
+            --light-purple: #8a2be2;
+            --dark-purple: #4b0082;
+            --accent-purple: #9370db;
+            --text-light: #ffffff;
+            --background-light: #f8f4ff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background-light);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-purple), var(--dark-purple));
+            color: var(--text-light);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .confirmation-section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px auto;
+            max-width: 600px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-top: 5px solid var(--primary-purple);
+        }
+        
+        .confirmation-icon {
+            font-size: 4rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        
+        .confirmation-title {
+            color: var(--primary-purple);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .purchase-details {
+            background-color: var(--background-light);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: left;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .detail-row:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .detail-label {
+            font-weight: bold;
+            color: var(--dark-purple);
+        }
+        
+        .lp-code {
+            background-color: var(--primary-purple);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin: 20px 0;
+            display: inline-block;
+        }
+        
+        .instructions {
+            background-color: #f0e6ff;
+            border-left: 4px solid var(--accent-purple);
+            padding: 15px;
+            margin: 20px 0;
+            text-align: left;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-purple), var(--light-purple));
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin: 10px 5px;
+            box-shadow: 0 4px 10px rgba(106, 13, 173, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(106, 13, 173, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d, #5a6268);
+        }
+        
+        .lp-packages {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .lp-package {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--primary-purple);
+        }
+        
+        .lp-package:hover {
+            transform: translateY(-5px);
+        }
+        
+        .lp-amount {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-purple);
+            margin-bottom: 10px;
+        }
+        
+        .lp-price {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark-purple), #2d004d);
+            color: var(--text-light);
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: var(--text-light);
+            margin: 0 15px;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+        
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .lp-packages {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .confirmation-section {
+                padding: 20px;
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Legendtech</div>
+            <div class="tagline">LP Purchase Confirmation</div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- 100 LP Confirmation -->
+        <section id="confirmation-100" class="confirmation-section hidden">
+            <div class="confirmation-icon">✓</div>
+            <h1 class="confirmation-title">Purchase Successful!</h1>
+            <p>Thank you for purchasing 100 LP. Your transaction has been completed successfully.</p>
+            
+            <div class="purchase-details">
+                <div class="detail-row">
+                    <span class="detail-label">Package:</span>
+                    <span>100 LP</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Amount Paid:</span>
+                    <span>¥500 NGN</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Transaction ID:</span>
+                    <span id="transaction-id-100">PAYPAL-XXXX-XXXX-XXXX</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Date:</span>
+                    <span id="purchase-date-100">Loading...</span>
+                </div>
+            </div>
+            
+            <div class="instructions">
+                <h3>Your LP Code:</h3>
+                <p>Use the following code to redeem your Legend Points:</p>
+                <div class="lp-code">12AB61</div>
+                <p>Keep this code safe and do not share it with anyone.</p>
+            </div>
+            
+            <a href="index.html" class="btn">Redeem Now</a>
+            <a href="confirmation.html" class="btn btn-secondary">Back to Store</a>
+        </section>
+        
+        <!-- 500 LP Confirmation -->
+        <section id="confirmation-500" class="confirmation-section hidden">
+            <div class="confirmation-icon">✓</div>
+            <h1 class="confirmation-title">Purchase Successful!</h1>
+            <p>Thank you for purchasing 500 LP. Your transaction has been completed successfully.</p>
+            
+            <div class="purchase-details">
+                <div class="detail-row">
+                    <span class="detail-label">Package:</span>
+                    <span>500 LP</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Amount Paid:</span>
+                    <span>¥2500 NGN</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Transaction ID:</span>
+                    <span id="transaction-id-500">PAYPAL-XXXX-XXXX-XXXX</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Date:</span>
+                    <span id="purchase-date-500">Loading...</span>
+                </div>
+            </div>
+            
+            <div class="instructions">
+                <h3>Your LP Code:</h3>
+                <p>Use the following code to redeem your Legend Points:</p>
+                <div class="lp-code">WE49OP</div>
+                <p>Keep this code safe and do not share it with anyone.</p>
+            </div>
+            
+            <a href="index.html" class="btn">Redeem Now</a>
+            <a href="confirmation.html" class="btn btn-secondary">Back to Store</a>
+        </section>
+        
+        <!-- 1000 LP Confirmation -->
+        <section id="confirmation-1000" class="confirmation-section hidden">
+            <div class="confirmation-icon">✓</div>
+            <h1 class="confirmation-title">Purchase Successful!</h1>
+            <p>Thank you for purchasing 1000 LP. Your transaction has been completed successfully.</p>
+            
+            <div class="purchase-details">
+                <div class="detail-row">
+                    <span class="detail-label">Package:</span>
+                    <span>1000 LP</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Amount Paid:</span>
+                    <span>¥4500 NGN</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Transaction ID:</span>
+                    <span id="transaction-id-1000">PAYPAL-XXXX-XXXX-XXXX</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Date:</span>
+                    <span id="purchase-date-1000">Loading...</span>
+                </div>
+            </div>
+            
+            <div class="instructions">
+                <h3>Your LP Code:</h3>
+                <p>Use the following code to redeem your Legend Points:</p>
+                <div class="lp-code">73AS63</div>
+                <p>Keep this code safe and do not share it with anyone.</p>
+            </div>
+            
+            <a href="index.html" class="btn">Redeem Now</a>
+            <a href="confirmation.html" class="btn btn-secondary">Back to Store</a>
+        </section>
+        
+        <!-- 5000 LP Confirmation -->
+        <section id="confirmation-5000" class="confirmation-section hidden">
+            <div class="confirmation-icon">✓</div>
+            <h1 class="confirmation-title">Purchase Successful!</h1>
+            <p>Thank you for purchasing 5000 LP. Your transaction has been completed successfully.</p>
+            
+            <div class="purchase-details">
+                <div class="detail-row">
+                    <span class="detail-label">Package:</span>
+                    <span>5000 LP</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Amount Paid:</span>
+                    <span>¥20000 NGN</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Transaction ID:</span>
+                    <span id="transaction-id-5000">PAYPAL-XXXX-XXXX-XXXX</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Date:</span>
+                    <span id="purchase-date-5000">Loading...</span>
+                </div>
+            </div>
+            
+            <div class="instructions">
+                <h3>Your LP Code:</h3>
+                <p>Use the following code to redeem your Legend Points:</p>
+                <div class="lp-code">PO48G5</div>
+                <p>Keep this code safe and do not share it with anyone.</p>
+            </div>
+            
+            <a href="index.html" class="btn">Redeem Now</a>
+            <a href="confirmation.html" class="btn btn-secondary">Back to Store</a>
+        </section>
+        
+        <!-- 15000 LP Confirmation -->
+        <section id="confirmation-15000" class="confirmation-section hidden">
+            <div class="confirmation-icon">✓</div>
+            <h1 class="confirmation-title">Purchase Successful!</h1>
+            <p>Thank you for purchasing 15000 LP. Your transaction has been completed successfully.</p>
+            
+            <div class="purchase-details">
+                <div class="detail-row">
+                    <span class="detail-label">Package:</span>
+                    <span>15000 LP</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Amount Paid:</span>
+                    <span>¥50000 NGN</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Transaction ID:</span>
+                    <span id="transaction-id-15000">PAYPAL-XXXX-XXXX-XXXX</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Date:</span>
+                    <span id="purchase-date-15000">Loading...</span>
+                </div>
+            </div>
+            
+            <div class="instructions">
+                <h3>Your LP Code:</h3>
+                <p>Use the following code to redeem your Legend Points:</p>
+                <div class="lp-code">AZ31SG</div>
+                <p>Keep this code safe and do not share it with anyone.</p>
+            </div>
+            
+            <a href="index.html" class="btn">Redeem Now</a>
+            <a href="confirmation.html" class="btn btn-secondary">Back to Store</a>
+        </section>
+        
+        <!-- Default view when no specific package is selected -->
+        <section id="default-view" class="confirmation-section">
+            <div class="confirmation-icon">⚠️</div>
+            <h1 class="confirmation-title">Invalid Access</h1>
+            <p>This confirmation page can only be accessed after completing a purchase.</p>
+            
+            <div class="instructions">
+                <h3>How to Access:</h3>
+                <p>You will be redirected to the appropriate confirmation page after completing your PayPal transaction.</p>
+            </div>
+            
+            <a href="index.html" class="btn">Back to Store</a>
+        </section>
+        
+        <h2 style="text-align: center; color: var(--primary-purple); margin: 40px 0 20px;">Available LP Packages</h2>
+        <div class="lp-packages">
+            <div class="lp-package">
+                <div class="lp-amount">100 LP</div>
+                <div class="lp-price">¥500 NGN</div>
+                <a href="https://www.paypal.com/ncp/payment/ZS9JMERWH637S" class="btn">Purchase</a>
+            </div>
+            <div class="lp-package">
+                <div class="lp-amount">500 LP</div>
+                <div class="lp-price">¥2500 NGN</div>
+                <a href="https://www.paypal.com/ncp/payment/MLZM5P6MSAR6W" class="btn">Purchase</a>
+            </div>
+            <div class="lp-package">
+                <div class="lp-amount">1000 LP</div>
+                <div class="lp-price">¥4500 NGN</div>
+                <a href="https://www.paypal.com/ncp/payment/L3M3A7V23YK8J" class="btn">Purchase</a>
+            </div>
+            <div class="lp-package">
+                <div class="lp-amount">5000 LP</div>
+                <div class="lp-price">¥20000 NGN</div>
+                <a href="https://www.paypal.com/ncp/payment/AEJXLGMYZKGQ2" class="btn">Purchase</a>
+            </div>
+            <div class="lp-package">
+                <div class="lp-amount">15000 LP</div>
+                <div class="lp-price">¥50000 NGN</div>
+                <a href="https://www.paypal.com/ncp/payment/59HBQS5BS89W6" class="btn">Purchase</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Dashboard</a>
+                <a href="index.html">Learn</a>
+                <a href="#">Downloads</a>
+                <a href="#">Community</a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Legendtech. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Function to get URL path and determine which confirmation to show
+        function showConfirmationBasedOnPath() {
+            const path = window.location.pathname;
+            const defaultView = document.getElementById('default-view');
+            
+            // Hide all confirmation sections first
+            document.querySelectorAll('.confirmation-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show the appropriate confirmation based on the URL path
+            if (path.includes('/100LP') || path.includes('/confirmation/100')) {
+                document.getElementById('confirmation-100').classList.remove('hidden');
+                setTransactionDetails('100');
+            } else if (path.includes('/500LP') || path.includes('/confirmation/500')) {
+                document.getElementById('confirmation-500').classList.remove('hidden');
+                setTransactionDetails('500');
+            } else if (path.includes('/1000LP') || path.includes('/confirmation/1000')) {
+                document.getElementById('confirmation-1000').classList.remove('hidden');
+                setTransactionDetails('1000');
+            } else if (path.includes('/5000LP') || path.includes('/confirmation/5000')) {
+                document.getElementById('confirmation-5000').classList.remove('hidden');
+                setTransactionDetails('5000');
+            } else if (path.includes('/15000LP') || path.includes('/confirmation/15000')) {
+                document.getElementById('confirmation-15000').classList.remove('hidden');
+                setTransactionDetails('15000');
+            } else {
+                defaultView.classList.remove('hidden');
+            }
+        }
+        
+        // Function to set transaction details
+        function setTransactionDetails(packageId) {
+            const dateElement = document.getElementById(`purchase-date-${packageId}`);
+            const transactionElement = document.getElementById(`transaction-id-${packageId}`);
+            
+            if (dateElement) {
+                dateElement.textContent = new Date().toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            }
+            
+            if (transactionElement) {
+                // Generate a random transaction ID
+                const transactionId = 'PAYPAL-' + Math.random().toString(36).substring(2, 10).toUpperCase();
+                transactionElement.textContent = transactionId;
+            }
+        }
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            showConfirmationBasedOnPath();
+        });
+    </script>
+</body>
+</html>
