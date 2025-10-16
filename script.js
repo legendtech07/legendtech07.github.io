@@ -213,6 +213,13 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Get ultimate knowledge on web3 and how it works, smart contracts, blockchain flow and business opportunities in it. Certificate Of Completion Is Available For This Course.",
             url: "https://coursesarchive.netlify.app/web3-outline.html",
             image: "https://images.openai.com/thumbnails/url/Q5lkJnicu1mUUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw62TAkrcC2u9HEsMckyLUsxyXUOrSwtN_E3y_GM9EsyLCoOtwgyCwkLK3YxzskP8CxISnMs9I0INs5WKwYAzJkpRA"
+        },
+        {
+            id: 25,
+            title: "Important Websites And Tools You Need To Know.",
+            description: "This a video based course which comprises different videos of websites that contain tools that it's very helpful. please do not depend on the websites too much.",
+            url: "https://youtube.com/playlist?list=PLWXDPABA54cow_7cnMdb7MK9tuxGXPv6d&si=tiuc-kwE-ZQefRs6",
+            image: "https://files.catbox.moe/biv9bo.jpg"
         }
 
     ];
