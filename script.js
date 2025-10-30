@@ -220,6 +220,13 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "This a video based course which comprises different videos of websites that contain tools that it's very helpful. please do not depend on the websites too much.",
             url: "https://youtube.com/playlist?list=PLWXDPABA54cow_7cnMdb7MK9tuxGXPv6d&si=tiuc-kwE-ZQefRs6",
             image: "https://files.catbox.moe/biv9bo.jpg"
+        },
+        {
+            id: 25,
+            title: "How To Get Unlimited Number|Lifetime Working Method.",
+            description: "You can get unlimited numbers without worrying about losing them.",
+            url: "https://drive.google.com/drive/fders/1wDqIy5eB6Mz6SRJfhMmIfcnU-koQJ2Lr",
+            image: "https://files.catbox.moe/81tlw2.jpg"
         }
 
     ];
