@@ -909,6 +909,25 @@
                 <div class="auth-footer">
                     Don't have an account? <a href="#" id="show-register">Register</a>
                 </div>
+
+                    <div class="auth-welcome" style="text-align: center; margin-bottom: 1.5rem; padding: 1rem; background: rgba(74, 0, 224, 0.1); border-radius: 10px; border-left: 4px solid var(--accent);">
+    <h3 style="color: var(--accent); margin-bottom: 0.5rem;">🚀 Welcome to Legend Tech!</h3>
+    <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.9rem; line-height: 1.4;">
+        Join thousands of learners mastering cutting-edge tech skills. Get access to premium courses, 
+        earn Legend Points, and join our vibrant community of tech enthusiasts!
+    </p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 1rem;">
+        <div style="text-align: left;">
+            <div style="color: var(--accent); font-size: 0.8rem;">✓ 25+ Courses</div>
+            <div style="color: var(--accent); font-size: 0.8rem;">✓ Daily Rewards</div>
+        </div>
+        <div style="text-align: left;">
+            <div style="color: var(--accent); font-size: 0.8rem;">✓ Community Chat</div>
+            <div style="color: var(--accent); font-size: 0.8rem;">✓ Expert Support</div>
+        </div>
+    </div>
+                    </div>
+                
             </form>
             
             <form class="auth-form" id="register-form">
@@ -1140,6 +1159,72 @@ document.addEventListener('click', function(e) {
                     </div>
                     <div id="bonus-result" class="bonus-result"></div>
                 </div>
+
+                <section id="promo-slider" class="slider-section">
+  <div class="slider-container">
+    <div class="slide" data-link="http://wbnv.in/a/d9jNs27">
+      <img src="webnovelshare.jpeg" alt="Slide 1">
+    </div>
+    <div class="slide" data-link="https://legendtechlibray.netlify.app/">
+      <img src="legendtechlibrary.png" alt="Slide 2">
+    </div>
+    <div class="slide" data-link="https://example.com/siteD">
+      <img src="https://via.placeholder.com/800x300?text=Website+D" alt="Slide 3">
+    </div>
+  </div>
+  <div id="slider-counter" class="slider-counter">1/3</div>
+</section>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const slider = document.querySelector(".slider-container");
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const counter = document.getElementById("slider-counter");
+    const totalSlides = slides.length;
+    let currentIndex = 0;
+    let autoSlideInterval;
+
+    // Update counter
+    function updateCounter() {
+      counter.textContent = `${currentIndex + 1}/${totalSlides}`;
+    }
+
+    // Move to next slide
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+      updateCounter();
+    }
+
+    // Start auto-sliding
+    function startAutoSlide() {
+      autoSlideInterval = setInterval(nextSlide, 5000); // 5 seconds
+    }
+
+    // Stop auto-sliding
+    function stopAutoSlide() {
+      clearInterval(autoSlideInterval);
+    }
+
+    // Add click link to slides
+    slides.forEach(slide => {
+      slide.addEventListener("click", () => {
+        const link = slide.getAttribute("data-link");
+        if (link) window.open(link, "_blank");
+      });
+    });
+
+    // Pause on hover (and resume)
+    const sliderSection = document.getElementById("promo-slider");
+    sliderSection.addEventListener("mouseenter", stopAutoSlide);
+    sliderSection.addEventListener("mouseleave", startAutoSlide);
+    sliderSection.addEventListener("touchstart", stopAutoSlide);
+    sliderSection.addEventListener("touchend", startAutoSlide);
+
+    // Init
+    updateCounter();
+    startAutoSlide();
+  });
+</script>
                 
                 <div class="top-up-section">
                     <h3><i class="fas fa-wallet"></i> Top Up LP</h3>
