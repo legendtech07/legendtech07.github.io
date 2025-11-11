@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcement Manager - Legend Tech</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="announcement.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader-container" id="loader">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+        </div>
+        <div class="loader-text">Loading Announcement Manager...</div>
+    </div>
+    
+    <!-- Admin Login -->
+    <div class="auth-container" id="auth-container">
+        <div class="auth-box">
+            <h2>Admin Login</h2>
+            <form id="admin-login-form">
+                <div class="form-group">
+                    <label for="admin-email">Email</label>
+                    <input type="email" id="admin-email" placeholder="Admin email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="admin-password">Password</label>
+                    <input type="password" id="admin-password" placeholder="Admin password" required>
+                </div>
+                
+                <button type="submit" class="btn btn-full">Login</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Admin Panel -->
+    <div class="admin-container" id="admin-container">
+        <div class="admin-header">
+            <div class="logo">
+                <i class="fas fa-bullhorn"></i>
+                <span style="margin-left: 10px;">Announcement Manager</span>
+            </div>
+            
+            <div class="admin-nav">
+                <button class="nav-btn active" data-section="dashboard">Dashboard</button>
+                <button class="nav-btn" data-section="notifications">Notifications</button>
+                <button class="nav-btn" data-section="announcements">Announcements</button>
+                <button class="nav-btn" data-section="broadcasts">Broadcasts</button>
+                <button class="nav-btn" id="logout-btn">Logout</button>
+            </div>
+        </div>
+        
+        <div class="admin-content">
+            <!-- Dashboard Section -->
+            <div class="admin-section" id="dashboard-section">
+                <h2 class="section-title">Dashboard Overview</h2>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-notifications">0</div>
+                        <div class="stat-label">Total Notifications</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-announcements">0</div>
+                        <div class="stat-label">Active Announcements</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number" id="unread-count">0</div>
+                        <div class="stat-label">Unread Users</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-broadcasts">0</div>
+                        <div class="stat-label">Broadcasts Sent</div>
+                    </div>
+                </div>
+                
+                <div class="quick-actions">
+                    <h3 class="section-title">Quick Actions</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <button class="btn btn-success" onclick="switchSection('notifications')">
+                            <i class="fas fa-bell"></i> New Notification
+                        </button>
+                        <button class="btn btn-warning" onclick="switchSection('announcements')">
+                            <i class="fas fa-bullhorn"></i> New Announcement
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Notifications Section -->
+            <div class="admin-section" id="notifications-section" style="display: none;">
+                <h2 class="section-title">Manage Notifications</h2>
+                
+                <form id="notification-form">
+                    <div class="form-group">
+                        <label for="notification-title">Title</label>
+                        <input type="text" id="notification-title" placeholder="Enter notification title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="notification-message">Message</label>
+                        <textarea id="notification-message" placeholder="Enter notification message" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="notification-type">Type</label>
+                        <select id="notification-type" required>
+                            <option value="info">ℹ️ Information</option>
+                            <option value="warning">⚠️ Warning</option>
+                            <option value="success">✅ Success</option>
+                            <option value="error">❌ Error</option>
+                            <option value="update">🔄 Update</option>
+                            <option value="event">🎉 Event</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="notification-icon">Icon</label>
+                        <input type="text" id="notification-icon" placeholder="e.g., 🎁, 🔥, 💰" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-full">Create Notification</button>
+                </form>
+                
+                <h3 class="section-title" style="margin-top: 2rem;">Existing Notifications</h3>
+                <div class="items-list" id="notifications-list">
+                    <!-- Notifications will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- Announcements Section -->
+            <div class="admin-section" id="announcements-section" style="display: none;">
+                <h2 class="section-title">Manage Announcements</h2>
+                
+                <form id="announcement-form">
+                    <div class="form-group">
+                        <label for="announcement-title">Title</label>
+                        <input type="text" id="announcement-title" placeholder="Enter announcement title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="announcement-message">Message</label>
+                        <textarea id="announcement-message" placeholder="Enter announcement message" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="announcement-type">Type</label>
+                        <select id="announcement-type" required>
+                            <option value="general">📢 General</option>
+                            <option value="important">🚨 Important</option>
+                            <option value="update">🔄 Update</option>
+                            <option value="maintenance">🔧 Maintenance</option>
+                            <option value="event">🎉 Event</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="announcement-priority">Priority</label>
+                        <select id="announcement-priority" required>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="announcement-active"> Active (Show to users)
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-full">Create Announcement</button>
+                </form>
+                
+                <h3 class="section-title" style="margin-top: 2rem;">Existing Announcements</h3>
+                <div class="items-list" id="announcements-list">
+                    <!-- Announcements will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- Broadcasts Section -->
+            <div class="admin-section" id="broadcasts-section" style="display: none;">
+                <h2 class="section-title">Send Broadcast</h2>
+                
+                <form id="broadcast-form">
+                    <div class="form-group">
+                        <label for="broadcast-title">Title</label>
+                        <input type="text" id="broadcast-title" placeholder="Enter broadcast title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="broadcast-message">Message</label>
+                        <textarea id="broadcast-message" placeholder="Enter broadcast message" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="broadcast-type">Broadcast Type</label>
+                        <select id="broadcast-type" required>
+                            <option value="all">All Users</option>
+                            <option value="active">Active Users Only</option>
+                            <option value="new">New Users Only</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="broadcast-method">Delivery Method</label>
+                        <select id="broadcast-method" required>
+                            <option value="notification">Push Notification</option>
+                            <option value="announcement">Site Announcement</option>
+                            <option value="both">Both</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-full btn-success">Send Broadcast</button>
+                </form>
+                
+                <h3 class="section-title" style="margin-top: 2rem;">Broadcast History</h3>
+                <div class="items-list" id="broadcasts-list">
+                    <!-- Broadcasts will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="announcement.js"></script>
+</body>
+</html>
