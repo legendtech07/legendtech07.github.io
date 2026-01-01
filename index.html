@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legend Tech Academy - Welcome 2026!</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logo.png">
+</head>
+<body>
+    <!-- New Year Confetti Effect -->
+    <div id="confetti-container"></div>
+    
+    <!-- Loader -->
+    <div class="loader-container" id="loader">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+        </div>
+        <div class="loader-text">Welcome to 2026! Loading Legend Tech Academy...</div>
+    </div>
+    
+    <!-- Auth Pages -->
+    <div class="auth-container" id="auth-container">
+        <div class="auth-box">
+            <div class="new-year-banner">
+                <h2>🎉 WELCOME TO 2026! 🎉</h2>
+                <p>Start your tech journey in the new year with exciting opportunities!</p>
+            </div>
+            
+            <h2><i class="fas fa-graduation-cap"></i> Legend Tech Academy</h2>
+            
+            <div class="auth-tabs">
+                <div class="auth-tab active" data-tab="login">Login</div>
+                <div class="auth-tab" data-tab="register">Register</div>
+            </div>
+            
+            <form class="auth-form active" id="login-form">
+                <div class="form-group">
+                    <label for="login-email"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="login-email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="login-password"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit" class="btn"><i class="fas fa-sign-in-alt"></i> Login</button>
+                
+                <div class="auth-footer">
+                    Don't have an account? <a href="#" id="show-register">Register</a>
+                </div>
+
+                <div class="auth-welcome">
+                    <h3>🚀 2026 New Year Special! 🚀</h3>
+                    <p>
+                        Welcome to the future of tech education! Join thousands of learners mastering cutting-edge 
+                        skills. Get access to premium courses, earn Legend Points, and join our vibrant community!
+                    </p>
+                    <div class="welcome-features">
+                        <div class="features-column">
+                            <div>✓ 30+ Courses</div>
+                            <div>✓ Daily Rewards</div>
+                            <div>✓ 2026 Special LP</div>
+                        </div>
+                        <div class="features-column">
+                            <div>✓ Smart Community</div>
+                            <div>✓ Expert Support</div>
+                            <div>✓ Reply Feature</div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            
+            <form class="auth-form" id="register-form">
+                <div class="form-group">
+                    <label for="register-username"><i class="fas fa-user"></i> Username</label>
+                    <input type="text" id="register-username" placeholder="Choose a username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-email"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="register-email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-password"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="register-password" placeholder="Create a password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-country"><i class="fas fa-globe"></i> Country</label>
+                    <select id="register-country" required>
+                        <option value="">Select your country</option>
+                        <option value="NG">Nigeria</option>
+                        <option value="US">United States</option>
+                        <option value="GB">United Kingdom</option>
+                        <option value="ES">Spain</option>
+                        <option value="FR">France</option>
+                        <option value="DE">Germany</option>
+                        <option value="IN">India</option>
+                        <option value="BR">Brazil</option>
+                        <option value="CA">Canada</option>
+                        <option value="AU">Australia</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn"><i class="fas fa-user-plus"></i> Register</button>
+                
+                <div class="auth-footer">
+                    Already have an account? <a href="#" id="show-login">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Main App -->
+    <div class="app-container" id="app-container">
+        <header>
+            <div class="logo">
+                <img src="logo.png" alt="Legend Tech Logo">
+                <span>Legendtech 2026</span>
+            </div>
+            
+            <div class="user-info">
+                <div class="notification-container">
+                    <button class="notification-button">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">0</span>
+                    </button>
+                    <div class="notification-dropdown">
+                        <div class="notification-header">
+                            <h4>Notifications</h4>
+                            <span class="notification-count">0 unread</span>
+                        </div>
+                        <div class="notification-list">
+                            <!-- Notifications will be loaded here -->
+                        </div>
+                        <div class="notification-footer">
+                            <button class="mark-all-read">Mark All as Read</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="user-lp" id="user-lp-display">0 LP</div>
+                <div class="user-name" id="user-name">Guest</div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Dashboard Page -->
+            <div class="page active" id="dashboard-page">
+                <h1 class="page-title"><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
+                
+                <div class="new-year-notice">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Welcome to 2026!</h3>
+                    <p>Explore new features and earn extra LP throughout the year!</p>
+                </div>
+                
+                <div class="daily-reward">
+                    <h3><i class="fas fa-gift"></i> Daily Reward</h3>
+                    <p>Claim your daily 10 LP. Complete 7 days streak to get 30 LP bonus!</p>
+                    
+                    <div class="streak-container" id="streak-container">
+                        <!-- Streak days will be added by JavaScript -->
+                    </div>
+                    
+                    <button class="btn claim-btn" id="claim-btn"><i class="fas fa-coins"></i> Claim 10 LP</button>
+                </div>
+                
+                <div class="lp-balance">
+                    <h3><i class="fas fa-coins"></i> Your LP Balance</h3>
+                    <div class="lp-amount" id="lp-balance">0 LP</div>
+                </div>
+                
+                <div class="promo-code">
+                    <h3><i class="fas fa-tag"></i> Redeem Promo Code</h3>
+                    <div class="promo-form">
+                        <input type="text" id="promo-code-input" placeholder="Enter promo code">
+                        <button class="btn" id="redeem-btn"><i class="fas fa-check"></i> Redeem</button>
+                    </div>
+                </div>
+                
+                <div class="bonus-code">
+                    <h3><i class="fas fa-star"></i> Redeem Purchase Code</h3>
+                    <div class="bonus-form">
+                        <input type="text" id="bonus-code-input" placeholder="Enter purchase code">
+                        <button class="btn" id="bonus-redeem-btn"><i class="fas fa-check"></i> Redeem</button>
+                    </div>
+                    <div id="bonus-result" class="bonus-result"></div>
+                </div>
+
+                <!-- Announcements Section -->
+                <div class="announcements-section" id="announcements-section">
+                    <div class="announcements-header">
+                        <h3><i class="fas fa-bullhorn"></i> Latest Announcements</h3>
+                        <button class="btn view-all-btn" onclick="showAllAnnouncements()">View All</button>
+                    </div>
+                    <div id="announcements-list" class="announcements-list">
+                        <!-- Announcements will be loaded here -->
+                    </div>
+                </div>
+                
+                <div class="top-up-section">
+                    <h3><i class="fas fa-wallet"></i> Top Up LP</h3>
+                    <p>Purchase Legend Points to unlock courses and features</p>
+                    
+                    <div class="lp-packages" id="lp-packages">
+                        <!-- LP packages will be added by JavaScript based on country -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Learn Page -->
+            <div class="page" id="learn-page">
+                <h1 class="page-title"><i class="fas fa-graduation-cap"></i> Learn</h1>
+                
+                <!-- Floating Upload Button -->
+                <div class="floating-upload-btn" id="upload-course-btn" title="Upload a Course">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                
+                <div class="courses-container" id="courses-container">
+                    <!-- Courses will be added by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Media Page -->
+            <div class="page" id="media-page">
+                <h1 class="page-title"><i class="fas fa-share-alt"></i> Media & Links</h1>
+                
+                <div class="media-container" id="media-container">
+                    <div class="socials-section">
+                        <h3><i class="fas fa-heart"></i> Follow Our Socials</h3>
+                        <p class="section-description">Follow us on social media and earn 50 LP for each platform you visit!</p>
+                        
+                        <div class="social-grid">
+                            <div class="social-card" data-platform="whatsapp">
+                                <div class="social-icon">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <h4>WhatsApp Channel</h4>
+                                <p>Join our WhatsApp channel for updates and discussions</p>
+                                <button class="btn visit-social-btn" data-url="https://whatsapp.com/channel/0029Vb6c6547DAWpJX7mwN1z">
+                                    <i class="fas fa-external-link-alt"></i> Visit & Earn 50 LP
+                                </button>
+                            </div>
+                            
+                            <div class="social-card" data-platform="youtube">
+                                <div class="social-icon">
+                                    <i class="fab fa-youtube"></i>
+                                </div>
+                                <h4>YouTube</h4>
+                                <p>Subscribe to our YouTube channel for tutorials</p>
+                                <button class="btn visit-social-btn" data-url="https://youtube.com/@legendtechlord?si=inMKe-kt3D7DtxBc">
+                                    <i class="fas fa-external-link-alt"></i> Visit & Earn 50 LP
+                                </button>
+                            </div>
+                            
+                            <div class="social-card" data-platform="twitter">
+                                <div class="social-icon">
+                                    <i class="fab fa-twitter"></i>
+                                </div>
+                                <h4>Twitter/X</h4>
+                                <p>Follow us on X for tech news and updates</p>
+                                <button class="btn visit-social-btn" data-url="https://x.com/LegendTech07">
+                                    <i class="fas fa-external-link-alt"></i> Visit & Earn 50 LP
+                                </button>
+                            </div>
+                            
+                            <div class="social-card" data-platform="tiktok">
+                                <div class="social-icon">
+                                    <i class="fab fa-tiktok"></i>
+                                </div>
+                                <h4>TikTok</h4>
+                                <p>Watch short tech videos on our TikTok</p>
+                                <button class="btn visit-social-btn" data-url="https://www.tiktok.com/@legendtech07">
+                                    <i class="fas fa-external-link-alt"></i> Visit & Earn 50 LP
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="websites-section">
+                        <h3><i class="fas fa-link"></i> Our Other Websites</h3>
+                        <p class="section-description">Check out other amazing platforms by Legend Tech</p>
+                        
+                        <div class="website-grid">
+                            <div class="website-card">
+                                <div class="website-icon">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <h4>Legend Tech Library</h4>
+                                <p>Access our extensive library of tech resources, e-books, and research materials</p>
+                                <button class="btn visit-website-btn" data-url="https://legendtechlibrary.netlify.app/">
+                                    <i class="fas fa-external-link-alt"></i> Visit Library
+                                </button>
+                            </div>
+                            
+                            <div class="website-card coming-soon">
+                                <div class="website-icon">
+                                    <i class="fas fa-wrench"></i>
+                                </div>
+                                <h4>More Coming Soon!</h4>
+                                <p>We're building more amazing platforms for 2026. Stay tuned!</p>
+                                <button class="btn" disabled>
+                                    <i class="fas fa-clock"></i> Coming Soon
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lp-tracker">
+                        <h3><i class="fas fa-chart-line"></i> Social LP Tracker</h3>
+                        <div class="tracker-grid">
+                            <div class="tracker-item">
+                                <span class="tracker-label">WhatsApp</span>
+                                <span class="tracker-status" id="whatsapp-status">Not Visited</span>
+                            </div>
+                            <div class="tracker-item">
+                                <span class="tracker-label">YouTube</span>
+                                <span class="tracker-status" id="youtube-status">Not Visited</span>
+                            </div>
+                            <div class="tracker-item">
+                                <span class="tracker-label">Twitter/X</span>
+                                <span class="tracker-status" id="twitter-status">Not Visited</span>
+                            </div>
+                            <div class="tracker-item">
+                                <span class="tracker-label">TikTok</span>
+                                <span class="tracker-status" id="tiktok-status">Not Visited</span>
+                            </div>
+                        </div>
+                        <p class="tracker-total">Total Social LP Earned: <span id="total-social-lp">0</span> LP</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Community Page -->
+            <div class="page" id="community-page">
+                <h1 class="page-title"><i class="fas fa-users"></i> Community</h1>
+                
+                <div class="community-container">
+                    <div class="chat-header">
+                        <h3><i class="fas fa-comments"></i> Global Chat</h3>
+                        <div class="chat-info">
+                            <span id="online-count">0</span> users online
+                        </div>
+                    </div>
+                    
+                    <div class="chat-container">
+                        <!-- Reply Preview -->
+                        <div class="reply-preview" id="reply-preview">
+                            <div class="reply-info">
+                                <i class="fas fa-reply"></i>
+                                <span class="reply-username"></span>
+                                <span class="reply-message"></span>
+                            </div>
+                            <button class="cancel-reply" id="cancel-reply">&times;</button>
+                        </div>
+                        
+                        <div class="chat-messages" id="chat-messages">
+                            <!-- Chat messages will be added by JavaScript -->
+                        </div>
+                        
+                        <div class="chat-input-container">
+                            <div class="chat-input">
+                                <input type="text" id="chat-input" placeholder="Type your message...">
+                                <button class="btn" id="send-btn"><i class="fas fa-paper-plane"></i> Send</button>
+                            </div>
+                            <div class="chat-tips">
+                                <small>Tip: Type @username to mention someone or click on a message to reply</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feedback-form">
+                        <h3><i class="fas fa-envelope"></i> Contact Us</h3>
+                        <textarea id="feedback-message" placeholder="Your feedback or questions..."></textarea>
+                        <button class="btn" id="send-feedback"><i class="fas fa-paper-plane"></i> Send Feedback</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Navigation (Mobile) -->
+        <div class="nav-menu">
+            <a href="#dashboard-page" class="nav-item active" data-page="dashboard">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#learn-page" class="nav-item" data-page="learn">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Learn</span>
+            </a>
+            <a href="#media-page" class="nav-item" data-page="media">
+                <i class="fas fa-share-alt"></i>
+                <span>Media</span>
+            </a>
+            <a href="#community-page" class="nav-item" data-page="community">
+                <i class="fas fa-users"></i>
+                <span>Community</span>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Course Purchase Modal -->
+    <div class="modal" id="course-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-lock-open"></i> Unlock Course</h3>
+                <button class="modal-close" id="close-course-modal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <p>This course costs <strong id="course-cost">100</strong> LP. You currently have <strong id="user-lp-modal">0</strong> LP.</p>
+                <p id="purchase-error"><i class="fas fa-exclamation-circle"></i> You don't have enough LP to unlock this course.</p>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn" id="cancel-purchase"><i class="fas fa-times"></i> Cancel</button>
+                <button class="btn" id="confirm-purchase"><i class="fas fa-unlock"></i> Unlock Course</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Success Modal -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-check-circle"></i> Success!</h3>
+                <button class="modal-close" id="close-success-modal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <p id="success-message">Operation successful.</p>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn" id="close-success-btn"><i class="fas fa-check"></i> OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Airdrop Modal -->
+    <div class="modal" id="airdrop-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-gift"></i> Airdrop Claimed!</h3>
+                <button class="modal-close" id="close-airdrop-modal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <p id="airdrop-message"></p>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn" id="close-airdrop-btn"><i class="fas fa-check"></i> OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ethical Hacking Disclaimer Popup -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <h2><i class="fas fa-exclamation-triangle"></i> Ethical Hacking Disclaimer / Policy</h2>
+            <p><strong>Effective Date:</strong> January 2026</p>
+            <ol>
+                <li><strong>Educational and Ethical Use Only</strong><br>
+                All hacking tutorials, tools, articles, and courses provided on Legend Tech are strictly for educational and ethical purposes only.</li>
+                <li><strong>No Responsibility for Misuse</strong><br>
+                Legend Tech and its team will not be held responsible for any misuse, illegal activities, or damages caused by the knowledge or tools obtained from this website.</li>
+                <li><strong>Compliance with Laws</strong><br>
+                Users are required to comply with all local, national, and international laws regarding cybersecurity, privacy, and data protection.</li>
+                <li><strong>Testing in Safe Environments</strong><br>
+                We strongly recommend that any penetration testing or ethical hacking practice be done only in controlled environments.</li>
+                <li><strong>Acknowledgment</strong><br>
+                By accessing and using the courses, tutorials, or tools on this platform, you acknowledge that you have read, understood, and agreed to this policy.</li>
+                <li><strong>Contact Us</strong><br>
+                For questions or reporting abuse of our content, please contact us at:
+                <strong>legendtechlord@gmail.com</strong></li>
+            </ol>
+            <button class="btn" id="closePopup">
+                <i class="fas fa-check"></i> I Understand
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- JavaScript for Confetti Effect and Popup -->
+    <script>
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confetti-container');
+            const colors = ['#FF6B6B', '#4ECDC4', '#FFD166', '#06D6A0', '#118AB2', '#EF476F'];
+            
+            for (let i = 0; i < 150; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                
+                const size = Math.random() * 10 + 5;
+                const startX = Math.random() * 100;
+                const duration = Math.random() * 3 + 2;
+                const delay = Math.random() * 2;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                confetti.style.cssText = `
+                    left: ${startX}vw;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background-color: ${color};
+                    opacity: ${Math.random() * 0.7 + 0.3};
+                    animation: confetti-fall ${duration}s linear ${delay}s infinite;
+                `;
+                
+                confettiContainer.appendChild(confetti);
+            }
+        }
+
+        window.onload = function() {
+            createConfetti();
+            
+            // Show disclaimer popup
+            const popup = document.getElementById('popup');
+            const closePopup = document.getElementById('closePopup');
+            popup.style.display = 'flex';
+
+            closePopup.addEventListener('click', function() {
+                popup.style.display = 'none';
+            });
+        };
+    </script>
+</body>
+</html>
