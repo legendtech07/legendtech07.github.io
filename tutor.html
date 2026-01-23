@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor Panel - Legend Tech Academy</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="tutor.css">
+    <link rel="icon" href="logo.png">
+    <style>
+        /* Christmas Theme Colors */
+        :root {
+            --primary: #4a00e0;
+            --secondary: #8e2de2;
+            --accent: #00d2ff;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --christmas-red: #D62828;
+            --christmas-green: #2A9134;
+            --christmas-gold: #FFD700;
+            --snow-white: #F8F9FA;
+        }
+        
+        /* Christmas Theme Overrides */
+        .christmas-theme .btn {
+            background: linear-gradient(to right, var(--christmas-red), var(--christmas-green));
+        }
+        
+        .christmas-theme .nav-item.active {
+            color: var(--christmas-gold);
+        }
+        
+        .christmas-theme .page-title {
+            color: var(--christmas-green);
+        }
+        
+        .christmas-theme .user-lp {
+            background: rgba(42, 145, 52, 0.1);
+            border: 1px solid rgba(42, 145, 52, 0.3);
+        }
+        
+        .christmas-theme .streak-day.active {
+            background: linear-gradient(to right, var(--christmas-red), var(--christmas-green));
+        }
+        
+        .christmas-theme .course-price {
+            background: rgba(214, 40, 40, 0.1);
+            border: 1px solid rgba(214, 40, 40, 0.3);
+            color: var(--christmas-red);
+        }
+        
+        .christmas-theme .notification-button:hover {
+            color: var(--christmas-green);
+        }
+        
+        .christmas-theme .announcement-item {
+            border-left: 4px solid var(--christmas-red);
+        }
+        
+        /* Snow Effect */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: white;
+            font-size: 1em;
+            user-select: none;
+            pointer-events: none;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body class="christmas-theme">
+    <!-- Snow Effect -->
+    <div id="snowflakes"></div>
+    
+    <!-- Loader -->
+    <div class="loader-container" id="loader">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+        </div>
+        <div class="loader-text">Loading Tutor Panel...</div>
+    </div>
+    
+    <!-- Auth Container -->
+    <div class="auth-container" id="auth-container">
+        <div class="auth-box">
+            <h2><i class="fas fa-chalkboard-teacher"></i> Tutor Login</h2>
+            <div class="auth-tabs">
+                <div class="auth-tab active" data-tab="login">Login</div>
+                <div class="auth-tab" data-tab="register">Register</div>
+            </div>
+            
+            <!-- Login Form -->
+            <form class="auth-form active" id="login-form">
+                <div class="form-group">
+                    <label for="login-email"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="login-email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="login-password"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit" class="btn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                
+                <div class="auth-footer">
+                    Not a tutor? <a href="#" id="show-register">Register here</a>
+                </div>
+            </form>
+            
+            <!-- Register Form -->
+            <form class="auth-form" id="register-form">
+                <div class="form-group">
+                    <label for="register-username"><i class="fas fa-user"></i> Username</label>
+                    <input type="text" id="register-username" placeholder="Choose a username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-email"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="register-email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-password"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="register-password" placeholder="Create a password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-country"><i class="fas fa-globe"></i> Country</label>
+                    <select id="register-country" required>
+                        <option value="">Select your country</option>
+                        <option value="NG">Nigeria</option>
+                        <option value="US">United States</option>
+                        <option value="GB">United Kingdom</option>
+                        <option value="ES">Spain</option>
+                        <option value="FR">France</option>
+                        <option value="DE">Germany</option>
+                        <option value="IN">India</option>
+                        <option value="BR">Brazil</option>
+                        <option value="CA">Canada</option>
+                        <option value="AU">Australia</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn">
+                    <i class="fas fa-user-plus"></i> Register as Tutor
+                </button>
+                
+                <div class="auth-footer">
+                    Already have an account? <a href="#" id="show-login">Login here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Tutor Dashboard -->
+    <div class="tutor-container" id="tutor-container" style="display: none;">
+        <header>
+            <div class="logo">
+                <img src="logo.png" alt="Legend Tech Logo">
+                <span>Tutor Panel</span>
+            </div>
+            
+            <div class="user-info">
+                <div class="user-tp">
+                    <i class="fas fa-star" style="color: var(--christmas-gold);"></i>
+                    <span id="tutor-points">0 TP</span>
+                </div>
+                
+                <div class="user-lp">
+                    <i class="fas fa-coins" style="color: var(--christmas-gold);"></i>
+                    <span id="user-lp-display">0 LP</span>
+                </div>
+                
+                <div class="user-avatar" id="user-avatar">T</div>
+                
+                <button class="logout-btn" id="logout-btn" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section class="section active" id="dashboard-section">
+                <h1 class="section-title">
+                    <i class="fas fa-tachometer-alt"></i> Tutor Dashboard
+                </h1>
+                
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="stat-number" id="total-courses">0</div>
+                        <div class="stat-label">Courses Uploaded</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-number" id="total-unlocks">0</div>
+                        <div class="stat-label">Total Unlocks</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-thumbs-up"></i>
+                        </div>
+                        <div class="stat-number" id="total-likes">0</div>
+                        <div class="stat-label">Total Likes</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-thumbs-down"></i>
+                        </div>
+                        <div class="stat-number" id="total-dislikes">0</div>
+                        <div class="stat-label">Total Dislikes</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star" style="color: var(--christmas-gold);"></i>
+                        </div>
+                        <div class="stat-number" id="tutor-points-display">0</div>
+                        <div class="stat-label">Tutor Points</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="stat-number" id="estimated-earnings">$0</div>
+                        <div class="stat-label">Estimated Earnings</div>
+                    </div>
+                </div>
+                
+                <!-- Converter Section -->
+                <div class="converter-section">
+                    <h3><i class="fas fa-exchange-alt"></i> Convert Tutor Points to Cash</h3>
+                    <p>100 Tutor Points = $1 USD</p>
+                    <div class="converter-form">
+                        <input type="number" id="convert-amount" placeholder="Enter TP amount" min="100">
+                        <button class="btn" id="convert-btn">
+                            <i class="fas fa-exchange-alt"></i> Convert to Cash
+                        </button>
+                    </div>
+                    <p class="info-text">Minimum conversion: 100 TP</p>
+                </div>
+                
+                <!-- Airdrop Section -->
+                <div class="airdrop-section">
+                    <h3><i class="fas fa-gift"></i> Available Airdrops</h3>
+                    <div id="airdrop-list">
+                        <!-- Airdrops will be loaded here -->
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Upload Course Section -->
+            <section class="section" id="upload-section">
+                <h1 class="section-title">
+                    <i class="fas fa-cloud-upload-alt"></i> Upload Course
+                </h1>
+                
+                <form id="upload-form">
+                    <div class="form-group">
+                        <label for="course-title">
+                            <i class="fas fa-heading"></i> Course Title
+                        </label>
+                        <input type="text" id="course-title" placeholder="Enter course title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="course-description">
+                            <i class="fas fa-align-left"></i> Description
+                        </label>
+                        <textarea id="course-description" placeholder="Enter course description" required rows="4"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="course-image">
+                            <i class="fas fa-image"></i> Image URL
+                        </label>
+                        <input type="url" id="course-image" placeholder="Enter image URL" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="course-url">
+                            <i class="fas fa-link"></i> Content Link
+                        </label>
+                        <input type="url" id="course-url" placeholder="Enter course content URL" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="course-category">
+                            <i class="fas fa-tags"></i> Category
+                        </label>
+                        <select id="course-category" required>
+                            <option value="">Select Category</option>
+                            <option value="development">Development</option>
+                            <option value="design">Design</option>
+                            <option value="hacking">Ethical Hacking</option>
+                            <option value="ai">AI & Machine Learning</option>
+                            <option value="trading">Trading</option>
+                            <option value="business">Business</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-coins"></i> Course Price: <span style="color: var(--christmas-gold);">100 LP</span>
+                        </label>
+                        <p class="info-text">Students need 100 Legend Points to unlock this course</p>
+                    </div>
+                    
+                    <button type="submit" class="btn">
+                        <i class="fas fa-upload"></i> Upload Course
+                    </button>
+                </form>
+            </section>
+            
+            <!-- My Courses Section -->
+            <section class="section" id="courses-section">
+                <h1 class="section-title">
+                    <i class="fas fa-list"></i> My Courses
+                </h1>
+                
+                <div class="search-container">
+                    <input type="text" id="course-search" placeholder="Search your courses...">
+                    <i class="fas fa-search"></i>
+                </div>
+                
+                <div class="courses-grid" id="my-courses">
+                    <!-- Courses will be loaded here -->
+                </div>
+            </section>
+            
+            <!-- Analytics Section -->
+            <section class="section" id="analytics-section">
+                <h1 class="section-title">
+                    <i class="fas fa-chart-line"></i> Analytics
+                </h1>
+                
+                <div class="analytics-container">
+                    <div class="analytics-card">
+                        <h3><i class="fas fa-chart-bar"></i> Course Performance</h3>
+                        <div id="course-chart"></div>
+                    </div>
+                    
+                    <div class="analytics-card">
+                        <h3><i class="fas fa-calendar-alt"></i> Recent Activity</h3>
+                        <div id="activity-list">
+                            <!-- Activity will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Tutor Navigation -->
+        <nav class="tutor-nav">
+            <button class="nav-btn active" data-section="dashboard">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </button>
+            
+            <button class="nav-btn" data-section="upload">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <span>Upload</span>
+            </button>
+            
+            <button class="nav-btn" data-section="courses">
+                <i class="fas fa-list"></i>
+                <span>My Courses</span>
+            </button>
+            
+            <button class="nav-btn" data-section="analytics">
+                <i class="fas fa-chart-line"></i>
+                <span>Analytics</span>
+            </button>
+        </nav>
+    </div>
+    
+    <!-- Success Modal -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-check-circle"></i> Success!</h3>
+                <button class="modal-close" id="close-success-modal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <p id="success-message"></p>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn" id="close-success-btn">OK</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Conversion Modal -->
+    <div class="modal" id="conversion-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-exchange-alt"></i> Conversion Request</h3>
+                <button class="modal-close" id="close-conversion-modal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <p>Your conversion request has been sent to the admin. You will receive payment within 24-48 hours.</p>
+                <p>An email has been sent to <strong>legendtechlord@gmail.com</strong> with your request details.</p>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn" id="close-conversion-btn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="tutor.js"></script>
+</body>
+</html>
