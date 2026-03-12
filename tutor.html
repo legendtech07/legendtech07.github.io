@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legend Tech Academy - Tutor Program</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="tutor.css">
+    <link rel="icon" href="logo.png">
+</head>
+<body class="newyear-theme">
+    <!-- Loader -->
+    <div class="loader-container" id="loader">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+        </div>
+        <div class="loader-text">Legend Tech Academy</div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Legend Tech Logo">
+            <span>Legend Tech Academy</span>
+        </div>
+        
+        <nav class="desktop-nav">
+            <a href="#home" class="nav-link active">Home</a>
+            <a href="#advantages" class="nav-link">Advantages</a>
+            <a href="#perks" class="nav-link">Perks</a>
+            <a href="#updates" class="nav-link">Updates</a>
+            <a href="#faq" class="nav-link">FAQ</a>
+        </nav>
+        
+        <a href="#download" class="btn download-header-btn" id="header-download-btn">
+            <i class="fas fa-download"></i> Download App
+        </a>
+        
+        <button class="mobile-menu-btn" id="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobile-nav">
+        <a href="#home" class="mobile-nav-link">Home</a>
+        <a href="#advantages" class="mobile-nav-link">Advantages</a>
+        <a href="#perks" class="mobile-nav-link">Perks</a>
+        <a href="#updates" class="mobile-nav-link">Updates</a>
+        <a href="#faq" class="mobile-nav-link">FAQ</a>
+        <a href="#download" class="mobile-nav-link download-mobile-btn">Download App</a>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-chalkboard-teacher"></i> TUTOR PROGRAM 2025
+                </div>
+                <h1 class="hero-title">Empower <span class="highlight">Minds</span>, Build Your <span class="highlight">Legacy</span></h1>
+                <p class="hero-subtitle">Join the most rewarding tutor community at Legend Tech Academy. Share your knowledge, earn rewards, and grow with us.</p>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">500+</div>
+                        <div class="hero-stat-label">Active Tutors</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">10k+</div>
+                        <div class="hero-stat-label">Students</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">$50k+</div>
+                        <div class="hero-stat-label">Paid to Tutors</div>
+                    </div>
+                </div>
+                
+                <div class="hero-buttons">
+                    <a href="#download" class="btn hero-btn-primary">
+                        <i class="fas fa-download"></i> Download Tutor App
+                    </a>
+                    <a href="#advantages" class="btn hero-btn-secondary">
+                        <i class="fas fa-info-circle"></i> Learn More
+                    </a>
+                </div>
+                
+                <div class="hero-app-badge">
+                    <i class="fas fa-mobile-alt"></i> Available for Android | APK Size: 18MB
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tutor teaching" class="hero-img">
+                <div class="hero-image-overlay"></div>
+                <div class="floating-card card-1">
+                    <i class="fas fa-star"></i>
+                    <span>Top Rated</span>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-coins"></i>
+                    <span>Earn TP</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advantages Section -->
+        <section id="advantages" class="advantages-section">
+            <div class="section-header">
+                <h2 class="section-title">Why Become a <span class="highlight">Tutor</span>?</h2>
+                <p class="section-subtitle">Discover the advantages of joining the Legend Tech Academy tutor community</p>
+            </div>
+            
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>Competitive Earnings</h3>
+                    <p>Convert your Tutor Points (TP) to real cash. 100 TP = $1 USD. Minimum withdrawal of $10.</p>
+                    <div class="advantage-stats">
+                        <span>Top earners make $500+/month</span>
+                    </div>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>Rank System</h3>
+                    <p>Progress through 8 ranks: Iron → Bronze → Silver → Gold → Platinum → Ruby → Diamond → Elite</p>
+                    <div class="advantage-stats">
+                        <span>Higher ranks = Better benefits</span>
+                    </div>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <h3>Official ID Card</h3>
+                    <p>Get your verified digital ID card as a Legend Tech Academy tutor with unique serial number.</p>
+                    <div class="advantage-stats">
+                        <span>Verifiable credential</span>
+                    </div>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Real-time Analytics</h3>
+                    <p>Track your course performance, student engagement, and earnings with detailed analytics.</p>
+                    <div class="advantage-stats">
+                        <span>Make data-driven decisions</span>
+                    </div>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Daily Airdrops</h3>
+                    <p>Claim free LP (Legend Points) every day. New airdrops available every 2 hours.</p>
+                    <div class="advantage-stats">
+                        <span>Extra rewards daily</span>
+                    </div>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Global Community</h3>
+                    <p>Join tutors from over 50 countries. Share knowledge and grow your network.</p>
+                    <div class="advantage-stats">
+                        <span>Connect worldwide</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="advantages-image-row">
+                <div class="advantage-image-card">
+                    <img src="https://images.unsplash.com/photo-1557429287-b2e26467fc2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tutor dashboard">
+                    <div class="advantage-image-overlay">
+                        <h4>Interactive Dashboard</h4>
+                        <p>Track everything in one place</p>
+                    </div>
+                </div>
+                
+                <div class="advantage-image-card">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Student engagement">
+                    <div class="advantage-image-overlay">
+                        <h4>High Student Engagement</h4>
+                        <p>Connect with motivated learners</p>
+                    </div>
+                </div>
+                
+                <div class="advantage-image-card">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Team collaboration">
+                    <div class="advantage-image-overlay">
+                        <h4>Collaborative Environment</h4>
+                        <p>Work with fellow tutors</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Perks Section -->
+        <section id="perks" class="perks-section">
+            <div class="section-header">
+                <h2 class="section-title">Tutor <span class="highlight">Perks</span></h2>
+                <p class="section-subtitle">Exclusive benefits for our tutor community</p>
+            </div>
+            
+            <div class="perks-showcase">
+                <div class="perks-grid">
+                    <div class="perk-item">
+                        <div class="perk-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div class="perk-content">
+                            <h4>TP to Cash Conversion</h4>
+                            <p>Convert your earned points to real money anytime</p>
+                            <span class="perk-badge">100 TP = $1</span>
+                        </div>
+                    </div>
+                    
+                    <div class="perk-item">
+                        <div class="perk-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="perk-content">
+                            <h4>Monthly Contests</h4>
+                            <p>Win cash prizes and bonus points</p>
+                            <span class="perk-badge">Up to $500</span>
+                        </div>
+                    </div>
+                    
+                    <div class="perk-item">
+                        <div class="perk-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="perk-content">
+                            <h4>Verified Badge</h4>
+                            <p>Get a verified tutor badge on your profile</p>
+                            <span class="perk-badge">Trust badge</span>
+                        </div>
+                    </div>
+                    
+                    <div class="perk-item">
+                        <div class="perk-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="perk-content">
+                            <h4>Priority Support</h4>
+                            <p>24/7 dedicated support for tutors</p>
+                            <span class="perk-badge">Fast response</span>
+                        </div>
+                    </div>
+                    
+                    <div class="perk-item">
+                        <div class="perk-icon">
+                            <i class="fas fa-chalkboard"></i>
+                        </div>
+                        <div class="perk-content">
+                            <h4>Free Course Creation</h4>
+                            <p>Create and upload unlimited courses</p>
+                            <span class="perk-badge">No limits</span>
+                        </div>
+                    </div>
+                    
+                    <div class="perk-item">
+                        <div class="perk-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="perk-content">
+                            <h4>Dedicated Tutor App</h4>
+                            <p>Manage everything from your phone</p>
+                            <span class="perk-badge">Android app</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="perks-image">
+                    <img src="https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tutor perks">
+                    <div class="perks-image-overlay">
+                        <h3>Join Our Elite Tutors</h3>
+                        <p>500+ tutors already earning</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="perks-banner">
+                <div class="banner-content">
+                    <i class="fas fa-gem"></i>
+                    <div>
+                        <h4>Elite Tutor Benefits</h4>
+                        <p>Top 10% tutors get exclusive perks: Higher conversion rates, featured profile, and more</p>
+                    </div>
+                </div>
+                <a href="#download" class="btn banner-btn">Become Elite</a>
+            </div>
+        </section>
+
+        <!-- Updates Section -->
+        <section id="updates" class="updates-section">
+            <div class="section-header">
+                <h2 class="section-title">Latest <span class="highlight">Updates</span></h2>
+                <p class="section-subtitle">New features and improvements for tutors</p>
+            </div>
+            
+            <div class="updates-timeline">
+                <div class="update-card">
+                    <div class="update-date">
+                        <span class="update-day">15</span>
+                        <span class="update-month">MAR</span>
+                        <span class="update-year">2025</span>
+                    </div>
+                    <div class="update-content">
+                        <h3>Enhanced Analytics Dashboard</h3>
+                        <p>New detailed analytics with student engagement metrics, earnings forecasts, and course performance insights.</p>
+                        <div class="update-tags">
+                            <span class="update-tag">New Feature</span>
+                            <span class="update-tag">Analytics</span>
+                        </div>
+                    </div>
+                    <div class="update-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Analytics update">
+                    </div>
+                </div>
+                
+                <div class="update-card reverse">
+                    <div class="update-date">
+                        <span class="update-day">28</span>
+                        <span class="update-month">FEB</span>
+                        <span class="update-year">2025</span>
+                    </div>
+                    <div class="update-content">
+                        <h3>TP Conversion Rate Increased</h3>
+                        <p>We've increased the conversion rate for Elite rank tutors. Now 100 TP = $1.25 for Diamond+ ranks.</p>
+                        <div class="update-tags">
+                            <span class="update-tag">Rate Change</span>
+                            <span class="update-tag">Earnings</span>
+                        </div>
+                    </div>
+                    <div class="update-image">
+                        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Conversion rate">
+                    </div>
+                </div>
+                
+                <div class="update-card">
+                    <div class="update-date">
+                        <span class="update-day">10</span>
+                        <span class="update-month">FEB</span>
+                        <span class="update-year">2025</span>
+                    </div>
+                    <div class="update-content">
+                        <h3>New Rank System Introduced</h3>
+                        <p>Added two new ranks: Ruby and Elite. Unlock exclusive benefits as you climb the ranks.</p>
+                        <div class="update-tags">
+                            <span class="update-tag">Rank System</span>
+                            <span class="update-tag">New</span>
+                        </div>
+                    </div>
+                    <div class="update-image">
+                        <img src="https://images.unsplash.com/photo-1635322966219-b75ed372eb01?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rank system">
+                    </div>
+                </div>
+                
+                <div class="update-card reverse">
+                    <div class="update-date">
+                        <span class="update-day">22</span>
+                        <span class="update-month">JAN</span>
+                        <span class="update-year">2025</span>
+                    </div>
+                    <div class="update-content">
+                        <h3>Mobile App v2.0 Released</h3>
+                        <p>Completely redesigned tutor app with offline mode, push notifications, and improved performance.</p>
+                        <div class="update-tags">
+                            <span class="update-tag">App Update</span>
+                            <span class="update-tag">Android</span>
+                        </div>
+                    </div>
+                    <div class="update-image">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mobile app">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="updates-cta">
+                <a href="#download" class="btn">
+                    <i class="fas fa-download"></i> Download App for Latest Features
+                </a>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq-section">
+            <div class="section-header">
+                <h2 class="section-title">Frequently Asked <span class="highlight">Questions</span></h2>
+                <p class="section-subtitle">Everything you need to know about being a tutor</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I become a tutor?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Download the Legend Tech Tutor App, register with your details, and start creating courses. Your application will be reviewed within 24-48 hours.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I earn Tutor Points (TP)?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Earn TP when students unlock your courses (10 TP per unlock), receive likes (1 TP per like), and through special promotions and contests.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>When can I withdraw my earnings?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can request withdrawal once you have at least 1000 TP ($10). Withdrawals are processed within 24-48 hours via PayPal, bank transfer, or crypto.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Is the app free to download?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! The Legend Tech Tutor App is completely free to download and use. We only charge a small 10% commission on your earnings.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What subjects can I teach?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can teach any tech-related subject: Programming, Web Development, Ethical Hacking, AI & Machine Learning, Design, Trading, Business, and more.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do I need teaching experience?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No formal teaching experience required. If you have expertise in your field and can explain concepts clearly, you can be a great tutor!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section id="download" class="download-section">
+            <div class="download-container">
+                <div class="download-content">
+                    <h2>Ready to Start Your <span class="highlight">Teaching Journey</span>?</h2>
+                    <p>Download the Legend Tech Tutor App and join 500+ tutors already earning from their knowledge.</p>
+                    
+                    <div class="download-features">
+                        <div class="download-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Free to download</span>
+                        </div>
+                        <div class="download-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>No hidden fees</span>
+                        </div>
+                        <div class="download-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Instant payouts</span>
+                        </div>
+                        <div class="download-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>24/7 support</span>
+                        </div>
+                    </div>
+                    
+                    <div class="download-stats">
+                        <div class="download-stat">
+                            <span class="download-stat-number">500+</span>
+                            <span class="download-stat-label">Active Tutors</span>
+                        </div>
+                        <div class="download-stat">
+                            <span class="download-stat-number">10k+</span>
+                            <span class="download-stat-label">Courses</span>
+                        </div>
+                        <div class="download-stat">
+                            <span class="download-stat-number">4.8★</span>
+                            <span class="download-stat-label">App Rating</span>
+                        </div>
+                    </div>
+                    
+                    <a href="LegendTechTutors.apk" class="btn download-btn" id="download-app-btn" download>
+                        <i class="fas fa-download"></i> Download App (APK) - 9.1MB
+                    </a>
+                    
+                    <div class="download-info">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Safe & Secure | Version 2.0.5 | Android 6.0+</span>
+                    </div>
+                    
+                    <div class="download-note">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Allow installation from unknown sources in your device settings</span>
+                    </div>
+                </div>
+                
+                <div class="download-image">
+                    <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Download app">
+                    <div class="qr-code">
+                        <i class="fas fa-qrcode"></i>
+                        <span>Scan to download</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="Legend Tech">
+                    <span>Legend Tech Academy</span>
+                </div>
+                <p>Empowering tutors to share knowledge and build their legacy.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#advantages">Advantages</a></li>
+                    <li><a href="#perks">Perks</a></li>
+                    <li><a href="#updates">Updates</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Tutor Guide</a></li>
+                    <li><a href="#">Community Forum</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Download App</h4>
+                <a href="LegendTechTutors.apk" class="footer-download-btn" download>
+                    <i class="fas fa-download"></i> legendtechtutor.apk
+                </a>
+                <p class="footer-version">Version 2.0.5 | 18MB</p>
+                <p class="footer-copyright">© 2025 Legend Tech Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="tutor.js"></script>
+</body>
+</html>
