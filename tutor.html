@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor Panel - Legend Tech Academy</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="tutor.css">
+    <link rel="icon" href="logo.png">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader-container" id="loader">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+        </div>
+        <div class="loader-text">Loading Tutor Panel...</div>
+    </div>
+    
+    <!-- Auth Container -->
+    <div class="auth-container" id="auth-container">
+        <div class="auth-box">
+            <h2><i class="fas fa-chalkboard-teacher"></i> Tutor Login</h2>
+            <div class="auth-tabs">
+                <div class="auth-tab active" data-tab="login">Login</div>
+                <div class="auth-tab" data-tab="register">Register</div>
+                <div class="auth-tab" data-tab="admin-login">Admin</div>
+            </div>
+            
+            <!-- Login Form -->
+            <form class="auth-form active" id="login-form">
+                <div class="form-group">
+                    <label for="login-email"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="login-email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="login-password"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit" class="btn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                
+                <div class="auth-footer">
+                    Not a tutor? <a href="#" id="show-register">Register here</a>
+                </div>
+            </form>
+            
+            <!-- Enhanced Register Form -->
+            <form class="auth-form" id="register-form">
+                <div class="form-group">
+                    <label for="register-fullname"><i class="fas fa-user"></i> Full Name</label>
+                    <input type="text" id="register-fullname" placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-username"><i class="fas fa-at"></i> Username</label>
+                    <input type="text" id="register-username" placeholder="Choose a username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-email"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="register-email" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-password"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="register-password" placeholder="Create a password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-dob"><i class="fas fa-calendar"></i> Date of Birth</label>
+                    <input type="date" id="register-dob" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-country"><i class="fas fa-globe"></i> Country</label>
+                    <select id="register-country" required>
+                        <option value="">Select your country</option>
+                        <option value="NG">Nigeria</option>
+                        <option value="US">United States</option>
+                        <option value="GB">United Kingdom</option>
+                        <option value="ES">Spain</option>
+                        <option value="FR">France</option>
+                        <option value="DE">Germany</option>
+                        <option value="IN">India</option>
+                        <option value="BR">Brazil</option>
+                        <option value="CA">Canada</option>
+                        <option value="AU">Australia</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="register-image"><i class="fas fa-image"></i> Profile Image URL</label>
+                    <input type="url" id="register-image" placeholder="Enter image URL (or leave empty for default)" required>
+                    <small style="color: rgba(255,255,255,0.5);">Use any image URL (Imgur, Google Photos, etc.)</small>
+                </div>
+                
+                <button type="submit" class="btn">
+                    <i class="fas fa-user-plus"></i> Register as Tutor
+                </button>
+                
+                <div class="auth-footer">
+                    Already have an account? <a href="#" id="show-login">Login here</a>
+                </div>
+            </form>
+            
+            <!-- Admin Login Form -->
+            <form class="auth-form" id="admin-login-form">
+                <div class="form-group">
+                    <label for="admin-email"><i class="fas fa-envelope"></i> Admin Email</label>
+                    <input type="email" id="admin-email" placeholder="Enter admin email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="admin-password"><i class="fas fa-lock"></i> Admin Password</label>
+                    <input type="password" id="admin-password" placeholder="Enter admin password" required>
+                </div>
+                
+                <button type="submit" class="btn">
+                    <i class="fas fa-shield-alt"></i> Admin Login
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Tutor Dashboard -->
+    <div class="tutor-container" id="tutor-container" style="display: none;">
+        <header>
+            <div class="logo">
+                <img src="logo.png" alt="Legend Tech Logo">
+                <span>Tutor Panel</span>
+            </div>
+            
+            <div class="user-info">
+                <div class="user-rank" id="user-rank-badge">
+                    <i class="fas fa-crown"></i>
+                    <span id="user-rank">Iron</span>
+                </div>
+                
+                <div class="user-tp">
+                    <i class="fas fa-star" style="color: var(--gold);"></i>
+                    <span id="tutor-points">0 TP</span>
+                </div>
+                
+                <div class="user-lp">
+                    <i class="fas fa-coins" style="color: var(--gold);"></i>
+                    <span id="user-lp-display">0 LP</span>
+                </div>
+                
+                <div class="user-avatar" id="user-avatar" style="cursor: pointer;" onclick="showIDCard()">
+                    <img id="avatar-img" src="" alt="Avatar" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: none;">
+                    <span id="avatar-text">T</span>
+                </div>
+                
+                <button class="logout-btn" id="logout-btn" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section class="section active" id="dashboard-section">
+                <h1 class="section-title">
+                    <i class="fas fa-tachometer-alt"></i> Tutor Dashboard
+                </h1>
+                
+                <!-- ID Card Preview -->
+                <div class="id-card-preview" onclick="showIDCard()">
+                    <div class="id-card-mini">
+                        <div class="id-card-header">
+                            <img src="logo.png" alt="Legend Tech">
+                            <span>TUTOR</span>
+                        </div>
+                        <div class="id-card-body">
+                            <div class="id-card-avatar" id="mini-avatar">
+                                <img id="mini-avatar-img" src="" alt="" style="display: none;">
+                                <span id="mini-avatar-text">T</span>
+                            </div>
+                            <div class="id-card-info">
+                                <div id="mini-name">Loading...</div>
+                                <div id="mini-rank">Iron</div>
+                            </div>
+                        </div>
+                    </div>
+                    <small><i class="fas fa-id-card"></i> Click to view full ID card</small>
+                </div>
+                
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="stat-number" id="total-courses">0</div>
+                        <div class="stat-label">Courses Uploaded</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-number" id="total-unlocks">0</div>
+                        <div class="stat-label">Total Unlocks</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-thumbs-up"></i>
+                        </div>
+                        <div class="stat-number" id="total-likes">0</div>
+                        <div class="stat-label">Total Likes</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-crown" style="color: var(--gold);"></i>
+                        </div>
+                        <div class="stat-number" id="current-rank">Iron</div>
+                        <div class="stat-label">Current Rank</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star" style="color: var(--gold);"></i>
+                        </div>
+                        <div class="stat-number" id="tutor-points-display">0</div>
+                        <div class="stat-label">Tutor Points</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="stat-number" id="estimated-earnings">$0</div>
+                        <div class="stat-label">Estimated Earnings</div>
+                    </div>
+                </div>
+                
+                <!-- Rank Progress -->
+                <div class="rank-progress-section">
+                    <h3><i class="fas fa-chart-line"></i> Rank Progress</h3>
+                    <div class="rank-progress-container">
+                        <div class="rank-info">
+                            <span id="current-rank-name">Iron</span>
+                            <span id="next-rank-name">Bronze</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="rank-progress-fill" style="width: 0%"></div>
+                        </div>
+                        <div class="rank-points">
+                            <span id="current-points">0</span> / <span id="next-rank-points">100</span> TP
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Converter Section -->
+                <div class="converter-section">
+                    <h3><i class="fas fa-exchange-alt"></i> Convert Tutor Points to Cash</h3>
+                    <p>100 Tutor Points = $1 USD</p>
+                    <div class="converter-form">
+                        <input type="number" id="convert-amount" placeholder="Enter TP amount" min="100">
+                        <button class="btn" id="convert-btn">
+                            <i class="fas fa-exchange-alt"></i> Convert to Cash
+                        </button>
+                    </div>
+                    <p class="info-text">Minimum conversion: 100 TP</p>
+                </div>
+                
+                <!-- Airdrop Section -->
+                <div class="airdrop-section">
+                    <h3><i class="fas fa-gift"></i> Available Airdrops</h3>
+                    <div id="airdrop-list">
+                        <!-- Airdrops will be loaded here -->
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Upload Course Section -->
+            <section class="section" id="upload-section">
+                <h1 class="section-title">
+                    <i class="fas fa-cloud-upload-alt"></i> Upload Course
+                </h1>
+                
+                <form id="upload-form">
+                    <div class="form-group">
+                        <label for="course-title">
+                            <i class="fas fa-heading"></i> Course Title
+                        </label>
+                        <input type="text" id="course-title" placeholder="Enter course title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="course-description">
+                            <i class="fas fa-align-left"></i> Description
+                        </label>
+                        <textarea id="course-description" placeholder="Enter course description" required rows="4"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="course-image">
+                            <i class="fas fa-image"></i> Image URL
+                        </label>
+                        <input type="url" id="course-image" placeholder="Enter image URL" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="course-url">
+                            <i class="fas fa-link"></i> Content Link
+                        </label>
+                        <input type="url" id="course-url" placeholder="Enter course content URL" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="course-category">
+                            <i class="fas fa-tags"></i> Category
+                        </label>
+                        <select id="course-category" required>
+                            <option value="">Select Category</option>
+                            <option value="development">Development</option>
+                            <option value="design">Design</option>
+                            <option value="hacking">Ethical Hacking</option>
+                            <option value="ai">AI & Machine Learning</option>
+                            <option value="trading">Trading</option>
+                            <option value="business">Business</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-coins"></i> Course Price: <span style="color: var(--gold);">100 LP</span>
+                        </label>
+                        <p class="info-text">Students need 100 Legend Points to unlock this course</p>
+                    </div>
+                    
+                    <button type="submit" class="btn">
+                        <i class="fas fa-upload"></i> Upload Course
+                    </button>
+                </form>
+            </section>
+            
+            <!-- My Courses Section -->
+            <section class="section" id="courses-section">
+                <h1 class="section-title">
+                    <i class="fas fa-list"></i> My Courses
+                </h1>
+                
+                <div class="search-container">
+                    <input type="text" id="course-search" placeholder="Search your courses...">
+                    <i class="fas fa-search"></i>
+                </div>
+                
+                <div class="courses-grid" id="my-courses">
+                    <!-- Courses will be loaded here -->
+                </div>
+            </section>
+            
+            <!-- Analytics Section -->
+            <section class="section" id="analytics-section">
+                <h1 class="section-title">
+                    <i class="fas fa-chart-line"></i> Analytics
+                </h1>
+                
+                <div class="analytics-container">
+                    <!-- Performance Chart -->
+                    <div class="analytics-card">
+                        <h3><i class="fas fa-chart-bar"></i> Course Performance Overview</h3>
+                        <div class="chart-container">
+                            <canvas id="performanceChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Course Stats -->
+                    <div class="analytics-card">
+                        <h3><i class="fas fa-chart-pie"></i> Course Distribution</h3>
+                        <div class="chart-container">
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Top Performing Courses -->
+                    <div class="analytics-card full-width">
+                        <h3><i class="fas fa-trophy"></i> Top Performing Courses</h3>
+                        <div id="top-courses-list" class="courses-list">
+                            <!-- Top courses will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Activity -->
+                    <div class="analytics-card">
+                        <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                        <div id="recent-activity" class="activity-list">
+                            <!-- Recent activity will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Monthly Performance -->
+                    <div class="analytics-card">
+                        <h3><i class="fas fa-calendar-alt"></i> Monthly Performance</h3>
+                        <div id="monthly-stats" class="monthly-stats">
+                            <!-- Monthly stats will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- ID Card Section -->
+            <section class="section" id="idcard-section">
+                <h1 class="section-title">
+                    <i class="fas fa-id-card"></i> My ID Card
+                </h1>
+                
+                <div class="id-card-container">
+                    <div class="id-card" id="tutor-id-card">
+                        <div class="id-card-header">
+                            <div class="id-card-logo">
+                                <img src="logo.png" alt="Legend Tech">
+                                <h2>Legend Tech Academy</h2>
+                            </div>
+                            <div class="id-card-badge">TUTOR</div>
+                        </div>
+                        
+                        <div class="id-card-main">
+                            <div class="id-card-photo">
+                                <img id="card-profile-img" src="" alt="Profile" style="display: none;">
+                                <div id="card-profile-placeholder" class="photo-placeholder">
+                                    <i class="fas fa-user-graduate"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="id-card-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">Full Name:</span>
+                                    <span class="detail-value" id="card-fullname">Loading...</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Username:</span>
+                                    <span class="detail-value" id="card-username">Loading...</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Date of Birth:</span>
+                                    <span class="detail-value" id="card-dob">Loading...</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Country:</span>
+                                    <span class="detail-value" id="card-country">Loading...</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Member Since:</span>
+                                    <span class="detail-value" id="card-joined">Loading...</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Rank:</span>
+                                    <span class="detail-value" id="card-rank">
+                                        <span class="rank-badge">Iron</span>
+                                    </span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Tutor Points:</span>
+                                    <span class="detail-value" id="card-points">0 TP</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="id-card-footer">
+                            <div class="serial-number" id="card-serial">LEG/2024/0001</div>
+                            <div class="qr-code">
+                                <i class="fas fa-qrcode"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="id-card-verify">
+                            <i class="fas fa-shield-alt"></i> Verified Legend Tech Academy Tutor
+                        </div>
+                    </div>
+                    
+                    <button class="btn" onclick="downloadIDCard()">
+                        <i class="fas fa-download"></i> Download ID Card
+                    </button>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Tutor Navigation -->
+        <nav class="tutor-nav">
+            <button class="nav-btn active" data-section="dashboard">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </button>
+            
+            <button class="nav-btn" data-section="upload">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <span>Upload</span>
+            </button>
+            
+            <button class="nav-btn" data-section="courses">
+                <i class="fas fa-list"></i>
+                <span>My Courses</span>
+            </button>
+            
+            <button class="nav-btn" data-section="analytics">
+                <i class="fas fa-chart-line"></i>
+                <span>Analytics</span>
+            </button>
+            
+            <button class="nav-btn" data-section="idcard">
+                <i class="fas fa-id-card"></i>
+                <span>ID Card</span>
+            </button>
+        </nav>
+    </div>
+    
+    <!-- Admin Panel -->
+    <div class="admin-container" id="admin-container" style="display: none;">
+        <header>
+            <div class="logo">
+                <img src="logo.png" alt="Legend Tech">
+                <span>Admin Panel</span>
+            </div>
+            
+            <div class="user-info">
+                <div class="user-avatar">A</div>
+                <button class="logout-btn" id="admin-logout-btn" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <h1 class="section-title">
+                <i class="fas fa-users-cog"></i> Tutor Management
+            </h1>
+            
+            <!-- Admin Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="stat-number" id="total-tutors">0</div>
+                    <div class="stat-label">Total Tutors</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="stat-number" id="total-courses-admin">0</div>
+                    <div class="stat-label">Total Courses</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-star" style="color: var(--gold);"></i>
+                    </div>
+                    <div class="stat-number" id="total-tp-admin">0</div>
+                    <div class="stat-label">Total TP Earned</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-coins" style="color: var(--gold);"></i>
+                    </div>
+                    <div class="stat-number" id="total-conversions">$0</div>
+                    <div class="stat-label">Pending Conversions</div>
+                </div>
+            </div>
+            
+            <!-- Search and Filter -->
+            <div class="admin-controls">
+                <div class="search-container">
+                    <input type="text" id="admin-tutor-search" placeholder="Search tutors...">
+                    <i class="fas fa-search"></i>
+                </div>
+                
+                <select id="rank-filter" class="filter-select">
+                    <option value="">All Ranks</option>
+                    <option value="Iron">Iron</option>
+                    <option value="Bronze">Bronze</option>
+                    <option value="Silver">Silver</option>
+                    <option value="Gold">Gold</option>
+                    <option value="Platinum">Platinum</option>
+                    <option value="Ruby">Ruby</option>
+                    <option value="Diamond">Diamond</option>
+                    <option value="Elite">Elite</option>
+                </select>
+                
+                <button class="btn" id="export-tutors-btn">
+                    <i class="fas fa-download"></i> Export Data
+                </button>
+            </div>
+            
+            <!-- Tutors Table -->
+            <div class="tutors-table-container">
+                <table class="tutors-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Photo</th>
+                            <th>Full Name</th>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Country</th>
+                            <th>Rank</th>
+                            <th>TP</th>
+                            <th>Courses</th>
+                            <th>Joined</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tutors-table-body">
+                        <!-- Tutors will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Conversion Requests -->
+            <div class="conversion-requests">
+                <h3><i class="fas fa-exchange-alt"></i> Pending Conversion Requests</h3>
+                <div id="conversion-requests-list">
+                    <!-- Conversion requests will be loaded here -->
+                </div>
+            </div>
+        </main>
+        
+        <!-- Admin Navigation -->
+        <nav class="admin-nav">
+            <button class="nav-btn active" data-admin-section="dashboard">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </button>
+            
+            <button class="nav-btn" data-admin-section="tutors">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Tutors</span>
+            </button>
+            
+            <button class="nav-btn" data-admin-section="conversions">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Conversions</span>
+            </button>
+            
+            <button class="nav-btn" data-admin-section="settings">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </button>
+        </nav>
+    </div>
+    
+    <!-- ID Card Modal -->
+    <div class="modal" id="idcard-modal">
+        <div class="modal-content id-card-modal">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-id-card"></i> Tutor ID Card</h3>
+                <button class="modal-close" id="close-idcard-modal">&times;</button>
+            </div>
+            
+            <div class="modal-body" id="idcard-modal-body">
+                <!-- ID Card will be loaded here -->
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn" id="download-idcard-btn">
+                    <i class="fas fa-download"></i> Download
+                </button>
+                <button class="btn" id="close-idcard-btn">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Success Modal -->
+    <div class="modal" id="success-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-check-circle"></i> Success!</h3>
+                <button class="modal-close" id="close-success-modal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <p id="success-message"></p>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn" id="close-success-btn">OK</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Conversion Modal -->
+    <div class="modal" id="conversion-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-exchange-alt"></i> Conversion Request</h3>
+                <button class="modal-close" id="close-conversion-modal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <p>Your conversion request has been sent to the admin. You will receive payment within 24-48 hours.</p>
+                <p>An email has been sent to <strong>legendtechlord@gmail.com</strong> with your request details.</p>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn" id="close-conversion-btn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Chart.js for analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="tutor.js"></script>
+</body>
+</html>
